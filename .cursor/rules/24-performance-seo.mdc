@@ -1,0 +1,19 @@
+---
+description: Performance and technical SEO constraints for the Uni Lions public site
+alwaysApply: false
+globs:
+  - "src/**/*.{ts,tsx,js,jsx,css,scss,html}"
+  - "public/**/*"
+---
+
+performance-seo:
+- Protect LCP by prioritizing the actual hero asset and avoiding unnecessary blocking resources.
+- Reserve media dimensions and prevent CLS.
+- Avoid heavy animation libraries for simple transitions.
+- Compress and serve responsive images in modern formats when the stack supports them.
+- Avoid duplicate script loading and duplicate analytics initialization.
+- Use descriptive title, meta description, canonical URL, Open Graph, and social image.
+- Preserve crawlable text and links.
+- Add structured data only for content visibly present and factually verified.
+- Validate Organization and program/event/course markup against current Google guidance before release.
+- Do not add hidden SEO copy or misleading structured data.

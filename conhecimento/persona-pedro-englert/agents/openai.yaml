@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pedro Englert"
+  short_description: "Adapta gestão e inovação ao cenário"
+  default_prompt: "Use $pedro-englert para diagnosticar o cenário e definir uma ação de gestão adaptativa."

@@ -1,0 +1,21 @@
+---
+description: Final implementation and review checklist for meaningful landing page changes
+alwaysApply: false
+globs:
+  - "src/**/*"
+  - "public/**/*"
+---
+
+definition-of-done:
+- Requirements mapped to changed files.
+- Canonical facts checked against the knowledge base.
+- Browser tested on mobile and desktop.
+- Keyboard navigation and focus tested.
+- No new console errors or failed network requests.
+- Typecheck, lint, tests, and build executed when available.
+- Images optimized and dimensions reserved.
+- Core conversion links verified.
+- Analytics events verified once per action.
+- SEO metadata and social preview checked.
+- Known limitations documented.
+- No invented claim, testimonial, logo, faculty member, scarcity, or result.

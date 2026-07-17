@@ -1,0 +1,13 @@
+{
+  "name": "unilions-site",
+  "compatibility_date": "2026-06-01",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [
+    { "pattern": "unilions.com.br/*", "zone_name": "unilions.com.br" },
+    { "pattern": "www.unilions.com.br", "custom_domain": true }
+  ]
+}

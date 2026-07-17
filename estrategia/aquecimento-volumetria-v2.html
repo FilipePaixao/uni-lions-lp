@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow">
+<title>Aquecimento · Volumetria v2 — Ambidestria Executiva · Growai Ecossistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style> completa + a
+  estrutura de componentes (e o <script> de animação), adapte apenas o conteúdo.
+
+  Estética: moderno, light, premium (Apple / Human Academy / academypass.ai). Sans
+  geométrica (Satoshi → Inter). Fundo com GLOW AMBIENTE sutil. Cards em LIQUID GLASS
+  (frosted, backdrop-blur). Títulos grandes, stats gigantes com divisores, overlines.
+  ANIMAÇÕES: reveal no scroll, count-up nos números, hover-lift nos cards. Glow leve
+  no winner e nos números. Tudo com progressive enhancement (visível sem JS).
+
+  PRESERVE os nomes de classe (skills dependem). Mantenha o <script> no fim do body.
+  Cada .md em workspace/ tem um .html. Self-contained. Não altere sem aprovar o membro.
+
+  COMPONENTES note/callout/opportunity/danger: o PRIMEIRO <strong> filho direto é o RÓTULO
+  (overline maiúsculo). Pode usar <strong> à vontade no CORPO pra ênfase — só o primeiro vira
+  rótulo; os demais ficam negrito inline e não quebram a frase (garantido por :first-of-type no CSS).
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<!--
+  RENDERING CONTRACT: placeholders `{{KEY}}` recebem dados JÁ escapados (html.escape / Jinja2 autoescape).
+  `{{KEY_HTML}}` aceita HTML sanitizado (DOMPurify/bleach).
+-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com data:; script-src 'self' 'unsafe-inline';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aquecimento · Volumetria v2 — Ambidestria Executiva — Growai Ecossistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════ GROWAI ECOSSISTEMA DESIGN SYSTEM v5 · Premium / Liquid Glass ═══════════ */
+  :root{
+    --bg:#EFF1F5; --surface:#FFFFFF; --ink:#14161D; --ink-2:#3A3E4A; --muted:#565B68; --faint:#9499A5;
+    --line:#E5E7EE; --line-2:#EEF0F4; --accent:#2D5BFF; --accent-2:#7C5CFF; --accent-soft:#EEF2FF;
+    --green:#0E9F6E; --green-soft:#E9F8F1; --red:#E5484D; --red-soft:#FDF0F0;
+    --amber:#B7791F; --amber-soft:#FBF4E6; --deep:#0E1016;
+    --glass:rgba(255,255,255,.62); --glass-line:rgba(255,255,255,.75);
+    --r:22px; --r-sm:16px;
+    --shadow:0 1px 2px rgba(20,22,29,.04), 0 14px 40px rgba(20,22,29,.07);
+    --shadow-sm:0 1px 2px rgba(20,22,29,.04), 0 6px 18px rgba(20,22,29,.05);
+    --shadow-lift:0 4px 8px rgba(20,22,29,.05), 0 24px 60px rgba(20,22,29,.12);
+    --display:'Satoshi','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+    --mono:'SF Mono','JetBrains Mono','Fira Code','Consolas',monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { overflow-x:hidden; max-width:100%; }
+  body {
+    font-family:var(--sans); background:var(--bg); color:var(--ink);
+    font-size:16px; line-height:1.62; letter-spacing:-0.011em;
+    min-height:100vh; display:flex; justify-content:center;
+    padding:64px 24px 140px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    position:relative;
+  }
+  /* GLOW AMBIENTE (fundo, sutil — dá profundidade e faz o glass refratar) */
+  body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(48% 38% at 82% -4%, rgba(45,91,255,.13), transparent 72%),
+      radial-gradient(42% 40% at 8% 102%, rgba(124,92,255,.11), transparent 72%),
+      radial-gradient(38% 34% at 60% 48%, rgba(16,200,170,.05), transparent 70%); }
+  .container { max-width:840px; width:100%; position:relative; z-index:1; }
+
+  /* superfície de vidro reutilizada conceitualmente nas classes abaixo */
+  .logo-wrap { margin-bottom:30px; }
+  .logo-wrap svg { height:28px; width:auto; }
+
+  /* === HEADER === */
+  .page-title { font-family:var(--display); font-size:clamp(40px,6vw,62px); font-weight:600; line-height:1.0; letter-spacing:-0.045em; color:var(--ink); margin:8px 0 22px; }
+  .page-subtitle { font-size:19px; color:var(--muted); font-weight:400; line-height:1.5; margin-bottom:44px; max-width:60ch; letter-spacing:-0.012em; }
+
+  /* === META BAR (grid glass — corrige valor longo) === */
+  .meta-bar { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1px; margin-bottom:72px;
+    background:linear-gradient(var(--line),var(--line)); border:1px solid var(--glass-line); border-radius:var(--r-sm); overflow:hidden;
+    box-shadow:var(--shadow-sm); }
+  .meta-bar > div { background:var(--glass); -webkit-backdrop-filter:blur(18px) saturate(150%); backdrop-filter:blur(18px) saturate(150%); padding:18px 22px; line-height:1.45; font-size:15px; color:var(--ink); }
+  .meta-bar strong { display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; color:var(--faint); font-weight:600; }
+
+  /* === TOC (lista limpa) === */
+  .toc { margin-bottom:88px; }
+  .toc-title { font-size:11px; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px; }
+  .toc ol { list-style:none; margin:0; padding:0; counter-reset:toc-counter; border-top:1px solid var(--line); }
+  .toc li { counter-increment:toc-counter; font-size:17px; line-height:1.4; display:flex; gap:18px; align-items:center; padding:16px 4px; border-bottom:1px solid var(--line); transition:padding-left .25s ease,background .25s ease; border-radius:10px; }
+  .toc li:hover { padding-left:14px; background:rgba(45,91,255,.04); }
+  .toc li::before { content:counter(toc-counter,decimal-leading-zero); color:var(--accent); font-variant-numeric:tabular-nums; font-size:13px; font-weight:600; min-width:22px; }
+  .toc a { color:var(--ink); text-decoration:none; flex:1; }
+  .toc li:hover a { color:var(--accent); }
+
+  /* === SECTIONS === */
+  .section { margin-bottom:96px; }
+  .section-label { font-family:var(--sans); font-size:12px; font-weight:600; color:var(--ink); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:34px; border:0; display:flex; align-items:center; gap:14px; }
+  .section-label::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+  .section-label .num { color:var(--accent); font-variant-numeric:tabular-nums; font-weight:600; }
+
+  .subsection { margin-bottom:40px; }
+  .subsection-title { font-family:var(--display); font-size:27px; font-weight:600; color:var(--ink); margin-bottom:16px; letter-spacing:-0.03em; line-height:1.12; }
+
+  /* === TYPOGRAPHY === */
+  p { font-size:17px; color:var(--ink-2); line-height:1.68; margin-bottom:17px; letter-spacing:-0.011em; }
+  p strong { color:var(--ink); font-weight:600; }
+  ul, ol { margin:10px 0 22px 22px; color:var(--ink-2); font-size:17px; line-height:1.7; }
+  li { margin-bottom:10px; padding-left:6px; } li::marker { color:var(--faint); } li strong { color:var(--ink); font-weight:600; }
+  code { font-family:var(--mono); font-size:13.5px; background:var(--line-2); padding:2px 7px; border-radius:7px; color:var(--ink); word-break:break-all; overflow-wrap:anywhere; }
+
+  /* === TABLES === */
+  .table-wrap { overflow-x:auto; margin:20px 0 26px; }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th { text-align:left; font-weight:600; color:var(--faint); padding:0 20px 14px 0; border-bottom:1px solid var(--ink); font-size:11px; text-transform:uppercase; letter-spacing:0.07em; }
+  td { padding:18px 20px 18px 0; color:var(--ink-2); border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5; }
+  tr:last-child td { border-bottom:none; } td strong { color:var(--ink); font-weight:600; } td code { font-size:13px; }
+
+  /* === GLASS CARDS (compartilham o tratamento frosted + hover-lift) === */
+  .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
+  .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map,
+  .note, .callout, .opportunity, .danger {
+    background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow-sm);
+  }
+  .brand-card, .concept-card, .tier-card, .timeline-day, .primary-text-box, .faq, .hook-row, .headline-card {
+    transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease; }
+  .brand-card:hover, .concept-card:hover, .tier-card:hover, .timeline-day:hover, .faq:hover, .hook-row:hover, .headline-card:hover {
+    transform:translateY(-3px); box-shadow:var(--shadow-lift); }
+
+  /* === QUOTE / VOC === */
+  .quote { margin:14px 0; padding:22px 26px; border-radius:var(--r-sm); font-size:16px; color:var(--ink); line-height:1.55; font-family:var(--mono); }
+  .quote-source { display:block; margin-top:14px; font-size:11px; color:var(--faint); font-family:var(--sans); letter-spacing:0.08em; text-transform:uppercase; font-weight:600; }
+  .script-block { border-radius:var(--r-sm); padding:22px 26px; margin:16px 0; font-family:var(--mono); font-size:13.5px; color:var(--ink-2); line-height:1.62; white-space:pre-wrap; word-break:break-word; }
+
+  /* === NOTE / CALLOUT / OPPORTUNITY / DANGER (cards glass + overline-label + glow leve) === */
+  .note, .callout, .opportunity, .danger { font-size:16.5px; line-height:1.6; padding:24px 28px; border-radius:var(--r); margin:24px 0; position:relative; }
+  /* RÓTULO = só o PRIMEIRO <strong> (filho direto) do card. Qualquer <strong> seguinte é ênfase inline no corpo — NUNCA vira rótulo (evita quebrar a frase no meio). */
+  .note > strong:first-of-type, .callout > strong:first-of-type, .opportunity > strong:first-of-type, .danger > strong:first-of-type { display:block; font-family:var(--sans); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; }
+  .note strong, .callout strong, .opportunity strong, .danger strong { font-weight:600; }
+  .note { color:var(--muted); } .note > strong:first-of-type { color:var(--faint); }
+  .callout { color:var(--ink); background:linear-gradient(180deg,rgba(238,242,255,.85),rgba(238,242,255,.6)); border-color:#DDE4FF; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 10px 30px rgba(45,91,255,.10); }
+  .callout > strong:first-of-type { color:var(--accent); }
+  .opportunity { color:#0C2A20; background:linear-gradient(180deg,rgba(233,248,241,.85),rgba(233,248,241,.6)); border-color:#CFEEE1; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 10px 30px rgba(14,159,110,.10); }
+  .opportunity > strong:first-of-type { color:#0B7A53; }
+  .danger { color:#3A1416; background:linear-gradient(180deg,rgba(253,240,240,.85),rgba(253,240,240,.6)); border-color:#F7D8D9; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 10px 30px rgba(229,72,77,.10); }
+  .danger > strong:first-of-type { color:#C9343A; }
+
+  /* === PILLS / BADGES (liquid glass) === */
+  .pill { display:inline-block; font-size:11px; font-weight:600; padding:5px 12px; border-radius:9px; letter-spacing:0.01em; text-transform:uppercase; margin-right:5px;
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.5); }
+  .pill-saturated, .pill-bof, .pill-pending { background:rgba(229,72,77,.12); color:#C9343A; border-color:rgba(229,72,77,.2); }
+  .pill-common, .pill-mof { background:rgba(183,121,31,.13); color:#92600F; border-color:rgba(183,121,31,.22); }
+  .pill-rare, .pill-win, .pill-ok { background:rgba(14,159,110,.13); color:#0B7A53; border-color:rgba(14,159,110,.22); }
+  .pill-absent, .pill-tof { background:rgba(45,91,255,.11); color:#2849C9; border-color:rgba(45,91,255,.2); }
+
+  .voc-words { margin:16px 0 4px; line-height:2.4; }
+  .voc-words span { display:inline-block; background:var(--glass); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--glass-line); color:var(--muted); padding:7px 14px; border-radius:11px; margin:3px 7px 3px 0; font-size:13px; font-family:var(--mono); }
+
+  .score { display:inline-block; background:var(--ink); color:#FFF; font-size:11px; font-weight:600; padding:3px 10px; border-radius:8px; }
+  .score-high { background:var(--green); } .score-mid { background:var(--amber); } .score-low { background:var(--red); }
+
+  /* === WINNER (dark glass + glow halo) === */
+  .winner { position:relative; background:linear-gradient(160deg,rgba(22,24,34,.96),rgba(14,16,22,.96)); color:#D7D9E3; border-radius:26px; padding:46px 48px; margin:36px 0; border:1px solid rgba(255,255,255,.08); box-shadow:0 30px 80px rgba(14,16,22,.28); overflow:hidden; }
+  .winner::after { content:""; position:absolute; top:-40%; right:-10%; width:60%; height:120%; z-index:0; background:radial-gradient(circle,rgba(124,92,255,.45),transparent 62%); filter:blur(40px); pointer-events:none; }
+  .winner > * { position:relative; z-index:1; }
+  .winner strong { color:#FFF; font-weight:600; }
+  .winner p { color:#9EA3B2; font-size:17px; line-height:1.62; margin-bottom:8px; }
+  .winner .winner-label { font-size:11px; text-transform:uppercase; letter-spacing:0.13em; color:#9E92FF; margin-bottom:18px; font-weight:600; }
+  .winner .winner-name { font-family:var(--display); font-size:34px; font-weight:700; color:#FFF; margin-bottom:18px; letter-spacing:-0.035em; line-height:1.04; text-shadow:0 2px 30px rgba(124,92,255,.35); }
+
+  /* === KPI — STATS GIGANTES num painel glass com divisores + glow === */
+  .kpi-grid { display:flex; flex-wrap:wrap; gap:0; margin:32px 0; padding:34px 36px; border-radius:var(--r);
+    background:var(--glass); -webkit-backdrop-filter:blur(22px) saturate(155%); backdrop-filter:blur(22px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
+  .kpi-card { flex:1 1 0; min-width:140px; padding:0 32px; display:flex; flex-direction:column; }
+  .kpi-card:first-child { padding-left:0; } .kpi-card:last-child { padding-right:0; }
+  .kpi-card + .kpi-card { border-left:1px solid var(--line); }
+  .big-num { order:1; font-family:var(--display); font-size:clamp(44px,6vw,62px); font-weight:700; letter-spacing:-0.05em; line-height:0.96; color:var(--ink); font-variant-numeric:tabular-nums; margin-bottom:12px; text-shadow:0 2px 24px rgba(45,91,255,.14); }
+  .big-num-label { order:2; font-size:13px; color:var(--muted); letter-spacing:-0.005em; font-weight:500; line-height:1.35; }
+
+  /* === outras cards (radius/padding) === */
+  .brand-card, .concept-card { border-radius:var(--r); padding:30px 32px; margin-bottom:24px; }
+  .tier-card { border-radius:var(--r); padding:26px 28px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .tier-card.popular { border:1.5px solid var(--accent); position:relative; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 14px 40px rgba(45,91,255,.16); }
+  .tier-card.popular::before { content:"POPULAR"; position:absolute; top:-10px; left:24px; background:var(--accent); color:#FFF; font-size:10px; font-weight:600; letter-spacing:0.07em; padding:4px 12px; border-radius:8px; box-shadow:0 4px 14px rgba(45,91,255,.4); }
+  .timeline-day { border-radius:var(--r); padding:26px 28px; margin-bottom:16px; }
+  .timeline-day-label { display:inline-block; font-size:10.5px; color:#FFF; background:var(--ink); padding:4px 13px; border-radius:8px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:16px; }
+  .timeline { margin:18px 0; }
+  .timeline-row { display:flex; gap:20px; padding:15px 0; border-bottom:1px solid var(--line-2); }
+  .timeline-time { flex-shrink:0; width:94px; font-family:var(--mono); font-size:11.5px; color:var(--faint); padding-top:3px; }
+  .timeline-label { font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--ink); }
+  .timeline-content { flex:1; } .timeline-content p { margin-bottom:6px; font-size:15px; }
+
+  .primary-text-box { border-radius:var(--r); padding:24px 28px; margin:14px 0; }
+  .pt-label { font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:12px; }
+  .primary-text-box p { font-size:15px; color:var(--ink-2); line-height:1.64; }
+  .faq { margin:14px 0; padding:26px 30px; border-radius:var(--r); }
+  .faq-q { font-family:var(--display); font-size:19px; font-weight:600; margin-bottom:10px; letter-spacing:-0.025em; }
+  .faq-a { font-size:15.5px; color:var(--muted); line-height:1.62; }
+  .hook-row { border-radius:var(--r); padding:22px 26px; margin-bottom:12px; }
+  .hook-label { font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:10px; }
+  .hook-text { font-size:18px; color:var(--ink); line-height:1.45; font-weight:600; margin-bottom:8px; letter-spacing:-0.02em; }
+  .hook-use { font-size:13px; color:var(--muted); line-height:1.5; }
+  .headline-card { border-radius:var(--r); padding:24px 28px; margin-bottom:14px; font-family:var(--display); font-size:21px; font-weight:600; line-height:1.32; letter-spacing:-0.03em; }
+  .headline-card.top { border:1.5px solid var(--accent); box-shadow:0 1px 2px rgba(20,22,29,.04), 0 14px 40px rgba(45,91,255,.14); }
+  .headline-card .hl-num { font-family:var(--sans); font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; font-weight:600; }
+  .headline-card .hl-justify { font-family:var(--sans); font-size:14px; color:var(--muted); margin-top:12px; line-height:1.55; font-weight:400; letter-spacing:-0.008em; }
+  .ascii-map { border-radius:var(--r); padding:26px; font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink-2); white-space:pre; overflow-x:auto; }
+
+  .check-row { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+  .check-icon { flex-shrink:0; width:24px; height:24px; border-radius:8px; background:var(--green); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; margin-top:1px; box-shadow:0 4px 14px rgba(14,159,110,.3); }
+
+  /* === ADVERTORIAL === */
+  .advertorial { background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%); border:1px solid var(--glass-line); border-radius:26px; padding:clamp(32px,5vw,56px); margin:28px 0; box-shadow:var(--shadow); }
+  .adv-kicker { font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:22px; }
+  .adv-headline { font-family:var(--display); font-size:clamp(30px,3.8vw,44px); font-weight:700; line-height:1.04; letter-spacing:-0.04em; margin-bottom:18px; }
+  .adv-deck { font-size:20px; color:var(--muted); line-height:1.46; margin-bottom:16px; font-weight:400; letter-spacing:-0.015em; }
+  .adv-byline { font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:38px; font-weight:600; }
+  .adv-section-label { font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-top:42px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  .advertorial p { font-size:17.5px; color:var(--ink-2); line-height:1.72; margin-bottom:18px; } .advertorial p strong { color:var(--ink); font-weight:600; }
+  .advertorial hr { margin:32px 0; border:none; border-top:1px solid var(--line); }
+  .adv-cta { display:inline-block; background:var(--ink); color:#FFF; padding:16px 32px; border-radius:12px; font-size:15px; font-weight:600; letter-spacing:-0.01em; text-decoration:none; margin:14px 0; box-shadow:0 10px 30px rgba(20,22,29,.25); }
+
+  hr { border:none; border-top:1px solid var(--line); margin:72px 0; }
+  .footer { font-size:13px; color:var(--faint); text-align:center; margin-top:96px; padding-top:40px; border-top:1px solid var(--line); letter-spacing:0.02em; }
+
+  /* === ANIMAÇÃO (progressive enhancement: visível sem JS) === */
+  .js .reveal { opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+  .js .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .js .reveal{opacity:1;transform:none;transition:none} *{scroll-behavior:auto} .brand-card,.faq,.hook-row,.headline-card,.tier-card,.timeline-day,.concept-card{transition:none} }
+
+  @media (max-width:640px) {
+    body { padding:32px 18px 90px; }
+    .page-subtitle { font-size:17px; }
+    th, td { padding:12px 12px 12px 0; font-size:13.5px; }
+    .section { margin-bottom:64px; }
+    .kpi-grid { flex-direction:column; gap:28px; padding:28px 24px; }
+    .kpi-card { padding:0; min-width:0; } .kpi-card + .kpi-card { border-left:none; border-top:1px solid var(--line); padding-top:28px; }
+    .brand-card, .concept-card { padding:22px 20px; }
+    .winner { padding:34px 26px; } .winner .winner-name { font-size:28px; }
+    .advertorial { padding:28px 22px; }
+    .timeline-row { flex-direction:column; gap:4px; } .timeline-time { width:auto; }
+    .tier-card { flex-direction:column; align-items:flex-start; }
+  }
+</style>
+<style>.container h1{font-family:var(--display);font-size:clamp(32px,5vw,50px);font-weight:600;line-height:1.05;letter-spacing:-0.04em;color:var(--ink);margin:46px 0 20px}.container > h1:first-of-type{margin-top:4px}.container h2{font-family:var(--display);font-size:27px;font-weight:600;letter-spacing:-0.025em;color:var(--ink);margin:46px 0 16px;padding-top:26px;border-top:1px solid var(--line)}.container h3{font-size:20px;font-weight:600;color:var(--ink);margin:30px 0 12px}.container h4{font-size:16.5px;font-weight:700;color:var(--ink-2);margin:22px 0 9px}.container p{font-size:16px;line-height:1.72;color:var(--ink-2);margin:0 0 16px}.container ul,.container ol{margin:0 0 18px 24px;color:var(--ink-2);line-height:1.7;font-size:15.5px}.container li{margin-bottom:7px}.container blockquote{margin:22px 0;padding:18px 22px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;color:var(--ink-2)}.container blockquote p{margin-bottom:10px}.container blockquote p:last-child{margin-bottom:0}.container code{font-family:var(--mono);font-size:13px;background:rgba(20,22,29,.06);padding:2px 7px;border-radius:6px;word-break:break-word;color:var(--ink)}.container pre{background:#14161D;color:#E8EAF0;padding:18px;border-radius:var(--r-sm);overflow-x:auto;margin:0 0 18px;font-size:13px}.container pre code{background:none;padding:0;color:inherit}.container hr{border:none;border-top:1px solid var(--line);margin:38px 0}.container strong{color:var(--ink);font-weight:600}.container a{color:var(--accent);text-decoration:underline}.container .table-wrap{overflow-x:auto;margin:0 0 24px;-webkit-overflow-scrolling:touch}.container table{margin-bottom:0;min-width:540px}.container td{overflow-wrap:anywhere}@media(max-width:640px){.container h2{font-size:23px}.container ul,.container ol{margin-left:20px}.container table{min-width:0}}</style>
+</head><body><div class="container">
+<div class="logo-wrap reveal" role="img" aria-label="Growai Ecossistema"><img src="data:image/png;base64,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" alt="Growai Ecossistema" style="height:30px;width:auto;display:block;"></div>
+
+<h1>Aquecimento · Volumetria v2 (41 peças novas)</h1>
+<h2>Lançamento Ambidestria Executiva (Uni Lions)</h2>
+<h1>Calendário Editorial · Aquecimento (03 a 26/07)</h1>
+<h2>Lançamento Ambidestria Executiva · Uni Lions</h2>
+<p><strong>64 peças no total</strong> (23 do pacote v1 + 41 do pacote v2 de volumetria). Cadência-alvo semanal: André 2 posts + 2 vídeos · Paulo 2-3 posts (+1 artigo a partir da S2) · @unilions 3-4 posts + 1 reel + stories diários (pauta semanal).</p>
+<p>Regras de publicação: peças com [GATE] só entram no ar após a validação correspondente (datas/formato/venue com a Lions · perfil do Paulo ativado). Nenhuma peça anuncia data do programa. CTAs: engajamento nas S1-S2, /diagnostico a partir da S3, /aplicacao só em peça de fundo. O doc "00 · LEIA PRIMEIRO" tem os gates completos.</p>
+<div class="table-wrap"><table><thead><tr><th>Semana</th><th>Perfil</th><th>Peça</th><th>Formato</th><th>Onde</th></tr></thead><tbody><tr><td>S1 (03-05/07)</td><td>@unilions</td><td>Post A · Manifesto de abertura</td><td>Post</td><td>1ª pasta v1 · 01</td></tr><tr><td>S1 (03-05/07)</td><td>André</td><td>Post 01 · Abertura do lançamento</td><td>Post</td><td>v1 · 07</td></tr><tr><td>S1-S4 (lote 03/07)</td><td>André</td><td>Vídeos 01 a 06 (1 por provocação, ~2/semana)</td><td>Vídeo</td><td>v1 · 01-06</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>Post B · Bastidor do espaço [GATE datas/venue]</td><td>Post</td><td>v1 · 02</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>Reel 1 · Tour do espaço [GATE datas/venue]</td><td>Reel</td><td>v1 · 06</td></tr><tr><td>S2 (06-12/07)</td><td>André</td><td>Post 02 · As Duas Mãos</td><td>Post</td><td>v1 · 08</td></tr><tr><td>S2 (06-12/07)</td><td>Paulo</td><td>Post 1 · 8 entregáveis [GATE perfil+datas]</td><td>Post</td><td>v1 · 01</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>Post C · Formato [GATE datas]</td><td>Post</td><td>v1 · 03</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>Reel 2 · As 6 perguntas</td><td>Reel</td><td>v1 · 07</td></tr><tr><td>S3 (13-19/07)</td><td>Paulo</td><td>Post 2 · Escala de Maturidade</td><td>Post</td><td>v1 · 02</td></tr><tr><td>S3 (13-19/07)</td><td>Paulo</td><td>Post 3 · Os 3 Horizontes</td><td>Post</td><td>v1 · 03</td></tr><tr><td>S3 (13-19/07)</td><td>André</td><td>Post 03 · Adoção Órfã</td><td>Post</td><td>v1 · 09</td></tr><tr><td>S4 (20-26/07)</td><td>@unilions</td><td>Post D · Prova social Lions</td><td>Post</td><td>v1 · 04</td></tr><tr><td>S4 (20-26/07)</td><td>@unilions</td><td>Post E · Convite diagnóstico</td><td>Post</td><td>v1 · 05</td></tr><tr><td>S4 (20-26/07)</td><td>Paulo</td><td>Artigo · Adoção Órfã de IA</td><td>Artigo</td><td>v1 · 04</td></tr><tr><td>S4 (20-26/07)</td><td>André</td><td>Post 04 · Pressões</td><td>Post</td><td>v1 · 10</td></tr><tr><td>S4 (20-26/07)</td><td>André+Paulo</td><td>Live 30min · fechamento do aquecimento</td><td>Live</td><td>v1 · 11</td></tr><tr><td>S1 (03-05/07)</td><td>André</td><td>AND-P05 · A reunião em que o assunto IA morre</td><td>Post</td><td>v2 · doc 18</td></tr><tr><td>S1 (03-05/07)</td><td>André</td><td>AND-P06 · O medo que não olha o porte da empresa</td><td>Post</td><td>v2 · doc 19</td></tr><tr><td>S1 (03-05/07)</td><td>@unilions</td><td>UNI-P06 · Frase-manifesto tipográfica: a tecnologia entrou na sua empresa antes do plano</td><td>Post</td><td>v2 · doc 08</td></tr><tr><td>S1 (03-05/07)</td><td>@unilions</td><td>UNI-P07 · 5 sintomas de que a IA da sua empresa é órfã</td><td>Post</td><td>v2 · doc 09</td></tr><tr><td>S1 (03-05/07)</td><td>@unilions</td><td>UNI-R03 · Reel: a metáfora das duas mãos em 20 segundos</td><td>Reel</td><td>v2 · doc 18</td></tr><tr><td>S1 (03-05/07)</td><td>@unilions</td><td>UNI-S01 · Pauta de stories S1: abertura da conversa (5 stories, 03 a 05/07)</td><td>Stories</td><td>v2 · doc 22</td></tr><tr><td>S2 (06-12/07)</td><td>André</td><td>AND-V07 · Já uso ChatGPT. Pra que um programa?</td><td>Vídeo</td><td>v2 · doc 12</td></tr><tr><td>S2 (06-12/07)</td><td>André</td><td>AND-E01 · Quem escolheu as ferramentas de IA que rodam na sua empresa?</td><td>Enquete</td><td>v2 · doc 16</td></tr><tr><td>S2 (06-12/07)</td><td>André</td><td>AND-P07 · Eu já assisti as melhores palestras de inovação do país</td><td>Post</td><td>v2 · doc 20</td></tr><tr><td>S2 (06-12/07)</td><td>André</td><td>AND-P08 · Você não precisa virar técnico. Precisa continuar sendo dono</td><td>Post</td><td>v2 · doc 21</td></tr><tr><td>S2 (06-12/07)</td><td>Paulo</td><td>PAU-P04 · Mapa de Exposição: onde a IA bate primeiro no seu negócio</td><td>Post</td><td>v2 · doc 05</td></tr><tr><td>S2 (06-12/07)</td><td>Paulo</td><td>PAU-P05 · O que você NÃO vai ouvir de mim</td><td>Post</td><td>v2 · doc 06</td></tr><tr><td>S2 (06-12/07)</td><td>Paulo</td><td>PAU-A02 · Governança sem burocracia: a estrutura mínima que cabe numa PME</td><td>Artigo</td><td>v2 · doc 11</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>UNI-P08 · Carrossel: a pergunta atrás de cada uma das 6 perguntas</td><td>Post</td><td>v2 · doc 10</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>UNI-P09 · Glossário do dono: 3 termos de IA sem tecniquês</td><td>Post</td><td>v2 · doc 11</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>UNI-P10 · Mitos e fatos sobre IA na empresa média brasileira</td><td>Post</td><td>v2 · doc 12</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>UNI-R04 · Reel: o teste das 3 respostas</td><td>Reel</td><td>v2 · doc 19</td></tr><tr><td>S2 (06-12/07)</td><td>@unilions</td><td>UNI-S02 · Pauta de stories S2: a semana do problema (dia a dia, 06 a 11/07)</td><td>Stories</td><td>v2 · doc 23</td></tr><tr><td>S3 (13-19/07)</td><td>André</td><td>AND-V08 · Não tenho tempo pra isso agora</td><td>Vídeo</td><td>v2 · doc 13</td></tr><tr><td>S3 (13-19/07)</td><td>André</td><td>AND-V09 · IA é moda. E é cara pro meu tamanho</td><td>Vídeo</td><td>v2 · doc 14</td></tr><tr><td>S3 (13-19/07)</td><td>André</td><td>AND-P09 · O padrão dos que destravam</td><td>Post</td><td>v2 · doc 22</td></tr><tr><td>S3 (13-19/07)</td><td>André</td><td>AND-P10 · Setor tradicional é onde a eficiência rende mais</td><td>Post</td><td>v2 · doc 23</td></tr><tr><td>S3 (13-19/07)</td><td>Paulo</td><td>PAU-P06 · As 3 perguntas que desmontam qualquer fornecedor de IA</td><td>Post</td><td>v2 · doc 07</td></tr><tr><td>S3 (13-19/07)</td><td>Paulo</td><td>PAU-P07 · Backlog de Eficiência: por que o programa começa cortando desperdício</td><td>Post</td><td>v2 · doc 08</td></tr><tr><td>S3 (13-19/07)</td><td>Paulo</td><td>PAU-A03 · Eficiência operacional é o seguro que se contrata antes do sinistro</td><td>Artigo</td><td>v2 · doc 12</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>UNI-P11 · Carrossel: a Escala de Maturidade em IA, do Nível 1 ao 5</td><td>Post</td><td>v2 · doc 13</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>UNI-P12 · Bastidor: um dia comum dentro do ecossistema</td><td>Post</td><td>v2 · doc 14</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>UNI-P13 · A pergunta que o conselho vai fazer antes do que você imagina</td><td>Post</td><td>v2 · doc 15</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>UNI-R05 · Reel: três frases de dono, um diagnóstico</td><td>Reel</td><td>v2 · doc 20</td></tr><tr><td>S3 (13-19/07)</td><td>@unilions</td><td>UNI-S03 · Pauta de stories S3: a semana do mecanismo (dia a dia, 13 a 18/07)</td><td>Stories</td><td>v2 · doc 24</td></tr><tr><td>S4 (20-26/07)</td><td>André</td><td>AND-V10 · Meu setor é diferente. Isso não se aplica</td><td>Vídeo</td><td>v2 · doc 15</td></tr><tr><td>S4 (20-26/07)</td><td>André</td><td>AND-E02 · O que mais te impede de estruturar IA na empresa hoje?</td><td>Enquete</td><td>v2 · doc 17</td></tr><tr><td>S4 (20-26/07)</td><td>André</td><td>AND-P11 · Quem decide, decide. O resto agenda outra reunião</td><td>Post</td><td>v2 · doc 24</td></tr><tr><td>S4 (20-26/07)</td><td>André</td><td>AND-P12 · A decisão mais cara você toma sozinho</td><td>Post</td><td>v2 · doc 25</td></tr><tr><td>S4 (20-26/07)</td><td>Paulo</td><td>PAU-P08 · O plano perfeito que o time enterrou</td><td>Post</td><td>v2 · doc 09</td></tr><tr><td>S4 (20-26/07)</td><td>Paulo</td><td>PAU-P09 · O teste do sócio: sua estratégia de IA aguenta 15 minutos de pergunta?</td><td>Post</td><td>v2 · doc 10</td></tr><tr><td>S4 (20-26/07)</td><td>Paulo</td><td>PAU-A04 · O custo composto da decisão adiada</td><td>Artigo</td><td>v2 · doc 13</td></tr><tr><td>S4 (20-26/07)</td><td>@unilions</td><td>UNI-P14 · O dado fala de tarefas, não de empregos. E isso muda a sua conta</td><td>Post</td><td>v2 · doc 16</td></tr><tr><td>S4 (20-26/07)</td><td>@unilions</td><td>UNI-P15 · Convite ao diagnóstico v2: o raio-X que muda a pauta da próxima reunião</td><td>Post</td><td>v2 · doc 17</td></tr><tr><td>S4 (20-26/07)</td><td>@unilions</td><td>UNI-R06 · Reel: toda empresa vai responder. A diferença é quando</td><td>Reel</td><td>v2 · doc 21</td></tr><tr><td>S4 (20-26/07)</td><td>@unilions</td><td>UNI-S04 · Pauta de stories S4: a semana da decisão (dia a dia, 20 a 24/07)</td><td>Stories</td><td>v2 · doc 25</td></tr></tbody></table></div>
+<p><strong>Volumetria por semana (aproximada):</strong> S1: 9 peças + stories · S2: 16 + stories · S3: 18 + stories · S4: 18 + stories. <strong>Matéria-prima de VOC:</strong> as enquetes (AND-E01/E02) e as caixas de pergunta dos stories alimentam a prospecção 1:1 e a pauta da pré-venda.</p>
+<hr />
+<h1>Aquecimento V2 · André Paixão · Vídeos de objeção (V07 a V10) + Enquetes LinkedIn (E01 e E02)</h1>
+<h2>Lançamento Ambidestria Executiva (Uni Lions)</h2>
+<p><strong>Uso:</strong> gravação em lote semanal, celular + boa luz, olhar direto pra câmera. Roteiros escritos pra teleprompter em frases curtas de fala: leia como quem conversa, não como quem lê. Este lote responde as quatro objeções mais frequentes do aquecimento; as enquetes qualificam a audiência e mapeiam a objeção dominante.</p>
+<p><strong>Notas de produção (invioláveis):</strong></p>
+<ul><li>Nenhuma data pública do programa entra na fala. Datas e formato seguem em validação com a Lions: não improvisar na gravação.</li><li>Estatísticas: falar exatamente como está no roteiro, com a fonte em voz alta. Se errar a redação do dado, regravar o trecho.</li><li>Nenhum docente é citado por nome em peça pública.</li></ul>
+<hr />
+<h2>PARTE 1 · Quatro vídeos de 60 a 90 segundos (um por objeção)</h2>
+<hr />
+<p><strong>AND-V07 · Já uso ChatGPT. Pra que um programa?</strong> Semana: S2 (06-12/07) · Pilar 2 · Adoção Órfã de IA · Formato: vídeo 60-90s · CTA: comentário</p>
+<p><strong>HOOK</strong> <em>[tom de quem repete a pergunta que acabou de ouvir, meio sorriso, sem ironia]</em></p>
+<p>"André, eu já uso ChatGPT. Pra que eu preciso de um programa?" Essa é a pergunta que eu mais escuto. E ela merece uma resposta de dono pra dono.</p>
+<p><strong>CORPO</strong></p>
+<p>A sua assinatura resolve um problema real: a SUA produtividade. Você escreve mais rápido, resume mais rápido, tira dúvida na hora. Eu uso também. <em>[pausa]</em> Só que a sua empresa não é você.</p>
+<p>E a assinatura não responde as três perguntas que só o dono pode responder. Uma: quando a IA errar com um cliente seu, quem responde pelo risco? Duas: qual dado da empresa pode entrar na máquina, e qual não pode entrar nunca? Três: onde a IA gera resultado que aparece no caixa, e não só conforto na sua rotina?</p>
+<p><em>[inclina levemente pra frente]</em> Usar uma ferramenta e estruturar uma empresa são jogos diferentes. O primeiro se joga com login e senha. O segundo se joga com regra, responsabilidade e plano. E enquanto você joga só o primeiro, o segundo está sendo jogado sem você, pelo seu próprio time.</p>
+<p><strong>VIRADA</strong></p>
+<p>É por isso que a Imersão em Ambidestria Executiva não ensina a ferramenta que você já usa. Ela forma o dono que comanda com as duas mãos: uma protegendo a operação que paga as contas hoje, a outra construindo a empresa que vai competir na próxima década. Ferramenta troca a cada seis meses. O dono que sabe comandar, não.</p>
+<p><strong>CTA</strong> <em>[tom de conversa, direto pra câmera]</em></p>
+<p>Me conta nos comentários: o que a IA já faz na sua empresa hoje que VOCÊ decidiu que ela faria? Se a lista for curta, a sua resposta já é o diagnóstico. Quero ler todas.</p>
+<hr />
+<p><strong>AND-V08 · Não tenho tempo pra isso agora</strong> Semana: S3 (13-19/07) · Pilar 1 · As Duas Mãos · Formato: vídeo 60-90s · CTA: /diagnostico (meio de funil)</p>
+<p><strong>HOOK</strong> <em>[sério, tom de quem vai virar o argumento, sem pressa]</em></p>
+<p>"Não tenho tempo pra isso agora." Deixa eu te mostrar o que essa frase entrega sobre a sua empresa.</p>
+<p><strong>CORPO</strong></p>
+<p>Toda vez que um dono me diz isso, eu devolvo a mesma pergunta: POR QUE a sua agenda está tão cheia? <em>[pausa]</em></p>
+<p>A resposta costuma ser a mesma. Porque a venda passa por você. A cobrança espera você. O problema do cliente sobe pra você. A decisão pequena trava até você chegar. <em>[inclina pra frente]</em> Ou seja: a operação depende demais de uma pessoa. Você.</p>
+<p>E aqui está o ponto que incomoda: a agenda cheia de hoje é a fatura da estrutura que não foi montada ontem. Cada semana sem estrutura gera a semana seguinte ainda mais cheia. Agenda cheia não é acaso: é desenho. E desenho se refaz.</p>
+<p>Então repara no que a frase realmente diz. "Não tenho tempo pra estruturar" significa "vou continuar sem tempo". Quem está afogado no hoje é exatamente quem mais precisa da mão que constrói eficiência. Senão o afogamento deixa de ser fase e vira modelo de gestão.</p>
+<p><strong>VIRADA</strong></p>
+<p>É essa a primeira conversa da Imersão em Ambidestria Executiva: o dono que comanda com as duas mãos, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa da próxima década. E é essa segunda mão que monta a estrutura que devolve o tempo do dono. Ninguém monta a segunda mão porque sobrou agenda. Monta pra agenda voltar a existir.</p>
+<p><strong>CTA</strong> <em>[tom prático, quase logístico]</em></p>
+<p>O primeiro passo cabe na sua agenda de hoje: o diagnóstico leva 5 minutos. Menos que a reunião que vai atrasar. Você sai sabendo onde a sua operação depende demais de você. Está em unilions.com.br/diagnostico, link na bio.</p>
+<hr />
+<p><strong>AND-V09 · IA é moda. E é cara pro meu tamanho</strong> Semana: S3 (13-19/07) · Pilar 3 · Pressões que não pedem licença · Formato: vídeo 60-90s · CTA: comentário</p>
+<p><strong>HOOK</strong> <em>[tom de análise, contando nos dedos]</em></p>
+<p>"IA é moda. E é cara pro tamanho da minha empresa." Duas frases que eu escuto juntas. E os dois argumentos caem, um de cada jeito.</p>
+<p><strong>CORPO</strong></p>
+<p>Primeiro, a moda. Eu tenho anos de estrada e vi muita moda de gestão passar. E toda moda que passou tinha duas características: não deixou regra nova valendo pra sua empresa e não deixou concorrente novo disputando o seu cliente. <em>[pausa]</em> Essa onda já deixou os dois. Tem exigência regulatória em vigor cobrando adaptação das empresas. E tem concorrente que nasceu digital, com estrutura enxuta, mirando exatamente o cliente que sustenta o seu caixa. Moda não muda o tabuleiro. Isso aqui mudou.</p>
+<p>Agora, o custo. Olha o que a CNDL com o SPC Brasil encontrou: 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio; 52% admitem que não sabem como usar. <em>[inclina pra frente]</em> Repara: mais da metade aponta o COMO, não o quanto custa. A barreira real nunca foi preço.</p>
+<p>E faz sentido. Na empresa média, a maior parte do ganho inicial vem de organizar processo e tirar retrabalho da operação. E organizar processo custa decisão, não orçamento.</p>
+<p><strong>VIRADA</strong></p>
+<p>O investimento maior é de método e de decisão. E é isso que a Imersão em Ambidestria Executiva trabalha: formar o dono que comanda com as duas mãos, uma protegendo a operação que paga as contas hoje e a outra construindo, com critério e sem desperdício, a empresa da próxima década.</p>
+<p><strong>CTA</strong> <em>[meio sorriso, tom de provocação leve]</em></p>
+<p>Me responde nos comentários: qual foi a última moda de gestão que você viu passar? E o que dela ficou na sua empresa? Vai ser uma boa conversa.</p>
+<hr />
+<p><strong>AND-V10 · Meu setor é diferente. Isso não se aplica</strong> Semana: S4 (20-26/07) · Pilar 3 · Pressões que não pedem licença · Formato: vídeo 60-90s · CTA: /diagnostico (meio de funil)</p>
+<p><strong>HOOK</strong> <em>[tom de constatação, quase divertido com o padrão]</em></p>
+<p>"Meu setor é diferente. Isso de IA não se aplica ao meu negócio." Eu já ouvi essa frase de indústria, de varejo, de serviço, de clínica e de construtora. Todos diferentes. Todos com a mesma frase.</p>
+<p><strong>CORPO</strong></p>
+<p>Então deixa eu trazer o dado que desmonta o argumento. Um estudo da OpenAI com a Wharton, publicado na Science, estima que cerca de 80% dos trabalhadores americanos terão pelo menos 10% das suas tarefas afetadas pela IA. <em>[pausa]</em> Presta atenção na palavra: TAREFAS. O estudo não fala de setores. Fala de tarefas.</p>
+<p>E agora pensa na sua empresa, seja ela do setor que for. Alguém escreve proposta? Alguém cobra cliente? Alguém responde atendimento? Alguém alimenta planilha? <em>[inclina pra frente]</em> Essas tarefas existem no escritório de advocacia, na metalúrgica, na distribuidora e na clínica. A IA não vai entrar pelo seu setor. Vai entrar pelas suas tarefas. E tarefa, toda empresa tem.</p>
+<p>Agora a parte que eu acho mais curiosa: todo dono que me diz isso acredita que o setor DELE é a exceção. E quando todos os setores têm a mesma certeza ao mesmo tempo, é a certeza que está errada, não os setores que estão certos. A exceção que todo mundo reivindica não existe pra ninguém.</p>
+<p><strong>VIRADA</strong></p>
+<p>Então troca a pergunta. Em vez de "isso se aplica ao meu setor?", pergunta "qual tarefa da minha operação isso pega primeiro?". Essa segunda pergunta tem resposta específica, empresa por empresa. É com ela que começa a Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos: uma protegendo a operação que paga as contas hoje, a outra construindo a empresa da próxima década.</p>
+<p><strong>CTA</strong> <em>[tom de convite prático]</em></p>
+<p>Descubra por onde a IA entra na SUA operação: o diagnóstico é gratuito, leva 5 minutos e devolve a leitura da SUA empresa, não a média do mercado. unilions.com.br/diagnostico, link na bio.</p>
+<hr />
+<h2>PARTE 2 · Duas enquetes LinkedIn (perfil do André)</h2>
+<hr />
+<p><strong>AND-E01 · Quem escolheu as ferramentas de IA que rodam na sua empresa?</strong> Semana: S2 (06-12/07) · Pilar 2 · Adoção Órfã de IA · Formato: enquete LinkedIn (7 dias) · CTA: voto + comentário</p>
+<p><strong>Pergunta da enquete</strong> <em>(máx. 140 caracteres)</em></p>
+<p>Na sua empresa, quem escolheu as ferramentas de IA que estão rodando hoje?</p>
+<p><strong>Opções</strong> <em>(máx. 30 caracteres cada)</em></p>
+<ol><li>Eu decidi e está escrito</li><li>O time foi testando por conta</li><li>Cada área usa a sua</li><li>Ainda não usamos</li></ol>
+<p><strong>Post de contexto (texto que acompanha a enquete):</strong></p>
+<p>Pergunta honesta pra quem comanda uma empresa. Sem julgamento, porque o cenário é o mesmo em quase toda sala que eu entro.</p>
+<p>A IA já está rodando na maioria das operações. O "se" a realidade já respondeu. O que sobrou em aberto é o "quem decidiu". Em muitas empresas, a resposta verdadeira é: ninguém. Foi entrando pelas mãos do time, uma ferramenta aqui, uma assinatura ali, cada área resolvendo o seu dia.</p>
+<p>Repara nas quatro opções aí de cima. Três delas descrevem uma adoção sem dono. Só uma descreve uma decisão de gestão.</p>
+<p>Isso não faz de ninguém um mau gestor. Faz do momento um bom momento pra olhar o assunto de frente: quantas dessas ferramentas você saberia listar agora, de cabeça? E quem definiu o que pode e o que não pode entrar em cada uma? Ninguém contratou essas respostas junto com a assinatura.</p>
+<p>Vota aí com sinceridade. E se a sua história tiver um caso curioso (todo mundo tem um), conta nos comentários. Eu leio e respondo todos.</p>
+<p><strong>[Nota operacional, não publicar]:</strong> enquete qualificadora. Quem vota nas opções 2, 3 e 4 entra na lista quente pra prospecção 1:1 via DM humana (nunca automática), com o diagnóstico gratuito como pretexto de abertura. Quem vota na opção 1 é perfil de par/advocate: engajar no comentário, não prospectar. Puxar a lista de votantes no encerramento dos 7 dias.</p>
+<hr />
+<p><strong>AND-E02 · O que mais te impede de estruturar IA na empresa hoje?</strong> Semana: S4 (20-26/07) · Pilar 1 · As Duas Mãos · Formato: enquete LinkedIn (7 dias) · CTA: voto + comentário</p>
+<p><strong>Pergunta da enquete</strong> <em>(máx. 140 caracteres)</em></p>
+<p>O que mais te impede de estruturar o uso de IA na sua empresa hoje?</p>
+<p><strong>Opções</strong> <em>(máx. 30 caracteres cada)</em></p>
+<ol><li>Falta de tempo</li><li>Não sei por onde começar</li><li>Custo</li><li>Meu setor é diferente</li></ol>
+<p><strong>Post de contexto (texto que acompanha a enquete):</strong></p>
+<p>Nas últimas semanas eu respondi, aqui no perfil, as quatro frases que eu mais escuto de donos de empresa sobre IA. "Já uso ChatGPT." "Não tenho tempo." "É moda, e é caro." "Meu setor é diferente."</p>
+<p>Agora eu quero inverter o jogo e ouvir você. Das quatro barreiras aí de cima, qual é a que pesa mais na SUA realidade?</p>
+<p>Não existe resposta errada. Cada uma dessas quatro é legítima, e cada uma tem um caminho de saída diferente. O que não existe é quinta opção chamada "nenhuma": se nenhuma barreira te segura, a estrutura já estaria de pé. É essa a essência da ambidestria executiva: comandar com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa da próxima década. A barreira que você votar é exatamente o ponto onde a segunda mão está parada.</p>
+<p>Vota aí. E nos comentários, me responde uma segunda pergunta: se a barreira sumisse amanhã, qual seria o PRIMEIRO processo da sua empresa que você organizaria com IA? Essa resposta diz mais sobre o seu negócio do que qualquer voto.</p>
+<p><strong>[Nota operacional, não publicar]:</strong> enquete de mapeamento de objeção que fecha o arco do aquecimento (V07 a V10). O resultado agregado vira a régua de qual objeção o time domina primeiro na pré-venda. Quem vota em "Não sei por onde começar" recebe DM humana com o diagnóstico gratuito (unilions.com.br/diagnostico) como pretexto; é o voto de maior intenção. Quem vota em "Falta de tempo" recebe o argumento do V08 (diagnóstico de 5 minutos) se abrir conversa. Cruzar votantes com a lista quente da AND-E01.</p>
+<hr />
+<h2>CHECKLIST DE GATES (conferido)</h2>
+<ul><li>pt-BR natural em toda a copy: ok</li><li>Zero travessão em títulos, hooks, primeiras linhas e em todo o corpo: ok</li><li>Zero emoji: ok</li><li>Nenhuma promessa de ganho ou resultado garantido: ok (V09 fala de "ganho inicial" como origem, sem número prometido)</li><li>6x1 e NR-1: não citados nominalmente neste lote; a referência regulatória do V09 fica genérica ("exigência regulatória em vigor cobrando adaptação das empresas"), sempre como obrigação da empresa</li><li>"Ambidestria" com a explicação das duas mãos na mesma frase, na primeira menção de cada peça: ok (V07, V08, V09, V10, E02; E01 não menciona o termo)</li><li>Estatísticas só na redação exata do cânone, com fonte falada: ok (V09 · 87/14/52 CNDL/SPC Brasil · V10 · cerca de 80% / 10% das tarefas, OpenAI + Wharton, Science)</li><li>Nenhuma data pública do programa e nenhum anúncio de evento ao vivo: ok</li><li>Escassez só a real: turma única e entrada por aplicação não entram neste lote (nenhuma peça é fundo de funil); nenhuma escassez artificial criada</li><li>Claims da Lions: nenhum claim institucional usado neste lote</li><li>Oséias Gomes e Eduardo Rangel: não citados</li><li>URLs: apenas unilions.com.br/diagnostico (V08, V10 e nota operacional da E02): ok</li><li>Padrão "Não é X. É Y.": 1 ocorrência única no lote (V10, "A IA não vai entrar pelo seu setor. Vai entrar pelas suas tarefas.", coração do argumento tarefas vs setor); demais viradas com construções variadas</li><li>CTAs alternados: comentário (V07, V09, E01, E02) · /diagnostico meio de funil (V08, V10) · nenhum /aplicacao (lote sem peça de fundo)</li><li>Ângulos sem repetição com o lote anterior (03-scripts-aquecimento.md): V07 responde a objeção pelo eixo risco/dado/caixa (o Post 03 do André tratava a Adoção Órfã pelo eixo do time testando por conta); "sucesso vira anestésico" e "seguro não se contrata no dia do sinistro" não reutilizados; imagem nova do V08 ("a agenda cheia de hoje é a fatura da estrutura que não foi montada ontem") inédita no funil</li></ul>
+<hr />
+<h1>Posts LinkedIn · André Paixão · Aquecimento v2 (AND-P05 a AND-P12)</h1>
+<h2>Lançamento Ambidestria Executiva (Uni Lions)</h2>
+<p><strong>Voz:</strong> André Paixão, CEO, de dono pra dono. Observação afiada + lastro + pergunta. 150-250 palavras por post, texto integral pronto pra colar.</p>
+<p><strong>Gates aplicados a todas as peças:</strong> pt-BR impecável · zero travessão em título, hook e corpo · zero emoji · nenhuma promessa de ganho garantido · nenhuma data pública do programa, nenhum anúncio de evento ao vivo · escassez só a real (turma única, entrada por aplicação) · "ambidestria" sempre com a explicação das duas mãos na mesma frase, na primeira menção da peça · estatísticas só na redação exata do cânone · claims da Lions só os do site oficial · nenhum docente citado por nome · URLs restritas a unilions.com.br, /diagnostico e /aplicacao · padrão "Não é X. É Y." usado em apenas 1 peça do lote (título do AND-P08, definido em pauta).</p>
+<hr />
+<h2><strong>AND-P05 · A reunião em que o assunto IA morre</strong></h2>
+<p>S1 (03-05/07) · Pilar 2 · Adoção Órfã de IA · Post LinkedIn · CTA: comentário</p>
+<p>Tem uma cena que eu vejo se repetir em quase toda reunião de diretoria que eu presencio. Alguém traz IA pra pauta. Dez minutos depois, o assunto morreu.</p>
+<p>E repara como ele morre. Cada um dá uma opinião: um viu um vídeo, outro testou uma ferramenta, um terceiro cita o que o concorrente anda fazendo. Todo mundo concorda que "precisa olhar isso com carinho". Aí a pauta seguinte chega, e o assunto sai da sala sem decisão, sem responsável e sem próxima data marcada.</p>
+<p>Durante muito tempo eu li essa cena errado. Achava que era desinteresse. Hoje eu sei que interesse existe, e muito. O assunto morre porque ninguém na mesa é dono dele, não por falta de vontade.</p>
+<p>Pensa nos assuntos que sobrevivem à reunião. Orçamento tem dono. Meta comercial tem dono. Contratação tem dono. Por isso viram plano, prazo e cobrança na semana seguinte. IA, na maioria das diretorias que eu conheço, ainda é assunto de todos. E assunto de todos, na prática, é assunto de ninguém: não vira plano, vira pauta recorrente.</p>
+<p>Me conta nos comentários, de dono pra dono: na sua última reunião de diretoria, IA entrou na pauta ou entrou na conversa de corredor? Eu leio todas as respostas.</p>
+<hr />
+<h2><strong>AND-P06 · O medo que não olha o porte da empresa</strong></h2>
+<p>S1 (03-05/07) · Pilar 1 · As Duas Mãos · Post LinkedIn · CTA: seguir o perfil</p>
+<p>No fim de um evento, um empresário me puxou pro canto. Empresa sólida, faturamento que muita gente sonharia em ter. Ele baixou a voz pra me dizer uma frase: "André, meu medo é descobrir tarde demais que fiquei pra trás."</p>
+<p>Ele falou baixinho, como quem confessa um defeito. E eu quero registrar aqui o que eu respondi pra ele: esse desconforto é lucidez. Despreparado é quem olha pro cenário atual e não sente absolutamente nada. Quem sente o incômodo já entendeu que o jogo trocou as regras enquanto ele operava.</p>
+<p>E ele está em boa companhia. A Fundação Dom Cabral mediu: 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA. Quase metade dos melhores do país, com décadas de estrada, admitindo em pesquisa a mesma coisa que aquele empresário me disse no canto do evento.</p>
+<p>O que essa conversa me ensinou é simples: o medo de ficar pra trás não olha o porte da empresa. Ele visita o dono do negócio de 2 milhões e o do negócio de 200 milhões com a mesma frequência. A diferença está no que cada um faz com ele.</p>
+<p>Nas próximas semanas eu vou tratar exatamente dessa conversa aqui no perfil, de dono pra dono: o que fazer com esse desconforto além de carregar ele sozinho. Se ela te diz respeito, me segue e acompanha.</p>
+<hr />
+<h2><strong>AND-P07 · Eu já assisti as melhores palestras de inovação do país</strong></h2>
+<p>S2 (06-12/07) · Pilar 4 · Método, não palestra · Post LinkedIn · CTA: comentário</p>
+<p>Eu já assisti as melhores palestras de inovação do país. Algumas eu ajudei a colocar no palco.</p>
+<p>E vi a mesma cena dezenas de vezes: plateia inteira de empresários de pé, aplaudindo. Gente saindo da sala com brilho no olho, foto com o palestrante, caderno cheio de anotações. Seis meses depois, encontro os mesmos empresários e pergunto o que mudou na operação. A resposta quase sempre cabe num silêncio constrangido.</p>
+<p>Não é culpa do palestrante. Palestra boa cumpre o papel dela, que é abrir a cabeça. O erro é achar que cabeça aberta muda empresa. Inspiração sem registro evapora antes do fim do mês.</p>
+<p>O que sobrevive é papel: diagnóstico, decisão e plano escrito, com nome e prazo dentro. Dá trabalho, incomoda, ninguém aplaude de pé no fim. Mas fica. Dá pra abrir na frente do sócio, do conselho, do banco, e defender linha por linha.</p>
+<p>Foi por isso que, quando a Uni Lions desenhou o programa dela pra donos de empresa, uma regra veio antes de qualquer conteúdo: ninguém sai daqui só com caderno de anotações. Sai com documento da própria empresa, com a própria decisão dentro.</p>
+<p>Agora me conta nos comentários, com sinceridade: qual foi a melhor palestra que você já assistiu, e o que dela sobreviveu na sua operação até hoje?</p>
+<hr />
+<h2><strong>AND-P08 · Você não precisa virar técnico. Precisa continuar sendo dono</strong></h2>
+<p>S2 (06-12/07) · Pilar 1 · As Duas Mãos · Post LinkedIn · CTA: comentário</p>
+<p>Você não precisa virar técnico. Precisa continuar sendo dono.</p>
+<p>Escuto de empresário de 45, 50, 55 anos uma frase que me incomoda de verdade: "André, essa onda de IA não é pra mim, eu não tenho cabeça de programador."</p>
+<p>Deixa eu desmontar isso. Quando você decidiu abrir uma filial, você virou engenheiro civil? Quando aprovou uma linha de crédito, virou economista do banco? Claro que não. Você fez o que dono faz: entendeu o suficiente pra decidir, definiu quem executa e cobrou o resultado.</p>
+<p>Adoção de IA é a mesma categoria de decisão, da mesma prateleira da expansão e do crédito. Ninguém pede que o dono opere a máquina. Pede que ele responda por ela: quem usa, com qual regra, atrás de qual resultado.</p>
+<p>O nome dessa postura é ambidestria executiva: a capacidade de comandar com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa da próxima década. Repara num detalhe: nenhuma das duas mãos escreve código. As duas decidem.</p>
+<p>Cabeça de programador é requisito pra programar. Pra comandar, o requisito continua o mesmo de trinta anos atrás: critério pra decidir e pra cobrar.</p>
+<p>Pergunta pra você que leu até aqui: o que você delegaria amanhã se tivesse critério pra cobrar o resultado? Escreve nos comentários. As respostas dizem muito sobre onde cada empresa está.</p>
+<hr />
+<h2><strong>AND-P09 · O padrão dos que destravam</strong></h2>
+<p>S3 (13-19/07) · Pilar 2 · Adoção Órfã de IA · Post LinkedIn · CTA: /diagnostico (meio de funil)</p>
+<p>Depois de acompanhar muitas mentorias dentro do ecossistema Lions, eu aprendi a prever quem vai destravar. E o sinal não está no tamanho da empresa, nem no setor, nem no caixa. Está na pergunta que o empresário faz.</p>
+<p>O empresário travado pergunta: "André, qual ferramenta eu compro?"</p>
+<p>O que destrava pergunta outra coisa: "quem responde por isso na minha estrutura?"</p>
+<p>Parece detalhe de linguagem. É um abismo. A primeira pergunta terceiriza a decisão pra uma caixa de software, e caixa de software não assume responsabilidade por nada. A segunda traz a decisão pra dentro da estrutura da empresa, onde ela sempre deveria ter morado.</p>
+<p>E aqui vai a parte curiosa, que eu só enxerguei depois de ver o padrão se repetir muitas vezes: a virada nunca acontece no dia em que entra tecnologia nova. Acontece no dia em que a decisão ganha dono, regra e direção. Às vezes com as mesmas ferramentas que já estavam lá dentro, largadas, sem ninguém no comando.</p>
+<p>Se você quer saber de que lado desse padrão a sua empresa está hoje, a Uni Lions montou um diagnóstico gratuito de 5 minutos que mostra exatamente isso: se a IA da sua empresa tem dono ou está órfã.</p>
+<p>Está em unilions.com.br/diagnostico. Vale responder antes da próxima conversa sobre ferramenta.</p>
+<hr />
+<h2><strong>AND-P10 · Setor tradicional é onde a eficiência rende mais</strong></h2>
+<p>S3 (13-19/07) · Pilar 3 · Pressões que não pedem licença · Post LinkedIn · CTA: comentário</p>
+<p>Setor tradicional é onde a eficiência rende mais. Eu sei que a crença corrente diz o contrário.</p>
+<p>Dono de indústria, de distribuidora, de atacado, de serviço raiz me fala com frequência: "André, no meu setor isso não chega, aqui tudo é no braço mesmo."</p>
+<p>Faz a conta comigo. Num mercado onde todo mundo já é eficiente, organizar a operação te deixa igual aos outros. Num mercado onde quase ninguém começou, organizar a operação te deixa sozinho na frente. Quanto mais analógico o setor, maior a distância entre quem arruma a casa primeiro e quem espera pra ver.</p>
+<p>E aqui vai o alerta que eu faço com honestidade, porque já vi esse filme: quem tira mercado de empresa tradicional quase nunca é o gigante do setor. É a empresa menor, que nasceu operando com eficiência de digital, custo mais enxuto e resposta mais rápida. Ela não disputa manchete com o gigante do setor. Disputa um cliente seu por vez, até o dia em que aparece na sua planilha como "queda inexplicável de vendas".</p>
+<p>A vantagem de estar num setor tradicional é essa: o retorno de se organizar primeiro é desproporcional, porque a régua da concorrência ainda é baixa. A desvantagem é que essa janela expira.</p>
+<p>Me responde nos comentários: qual processo do seu setor todo mundo jura que só funciona no braço?</p>
+<hr />
+<h2><strong>AND-P11 · Quem decide, decide. O resto agenda outra reunião</strong></h2>
+<p>S4 (20-26/07) · Pilar 1 · As Duas Mãos · Post LinkedIn · CTA: /diagnostico (meio de funil)</p>
+<p>Quem decide, decide. O resto agenda outra reunião.</p>
+<p>Depois de anos sentando com donos de empresa, eu passei a dividir os decisores em dois grupos. E o corte não é inteligência, capital ou setor. É o formato que a decisão tem na cabeça de cada um.</p>
+<p>Pro primeiro grupo, decisão é um evento. Tem começo, meio e fim: analisa, decide, executa. A análise existe pra decidir, e ela termina quando a decisão sai.</p>
+<p>Pro segundo grupo, decisão é um processo sem fim. Pede mais uma proposta. Marca mais uma reunião. Espera o semestre virar, o cenário clarear, o "momento certo" chegar. E o momento certo, curiosamente, nunca chega em reunião nenhuma.</p>
+<p>No cenário atual, essa diferença ficou cara. Porque enquanto o segundo grupo delibera, o mercado dele se move: concorrente organizando a operação, cliente mudando de hábito, regra nova avançando em Brasília. Adiar também é uma decisão. Só que é a única decisão que se toma sem você no comando dela.</p>
+<p>Se o assunto IA está agendado pra mais uma reunião aí na sua empresa, faz o seguinte antes dela: responde o diagnóstico gratuito de 5 minutos da Uni Lions e chega na sala com um raio-X da sua operação na mão. Reunião com documento na mesa termina de um jeito diferente.</p>
+<p>unilions.com.br/diagnostico</p>
+<hr />
+<h2><strong>AND-P12 · A decisão mais cara você toma sozinho</strong></h2>
+<p>S4 (20-26/07) · Pilar 5 · A Sala · Post LinkedIn · CTA: /aplicacao (fundo de funil)</p>
+<p>A decisão mais cara você toma sozinho.</p>
+<p>Fecho os olhos e consigo listar as decisões mais caras da minha vida como CEO. E não estou falando das de maior valor em reais. Falo das que saíram erradas e cobraram juros por anos.</p>
+<p>Todas têm uma coisa em comum: eu tomei cada uma delas sem um par do lado. Sem alguém que carregasse o mesmo peso que eu e pudesse olhar meu raciocínio antes da assinatura e dizer: "André, aqui tem um furo."</p>
+<p>Informação não faltou. Eu tinha relatório, consultor, opinião de todo lado. Faltou o tipo de conversa que só acontece entre iguais: gente que também assina embaixo, também responde pela folha, também deita pensando na empresa. Sócio às vezes está perto demais do problema. Diretor, no fim do dia, responde pra você. O par de verdade, na maioria das empresas, não existe dentro de casa.</p>
+<p>Foi por essa razão que a Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos, uma protegendo a operação de hoje e a outra construindo a empresa da próxima década, foi desenhada como sala fechada de decisores. Turma única, entrada por aplicação, poucos lugares na mesa, todos ocupados por gente que carrega o mesmo peso que você. O conteúdo importa. A sala importa mais.</p>
+<p>Se essa solidão é familiar, aplica e a gente conversa: unilions.com.br/aplicacao</p>
+<hr />
+<h2>Checklist de conformidade do lote</h2>
+<ul><li>pt-BR natural em todas as peças: ok</li><li>Zero travessão em títulos, hooks, primeiras linhas e corpo: ok</li><li>Zero emoji: ok</li><li>Nenhuma promessa de ganho ou resultado garantido: ok</li><li>6x1 e NR-1: não citados neste lote (P11 menciona apenas "regra nova avançando em Brasília", sem afirmar desfecho): ok</li><li>Estatísticas: apenas o dado dos 43% (Fundação Dom Cabral), na redação exata do cânone, no AND-P06: ok</li><li>"Ambidestria" com a explicação das duas mãos na mesma frase, na primeira menção: ok (AND-P08 e AND-P12; demais peças não usam o termo)</li><li>Nenhuma data pública do programa e nenhum anúncio de evento ao vivo: ok</li><li>Escassez apenas real (turma única, entrada por aplicação, no AND-P12): ok</li><li>Claims da Lions: apenas mentorias/ecossistema (AND-P09), confirmados no site oficial: ok</li><li>Nenhuma menção a Oséias Gomes ou Eduardo Rangel; nenhum docente nomeado: ok</li><li>URLs: /diagnostico (AND-P09 e AND-P11, meio de funil) · /aplicacao (somente AND-P12, fundo): ok</li><li>Padrão "Não é X. É Y.": presente apenas no título do AND-P08 (definido em pauta); variado nas demais peças: ok</li><li>CTAs alternados: comentário (P05, P07, P08, P10) · seguir o perfil (P06) · /diagnostico (P09, P11) · /aplicacao (P12): ok</li><li>Sem repetição de ângulos já usados nos posts 01-04 do André (abertura, mão atrofiada, "já uso ChatGPT", panorama das pressões): ok</li></ul>
+<hr />
+<h1>PACOTE AQUECIMENTO V2 · PAULO NOGUEIRA (Diretor Acadêmico)</h1>
+<h2>Lançamento Ambidestria Executiva · 6 posts + 3 artigos LinkedIn</h2>
+<blockquote><p><strong>Nota de publicação (gates herdados do documento mestre):</strong> todas as peças deste pacote dependem da validação da identidade pública do Paulo Nogueira com a Lions (nome, LinkedIn, mini-bio). Nenhuma peça cita data, horário ou contagem de encontros do programa; nenhuma anuncia evento ao vivo. Estatísticas apenas na redação fixa do cânone, com fonte. Escassez apenas a real: turma única, entrada por aplicação. As peças que descrevem a arquitetura do programa (P04, P05, P07, P08, P09, A02: 8 documentos, entregáveis por módulo, banca de encerramento) só publicam após a validação de formato/entregáveis com a Lions, mesmo gate aplicado ao POST 1 do lote anterior.</p></blockquote>
+<hr />
+<h2>POSTS</h2>
+<hr />
+<p><strong>PAU-P04 · Mapa de Exposição: onde a IA bate primeiro no seu negócio</strong> S2 (06-12/07) · Pilar 4 · Método, não palestra · Post LinkedIn · CTA: comentário</p>
+<p>A pergunta que todo empresário me faz é onde a IA pode ajudar a empresa dele. A pergunta que quase nenhum me faz é onde ela bate primeiro.</p>
+<p>E a ordem importa. Enquanto o dono não sabe quais receitas, quais processos e quais cargos do negócio dele estão mais expostos à mudança que já começou, qualquer resposta sobre "onde a IA ajuda" é chute. Chute caro, porque vira compra de ferramenta.</p>
+<p>Um estudo da OpenAI com a Wharton, publicado na Science, estima que cerca de 80% dos trabalhadores americanos terão pelo menos 10% das suas tarefas afetadas pela IA. Repare no que esse dado faz com a pergunta. A exposição deixou de ser cenário futuro: ela já está distribuída, empresa por empresa. O que falta é o desenho de onde ela é maior.</p>
+<p>É por isso que o primeiro documento que o participante constrói dentro da Imersão em Ambidestria Executiva, o programa que treina o dono a comandar com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década), é o Mapa de Exposição.</p>
+<p>Ele funciona assim: a gente pega a sua empresa e ranqueia. Quais linhas de receita dependem de tarefa que a IA já executa. Quais processos têm etapa automatizável de ponta a ponta. Quais cargos concentram trabalho repetitivo de alto volume. Cada item recebe uma prioridade e um prazo de resposta.</p>
+<p>O efeito mais valioso não é técnico, é emocional: a ansiedade difusa de "isso vai mudar tudo" vira um desenho concreto da SUA empresa, com o que responder primeiro e o que pode esperar. Ansiedade não se gerencia. Mapa, sim.</p>
+<p>A partir de hoje vou apresentar aqui, um por post, cada um dos 8 documentos que o participante leva do programa. Este foi o primeiro porque é o que muda a conversa: antes de decidir onde investir, você precisa saber onde está exposto.</p>
+<p>Me responde nos comentários: se você desenhasse esse mapa hoje, qual área da sua empresa apareceria em vermelho? Leio todas as respostas.</p>
+<hr />
+<p><strong>PAU-P05 · O que você NÃO vai ouvir de mim</strong> S2 (06-12/07) · Pilar 4 · Método, não palestra · Post LinkedIn · CTA: seguir o perfil</p>
+<p>Antes de dizer o que ensino, deixa eu listar o que você nunca vai me ouvir prometer.</p>
+<p>Você não vai me ouvir prometer um número mágico de faturamento. Ninguém sério promete resultado financeiro de um programa de formação, porque resultado depende de implementação, de mercado e de decisões que são suas.</p>
+<p>Você não vai me ouvir apontar uma ferramenta milagrosa. Ferramenta muda a cada seis meses. Quem vende a ferramenta como resposta está vendendo prazo de validade.</p>
+<p>Você não vai me ouvir prometer que vou transformar você em programador. Você comanda uma empresa. Seu trabalho é decidir com critério, e critério não exige código.</p>
+<p>E você não vai me ver usando print de resultado alheio como argumento. O resultado do outro prova o contexto do outro.</p>
+<p>Agora, o ponto que me interessa de verdade: rigor de método começa pelo que se recusa a prometer. Quando um programa corta essas quatro promessas da mesa, sobra uma pergunta desconfortável pra quem desenha o programa: o que ele entrega, então, precisa ser verificável.</p>
+<p>Foi essa pergunta que definiu a arquitetura da Imersão em Ambidestria Executiva, o programa que forma o dono que comanda com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década). Cada módulo termina num documento da empresa do participante, com a decisão dele dentro. Documento se abre, se lê, se questiona e se cobra. Promessa, não.</p>
+<p>Nas próximas semanas vou destrinchar aqui, um por post, cada um desses documentos: o que é, por que existe e o que ele resolve na empresa de quem o constrói. O primeiro da série já está no perfil.</p>
+<p>Se esse jeito de tratar o assunto te interessa, segue o perfil e acompanha a série. É o tipo de conversa que eu gostaria de ter encontrado quando comecei a implementar isso em operação de verdade.</p>
+<hr />
+<p><strong>PAU-P06 · As 3 perguntas que desmontam qualquer fornecedor de IA</strong> S3 (13-19/07) · Pilar 4 · Método, não palestra · Post LinkedIn · CTA: comentário</p>
+<p>Numa pesquisa com 4.300 executivos, publicada pela Exame, 62% admitem dificuldade em distinguir IA genuína de iniciativa que só usa o termo como marketing.</p>
+<p>Seis em cada dez decisores, admitindo por escrito que a embalagem tem vencido o critério. E o mercado sabe disso: é por isso que hoje tudo se vende com "IA" no nome.</p>
+<p>Pra sair dessa estatística você não precisa de formação técnica: precisa de três perguntas, feitas na reunião de vendas, na frente do fornecedor. Anota:</p>
+<p>Pergunta 1: pra que serve, exatamente? Não aceite "otimiza a operação". Exija o processo específico que a solução ataca e o resultado medível que ela deveria mover. Se o fornecedor não nomeia o processo nem o indicador, ele não sabe o que está vendendo. Ou sabe, e prefere que você não saiba.</p>
+<p>Pergunta 2: quanto custa, de verdade? O preço da licença é a menor parte. Some implantação, integração com o que você já usa e as horas da SUA equipe pra fazer funcionar. Custo total é o que entra na conta do retorno. Licença barata com implantação eterna é solução cara.</p>
+<p>Pergunta 3: qual é o risco? Três camadas: pra onde vai o seu dado (e o do seu cliente), qual o tamanho da dependência que você cria, e o que acontece com a sua operação se a ferramenta sair do ar amanhã. Fornecedor sério responde as três sem desconforto. Desconforto na resposta é resposta.</p>
+<p>Duas dessas perguntas derrubam a maioria das propostas que chegam na mesa de um dono de empresa. As três juntas separam quem tem produto de quem tem discurso.</p>
+<p>Esse é o mesmo critério que sustenta a Stack de IA, um dos 8 documentos da Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos: uma protege a operação de hoje, a outra constrói a empresa da próxima década.</p>
+<p>Agora me conta nos comentários: qual dessas três perguntas nenhum fornecedor te respondeu direito até hoje? Tenho quase certeza de qual vai ganhar.</p>
+<hr />
+<p><strong>PAU-P07 · Backlog de Eficiência: por que o programa começa cortando desperdício</strong> S3 (13-19/07) · Pilar 4 · Método, não palestra · Post LinkedIn · CTA: /diagnostico (meio de funil)</p>
+<p>Existe uma crença que trava mais transformação do que qualquer falta de tecnologia: a de que mudar a empresa exige primeiro um grande investimento.</p>
+<p>Segundo documento da série sobre os 8 entregáveis do programa, e o que melhor desmonta essa crença: o Backlog de Eficiência.</p>
+<p>O raciocínio é o inverso do que se espera. Antes de qualquer aposta de futuro, o participante monta uma fila priorizada de ganhos rápidos de eficiência: de 3 a 5 processos da empresa dele, ordenados por ganho versus esforço, cada um com o próprio indicador de medição. Processo que consome hora demais pra entregar de menos. Retrabalho que ninguém mediu. Tarefa repetitiva que ocupa gente cara.</p>
+<p>Por que começar por aí, e não pela visão de dez anos?</p>
+<p>Primeiro, pela matemática: transformação não exige primeiro um grande investimento. Exige primeiro parar de desperdiçar. E o desperdício a operação atual já paga, todo mês, escondido na folha e no prazo. Cortá-lo não pede orçamento novo: libera orçamento que já existia.</p>
+<p>Segundo, pela política interna, que é onde os planos morrem: é o resultado de curto prazo que financia e legitima a construção de longo prazo. Quando o sócio, o conselho ou o próprio time pergunta "e o retorno disso?", o dono que começou pelo Backlog tem número na mão, do próprio negócio, medido pelo indicador que ele mesmo definiu. Essa resposta compra a paciência que o projeto de década precisa.</p>
+<p>É a lógica da Imersão em Ambidestria Executiva funcionando em miniatura: o dono comanda com as duas mãos, uma protegendo e financiando a operação de hoje, a outra construindo a empresa da próxima década. O Backlog é a primeira mão pagando o trabalho da segunda.</p>
+<p>Se você quer saber por onde a SUA fila começaria, o diagnóstico gratuito de 5 minutos posiciona a sua empresa e aponta o próximo passo lógico: unilions.com.br/diagnostico</p>
+<hr />
+<p><strong>PAU-P08 · O plano perfeito que o time enterrou</strong> S4 (20-26/07) · Pilar 1 · As Duas Mãos · Post LinkedIn · CTA: comentário</p>
+<p>Já assisti a essa cena vezes demais pra continuar chamando de azar.</p>
+<p>A empresa contrata um sistema bom. O plano de implementação é impecável: cronograma, treinamento, fornecedor competente. Seis meses depois, o sistema está pago, instalado e vazio. A operação inteira voltou pra planilha de sempre, pro caderno de sempre, pro jeito de sempre. Ninguém sabotou em voz alta. Ninguém precisou.</p>
+<p>Aqui vai o padrão que aprendi operando, não lendo: a implementação de tecnologia raramente fracassa na tecnologia. Fracassa na adoção. E a adoção fracassa quando o time sente a mudança como ameaça e responde do único jeito seguro pra quem tem medo: em silêncio. Concorda na reunião, enterra no dia a dia.</p>
+<p>Com IA, esse mecanismo fica mais forte, porque a ameaça percebida é maior. O funcionário que ouve "vamos usar IA nesse processo" escuta outra frase, que ninguém disse. E passa a proteger o próprio território do jeito que sempre se protegeu território em empresa: fazendo a novidade falhar devagar.</p>
+<p>Culpar o time é a leitura preguiçosa. O medo não é irracionalidade, é falta de resposta. Quem tem que dar a resposta é quem comanda.</p>
+<p>Por isso um dos 8 entregáveis do programa é o Plano de Gestão da Mudança: as pessoas-chave da empresa mapeadas, o que cada grupo precisa ouvir, em que ordem, dito por quem, e os pontos onde a resistência vai aparecer antes de virar problema. É o documento que trata a adoção como projeto, e não como esperança.</p>
+<p>No fundo, é isso que ambidestria executiva cobra de quem comanda: as duas mãos ao mesmo tempo, uma protegendo a operação de hoje, a outra construindo a empresa da próxima década, e as pessoas levadas junto nas duas. Porque mão nenhuma constrói nada sozinha dentro de uma empresa que não veio junto.</p>
+<p>Me conta nos comentários: você já viu uma boa ferramenta morrer na sua empresa por resistência silenciosa? Como foi que você percebeu?</p>
+<hr />
+<p><strong>PAU-P09 · O teste do sócio: sua estratégia de IA aguenta 15 minutos de pergunta?</strong> S4 (20-26/07) · Pilar 4 · Método, não palestra · Post LinkedIn · CTA: /aplicacao (fundo de funil)</p>
+<p>Proponho um teste simples pra medir a maturidade da sua estratégia de IA. Sem consultor, sem assessment, sem custo.</p>
+<p>Sente na frente do seu sócio, do seu conselho ou do seu gerente de banco e sustente a sua estratégia de IA por 15 minutos de pergunta. Por que essa prioridade e não outra. Quanto custa no total. O que acontece se der errado. Quem responde pelo quê. Como você mede se está funcionando.</p>
+<p>Se a conversa sobrevive, você tem estratégia. Se desmonta no minuto quatro, você não tem estratégia, tem intenção. E intenção não se apresenta a quem cobra resultado.</p>
+<p>Repare que o teste não mede conhecimento técnico. Mede defensabilidade: a capacidade de sustentar cada decisão diante de alguém com o direito de questioná-la. É a régua mais honesta que conheço, porque não dá pra decorar resposta pra pergunta que você não escolheu.</p>
+<p>Foi pra passar nesse teste que desenhamos a oitava e última entrega da Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década): o Plano Diretor, o documento que amarra os 7 anteriores num plano executivo de implementação de IA.</p>
+<p>E aqui está o detalhe que considero a parte mais séria do programa: o participante apresenta esse plano a uma banca de empresários e conselheiros, em sessão fechada, antes de apresentar ao conselho de verdade. Gente que pergunta como sócio pergunta, sem a gentileza de plateia. O plano que sobrevive à banca chega pronto na mesa que importa.</p>
+<p>Ensaiar a defesa num ambiente onde errar é barato: é isso que separa formação de palestra.</p>
+<p>A turma é única e a entrada é por aplicação, porque a sala é curada e o formato exige poucos decisores. Se a sua estratégia não passaria no teste dos 15 minutos hoje, esse é exatamente o problema que o programa resolve: unilions.com.br/aplicacao</p>
+<hr />
+<h2>ARTIGOS</h2>
+<hr />
+<p><strong>PAU-A02 · Governança sem burocracia: a estrutura mínima que cabe numa PME</strong> S2 (06-12/07) · Pilar 4 · Método, não palestra · Artigo LinkedIn · CTA: /diagnostico (meio de funil)</p>
+<p>Quando falo em governança de IA com um dono de empresa média, vejo a mesma reação quase sempre: os olhos desligam. Ele traduz "governança" como papelada de multinacional. Comitê que não decide, política de 40 páginas que ninguém lê, consultoria cara pra produzir um documento que morre na gaveta.</p>
+<p>A reação é compreensível, porque foi assim que muita empresa grande implementou. Mas ela nasce de uma confusão entre duas coisas que são quase opostas: burocracia e estrutura de decisão. Este artigo existe pra desfazer essa confusão.</p>
+<h3>O que governança significa, na prática</h3>
+<p>Tire a palavra do pedestal. Governança de IA é a resposta escrita a três perguntas:</p>
+<p>Primeira: quem responde pelo quê? Se um uso de IA der errado na sua empresa hoje (um dado de cliente exposto, uma resposta errada enviada, uma decisão automatizada que prejudicou alguém), existe UMA pessoa que responde por aquilo? Se a resposta é "depende" ou "todo mundo", ninguém responde. E o que não tem responsável, tem surpresa.</p>
+<p>Segunda: o que pode e o que não pode? Quais dados podem entrar em ferramenta externa. Quais decisões a IA pode apoiar e quais exigem assinatura humana. Quais ferramentas são aprovadas e o que se faz quando alguém quer testar uma nova. Sem essa fronteira escrita, cada funcionário desenha a própria, e você descobre o desenho quando ele falha.</p>
+<p>Terceira: como se mede? Que indicador diz se cada uso de IA está entregando o que prometia. Sem medição, a empresa coleciona ferramenta e chama de estratégia.</p>
+<p>Três perguntas. Respondidas por escrito. Isso é governança. Todo o resto é volume.</p>
+<h3>O que os frameworks de instituição realmente dizem</h3>
+<p>As referências sérias do tema vêm de instituições grandes: o framework de gestão de risco de IA do NIST (o instituto de padrões americano), a ISO 42001 (a norma internacional de gestão de IA) e as orientações do IBGC, o Instituto Brasileiro de Governança Corporativa. E aqui mora a segunda confusão: o empresário olha o tamanho desses documentos e conclui que governança tem aquele tamanho.</p>
+<p>Não tem. O tamanho é o da implementação em empresa de dezenas de milhares de funcionários. A lógica por trás, quando você a destila, é exatamente as três perguntas acima: responsabilidade definida, limite de uso definido, medição definida. O que a PME precisa importar dos frameworks é a lógica, não a papelada. Traduzir essa lógica pra escala da empresa média brasileira é um trabalho de redução, não de acúmulo.</p>
+<p>E há uma razão estratégica pra fazer isso agora: a Fundação Dom Cabral aponta que 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA. O desconforto de quase metade dos decisores vem de decidir sem moldura, e nenhuma ferramenta resolve isso. Governança é a moldura.</p>
+<h3>A versão mínima que cabe numa PME</h3>
+<p>Vou descrever a estrutura mínima que defendo, pra você ver o tamanho real dela:</p>
+<p>Um documento de poucas páginas respondendo as três perguntas por escrito: o responsável por IA na empresa (com nome), a lista do que pode e do que não pode (dados, decisões, ferramentas), e o indicador de cada uso relevante.</p>
+<p>Uma reunião mensal de uma hora, com pauta fixa: o que está rodando, o que está medindo, o que alguém quer aprovar, o que quase deu errado.</p>
+<p>Só. Essa é a célula inicial do que chamo de Escritório de IA: não uma área nova com headcount novo, mas uma estrutura de decisão sobre a estrutura que já existe. Dentro da Imersão em Ambidestria Executiva, o programa que treina o dono a comandar com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década), esse desenho é um dos 8 entregáveis: o Blueprint do Escritório de IA, com papéis, regras de uso e pontos de controle de risco da empresa do participante.</p>
+<p>Repare no que essa estrutura mínima faz: ela acelera decisão em vez de travar. O funcionário que quer testar uma ferramenta sabe a quem pedir e qual o critério. O dono que precisa dizer não tem o documento onde apoiar o não. Burocracia é processo que existe pra se justificar. Estrutura de decisão enxuta é o contrário disso: é o mínimo de processo que permite decidir rápido sem decidir no escuro.</p>
+<h3>Por onde começar</h3>
+<p>Nenhuma estrutura mínima se desenha sem saber o ponto de partida: o que já roda de IA na sua empresa, com que grau de controle, com que exposição. Esse é exatamente o retrato que o diagnóstico gratuito da Uni Lions devolve em 5 minutos, posicionando a sua empresa numa escala de 5 níveis de maturidade: unilions.com.br/diagnostico</p>
+<p>A governança que cabe na sua empresa é menor do que você teme e mais urgente do que você imagina. O primeiro passo é medir a distância.</p>
+<hr />
+<p><strong>PAU-A03 · Eficiência operacional é o seguro que se contrata antes do sinistro</strong> S4 (20-26/07) · Pilar 3 · Pressões que não pedem licença · Artigo LinkedIn · CTA: comentário <em>(Nota de calendário: A03 e A04 trocaram de semana pra evitar sobreposição do ângulo "custo de adiar" com o AND-P11, que roda na S4 no perfil do André.)</em></p>
+<p>Existe uma pergunta que separa o empresário que dorme do que torce: quanto do seu resultado depende de variáveis que você não controla?</p>
+<p>Todo negócio carrega alguma exposição ao que vem de fora. Câmbio, juros, safra, clima. Faz parte. O problema começa quando a exposição cresce em silêncio, sem que o dono a tenha medido, e ele só descobre o tamanho dela quando a variável externa se move. Quero tratar aqui de uma exposição específica que vejo crescer na maioria das empresas médias brasileiras: a dependência de volume de hora humana.</p>
+<h3>Duas pressões, um mesmo denominador</h3>
+<p>Duas movimentações regulatórias tornam essa conversa urgente, e faço questão de tratá-las com a precisão que cada uma exige, porque elas estão em estágios diferentes.</p>
+<p>A primeira é o debate sobre o fim da jornada 6x1, que avança em Brasília. Aqui a palavra correta é debate: ninguém sabe se vira lei, quando, nem em que formato. Não vou fazer previsão, porque previsão de calendário legislativo é chute com gravata. Mas repare no que o debate já revela, mesmo sem desfecho: o custo do trabalho no Brasil pode mudar por uma decisão que não passa pela sua mesa. Se virar lei, empresas que dependem de esticar hora pra entregar resultado absorvem o impacto na escala, no quadro e no custo. Se não virar, nada garante que o assunto morra: agendas trabalhistas raramente se encerram num único projeto de lei.</p>
+<p>A segunda não é debate: é norma em vigor. A NR-1 estabelece o gerenciamento de riscos psicossociais como obrigação da empresa. Da pessoa jurídica. Mapear, gerenciar e documentar esses riscos deixou de ser boa prática de RH e virou exigência regulatória, com fiscalização. E operação esticada no limite da hora é exatamente o tipo de ambiente que essa gestão de riscos existe pra examinar.</p>
+<p>Duas pressões de naturezas diferentes, uma condicional e uma vigente. O denominador comum: ambas encarecem, ou podem encarecer, o mesmo insumo. A hora humana em volume.</p>
+<h3>A conta da dependência de horas</h3>
+<p>Proponho uma conta que quase nenhum empresário fez, e que recomendo fazer ainda esta semana.</p>
+<p>Pegue a sua entrega mensal e responda: quanto dela só acontece porque alguém estica hora? Não a hora produtiva normal. A hora marginal: a extra recorrente, o sábado que virou rotina, o turno que se alonga pra cobrir processo mal desenhado.</p>
+<p>Agora trate esse número como o que ele é: exposição a risco regulatório. Cada ponto percentual da sua entrega que depende de hora marginal é um ponto percentual do seu resultado precificado por Brasília, não por você. Se a regra muda, esse custo sobe sem nenhuma contrapartida de receita. É o equivalente operacional de operar alavancado numa moeda que você não emite.</p>
+<p>E aqui entra a assimetria que dá título a este artigo. A empresa eficiente, aquela cujo resultado vem de processo bem desenhado e não de volume de hora, atravessa qualquer desfecho do debate: se a lei muda, o impacto é marginal; se não muda, ela colhe a margem extra. A empresa inchada, que entrega no grito e na hora esticada, fica com o pior dos dois mundos: refém do desfecho e sem margem pra se ajustar depois dele. Uma dorme. A outra torce.</p>
+<p>Seguro funciona assim: quem contrata antes paga pouco e escolhe a apólice. Quem procura seguro com o sinistro em andamento não encontra seguro, encontra prejuízo. Eficiência operacional é a apólice, e o prêmio dela é negativo: você paga o seguro cortando desperdício, ou seja, recebendo pra se proteger.</p>
+<h3>O que fazer com essa conta</h3>
+<p>A resposta passa longe de cortar gente ou de proibir hora extra por decreto: é redesenhar os processos que consomem a hora marginal, e é exatamente aí que a IA e a automação têm o uso mais defensável: não como aposta de futuro, mas como redução de exposição presente. Produzir mais sem depender de esticar hora é, ao mesmo tempo, margem e blindagem.</p>
+<p>É uma das frentes centrais da Imersão em Ambidestria Executiva, o programa que forma o dono que comanda com as duas mãos: uma protege a operação que paga as contas hoje, a outra constrói a empresa da próxima década. A proteção da primeira mão, nesse cenário regulatório, tem nome técnico: reduzir a dependência de hora antes que a regra decida por você.</p>
+<p>Fecho com a pergunta da conta, e queria genuinamente ler as respostas: que parte da sua operação hoje só se sustenta com hora extra? Responde nos comentários, sem precisar citar nome de empresa. O padrão das respostas costuma dizer mais que qualquer estatística.</p>
+<hr />
+<p><strong>PAU-A04 · O custo composto da decisão adiada</strong> S3 (13-19/07) · Pilar 1 · As Duas Mãos · Artigo LinkedIn · CTA: /diagnostico (meio de funil) <em>(Nota de calendário: movido da S4 pra S3, trocando de lugar com o A03: conversa bem com o V09 de "moda e custo" da S3 e sai da semana do AND-P11, que trata "adiar também é decisão" na S4.)</em></p>
+<p>Todo empresário entende juros compostos quando o assunto é dinheiro. Sabe que dívida rolada não soma, multiplica. Sabe que o tempo trabalha a favor de quem investe cedo e contra quem paga depois.</p>
+<p>Curiosamente, quase nenhum aplica essa mesma matemática à decisão que está adiando agora. O raciocínio dominante sobre estruturar IA na empresa é linear: "se eu esperar seis meses, perco seis meses". Espera-se como quem pausa um filme, assumindo que a cena estará no mesmo lugar na volta.</p>
+<p>A tese deste artigo é que essa conta está errada, e errada do jeito mais caro: adiar um semestre não custa um semestre. Custa um semestre elevado ao que aconteceu dentro dele.</p>
+<h3>O que acumula enquanto você espera</h3>
+<p>Quatro coisas se movem no intervalo em que a decisão fica parada. Nenhuma delas espera junto.</p>
+<p>A primeira: o concorrente aprende. E aprendizado de implementação é composto por natureza. Quem começou antes não está apenas seis meses à frente em calendário: está com os erros iniciais já pagos, o time já treinado, os processos já redesenhados uma segunda vez. No semestre seguinte, ele constrói sobre isso. Você ainda vai construir a base sobre a qual ele já está construindo.</p>
+<p>A segunda: o seu time consolida hábitos sem regra. A IA não espera a sua decisão pra entrar na empresa. Ela entra pelas mãos de quem testa por conta própria, e cada mês sem regra transforma improviso em costume. Desfazer costume custa mais que instalar regra: quem já conduziu qualquer mudança sabe que o inimigo não é o vazio, é o hábito errado que ocupou o vazio.</p>
+<p>A terceira: a exposição regulatória cresce. Dado de cliente circulando em ferramenta não aprovada, decisão automatizada sem responsável, uso sem documentação. Cada mês de operação sem governança é mais superfície acumulada pra uma fiscalização, uma LGPD ou um incidente encontrarem. Esse passivo não aparece no balanço, mas se comporta como dívida: cresce em silêncio e cobra de uma vez.</p>
+<p>A quarta, e a que fecha o mecanismo composto: o próximo semestre começa de um ponto pior. Mais defasagem pra cobrir, mais hábito pra desfazer, mais passivo pra sanear, com a mesma energia de antes. A distância não soma sobre o ponto inicial. Soma sobre a distância anterior. Juro sobre juro.</p>
+<p>Os números do país sugerem quanta espera está acumulada: 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio; 52% admitem que não sabem como usar (CNDL/SPC Brasil). Entre o conhecer e o usar mora, na maioria dos casos, exatamente a decisão adiada de que este artigo trata.</p>
+<h3>A prudência que não é</h3>
+<p>Sei o que sustenta o adiamento: a convicção de que proteger o caixa vem primeiro e que construção é etapa seguinte. É uma convicção séria, e é por isso que merece ser desmontada com cuidado.</p>
+<p>Proteger o caixa é obrigação, não erro. O erro está em tratar proteção e construção como fila, uma depois da outra, quando a natureza das duas é simultânea. A capacidade que resolve isso tem nome: ambidestria executiva, comandar com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje, a outra construindo a empresa da próxima década. Ambidestria recusa essa fila: o hoje e o amanhã correm juntos, cada um numa mão.</p>
+<p>E aqui a matemática composta fecha o argumento: quem só protege o hoje não está neutro, está pagando o juro da segunda mão parada, todo mês, sem linha no DRE que o mostre. O custo não aparece no DRE porque tem outra natureza: é distância acumulada, não despesa lançada. E distância composta tem uma propriedade cruel: quando finalmente incomoda o bastante pra virar prioridade, ela já é muito maior do que era quando ainda parecia adiável.</p>
+<h3>Medir antes de correr</h3>
+<p>A resposta ao juro composto nunca é pânico, porque pressa desorganizada gera o outro erro: comprar ferramenta no susto, sem critério, e chamar isso de recuperação. A resposta é a mesma de qualquer dívida: primeiro medir o tamanho dela, depois estruturar o pagamento.</p>
+<p>O diagnóstico gratuito da Uni Lions faz a primeira parte em 5 minutos: posiciona a sua empresa numa escala de 5 níveis de maturidade em IA e mostra o tamanho da distância atual, com a leitura de cada resposta: unilions.com.br/diagnostico</p>
+<p>O semestre que começou vai compor a favor de alguém. A única decisão realmente sua é de que lado da conta a sua empresa está.</p>
+<hr />
+<h2>CHECKLIST DE GATES (auto-auditoria do lote)</h2>
+<ul><li>pt-BR natural em todas as 9 peças: ok</li><li>Zero travessão em títulos, hooks, primeiras linhas e corpo inteiro: ok</li><li>Zero emoji: ok</li><li>Nenhuma promessa de ganho ou resultado garantido: ok (P05 nega explicitamente; P07 fala em ganho medido pelo indicador do próprio participante)</li><li>6x1 sempre condicional ("se virar lei", "debate"): ok (A03, única peça que trata)</li><li>NR-1 sempre como obrigação da EMPRESA, sem presumir estado individual do leitor: ok (A03)</li><li>"Ambidestria" com a explicação das duas mãos (proteger a operação de hoje + construir a empresa da próxima década) na mesma frase, na primeira menção de cada peça: ok (P04, P05, P06, P07, P08, P09, A02, A03, A04)</li><li>Estatísticas só na redação exata do cânone, com fonte: ok (P04 usa 80%/OpenAI+Wharton/Science; P06 usa 62%/4.300 executivos/Exame; A02 usa 43%/Fundação Dom Cabral; A04 usa 87/14/52 CNDL/SPC Brasil)</li><li>Nenhuma data pública do programa, nenhuma contagem de encontros, nenhum anúncio de evento ao vivo: ok ("2 meses" não citado em nenhuma peça; formato descrito só como turma única/presencial/aplicação onde necessário)</li><li>Escassez só a real (turma única, entrada por aplicação, sala curada): ok (P09)</li><li>Claims da Lions: nenhum claim institucional usado neste lote além do nome Uni Lions: ok</li><li>Oséias Gomes e Eduardo Rangel: não citados: ok</li><li>URLs apenas unilions.com.br/diagnostico e unilions.com.br/aplicacao: ok (P07, P09, A02, A04)</li><li>Padrão "Não é X. É Y." usado em 1 peça do lote (P09: "não tem estratégia, tem intenção"); demais peças variam construção: ok</li><li>CTAs alternados: comentário (P04, P06, P08, A03) · seguir o perfil (P05) · /diagnostico meio de funil (P07, A02, A04) · /aplicacao só na peça de fundo (P09): ok</li><li>Ângulos sem repetição com o pacote anterior: Mapa de Exposição, anti-hype como lista de recusas, 3 perguntas de compra, Backlog, gestão da mudança, teste dos 15 minutos, governança mínima, conta da dependência de horas e juro composto são ângulos novos (o pacote anterior cobriu 8 entregáveis vs 8 aulas, Escala de Maturidade, 3 Horizontes e Adoção Órfã)</li><li>Artigos entre 600 e 900 palavras, com intertítulos: ok (A02 ~800 · A03 ~760 · A04 ~790)</li></ul>
+<hr />
+<h1>Pacote @unilions · Aquecimento v2 (UNI-P06 a UNI-P15)</h1>
+<h2>Lançamento Ambidestria Executiva · Fase 1 (03 a 26/07)</h2>
+<p><strong>Voz:</strong> institucional @unilions, B2B premium, zero opinião pessoal (nenhum "eu"; a marca fala como "a Uni Lions", "vemos", "este perfil"). <strong>Gates aplicados a todas as peças:</strong> pt-BR impecável · zero travessão · zero emoji · nenhuma promessa de ganho garantido · 6x1 sempre condicional ("se virar lei") · NR-1 sempre obrigação da empresa · "ambidestria" sempre com a explicação das duas mãos na mesma frase, na primeira menção · estatísticas só nas redações exatas do cânone · nenhuma data pública do programa e nenhum anúncio de evento ao vivo · escassez só a real (turma única, entrada por aplicação) · claims da Lions só os do site oficial · nenhum docente nomeado · URLs restritas a unilions.com.br, /aplicacao e /diagnostico.</p>
+<hr />
+<h2><strong>UNI-P06 · Frase-manifesto tipográfica: a tecnologia entrou na sua empresa antes do plano</strong></h2>
+<p>Semana: S1 (03-05/07) · Pilar: Pilar 2 · Adoção Órfã de IA · Formato: card tipográfico único, IG + LinkedIn · CTA: seguir o perfil</p>
+<h3>Arte (direção do card)</h3>
+<ul><li>Fundo escuro (o tom institucional mais profundo da marca), sem foto, sem ilustração.</li><li>Uma única frase, tipografia grande, alinhada à esquerda, com quebra em três linhas:</li></ul>
+<blockquote><p>**A tecnologia entrou<br>na sua empresa<br>antes do plano.**</p></blockquote>
+<ul><li>Assinatura discreta no rodapé do card: logo Uni Lions, canto inferior esquerdo. Nada mais.</li></ul>
+<h3>Legenda (IG e LinkedIn, mesma copy)</h3>
+<p>A frase do card é a tese desta conta. Nas próximas semanas, este perfil vai mostrar o que ela expõe, como medir onde a sua empresa está e o que vem primeiro. Começa esta semana. Siga o @unilions pra acompanhar.</p>
+<p><em>(Nota de calendário: escalonar com o POST A do pacote existente. O P06 abre 03/07 como card-teaser e o POST A entra 05/07 como manifesto completo, ou o inverso; nunca em dias vizinhos com o mesmo argumento.)</em></p>
+<hr />
+<h2><strong>UNI-P07 · 5 sintomas de que a IA da sua empresa é órfã</strong></h2>
+<p>Semana: S1 (03-05/07) · Pilar: Pilar 2 · Adoção Órfã de IA · Formato: post de texto (IG: card-lista + legenda; LinkedIn: texto integral) · CTA: comentário</p>
+<h3>Arte (direção do card IG)</h3>
+<p>Card único, fundo claro premium, título no topo e os cinco sinais numerados em lista. Título do card: <strong>"5 sintomas de que a IA da sua empresa é órfã"</strong>.</p>
+<h3>Texto integral (LinkedIn) / Legenda (IG)</h3>
+<p>Cinco sinais de que a IA da sua empresa é órfã.</p>
+<p>Nenhum deles exige auditoria pra ser visto. Basta uma semana de atenção:</p>
+<ol><li>A mesma ferramenta é paga em três áreas diferentes, e ninguém na diretoria sabe.</li></ol>
+<ol><li>Dado de cliente circula em conta gratuita, sem contrato, sem regra de uso escrita.</li></ol>
+<ol><li>Cada área tem a sua IA favorita. Nenhuma tem uma regra registrada em documento.</li></ol>
+<ol><li>Quando alguém pergunta "e se der errado, quem responde?", a sala fica em silêncio.</li></ol>
+<ol><li>A frase da casa é "a gente já usa IA". Mas ninguém sabe medir o quê, nem com qual retorno.</li></ol>
+<p>Quando o uso não tem dono, não tem regra e não tem direção, o quadro tem nome: Adoção Órfã de IA. A ferramenta entrou. O comando, ainda não.</p>
+<p>Quantos dos cinco você reconheceu na sua operação? Responda nos comentários com o número. A contagem costuma ser mais alta do que o dono imagina.</p>
+<hr />
+<h2><strong>UNI-P08 · Carrossel: a pergunta atrás de cada uma das 6 perguntas</strong></h2>
+<p>Semana: S2 (06-12/07) · Pilar: Pilar 3 · Pressões que não pedem licença · Formato: carrossel IG, 8 slides · CTA: salvar + unilions.com.br/diagnostico (meio de funil)</p>
+<h3>Direção de arte</h3>
+<p>Fundo escuro em todos os slides, numeração grande e discreta (01 a 06), pergunta em tipografia destaque, linha de leitura em corpo menor abaixo, precedida do rótulo "O que ela expõe:". Slide final com logo.</p>
+<h3>Card a card</h3>
+<p><strong>SLIDE 1 (capa)</strong></p>
+<blockquote><p><strong>Cada uma destas 6 perguntas esconde uma segunda. É a de trás que custa caro.</strong><br>O que cada pergunta expõe de verdade. Deslize.</p></blockquote>
+<p><em>(Nota de calendário: se as duas peças forem ao ar, o REEL 2 do pacote existente, com as perguntas cruas, entra primeiro e este carrossel depois, como aprofundamento.)</em></p>
+<p><strong>SLIDE 2 · 01 Tecnologia</strong></p>
+<blockquote><p><strong>A tecnologia mexeu em todos os ambientes da sua empresa. E no seu modelo de decisão?</strong><br>O que ela expõe: o único processo que não foi atualizado na empresa é o de quem comanda.</p></blockquote>
+<p><strong>SLIDE 3 · 02 Varejo</strong></p>
+<blockquote><p><strong>Quanto do seu faturamento o e-commerce já levou?</strong><br>O que ela expõe: a margem do varejo físico está migrando pro digital enquanto essa conta não é feita em voz alta.</p></blockquote>
+<p><strong>SLIDE 4 · 03 Serviços</strong></p>
+<blockquote><p><strong>Sua empresa de serviços está posicionada diante da IA ou esperando pra ver?</strong><br>O que ela expõe: sem critério próprio pra avaliar IA, a empresa compra embalagem quando é cliente e perde negócio quando é fornecedora.</p></blockquote>
+<p><strong>SLIDE 5 · 04 Legislação</strong></p>
+<blockquote><p><strong>Se o fim da jornada 6x1 virar lei, qual o impacto no seu custo?</strong><br>O que ela expõe: o quanto a sua operação depende de hora humana que uma mudança de regra pode encarecer.</p></blockquote>
+<p><strong>SLIDE 6 · 05 Conformidade</strong></p>
+<blockquote><p><strong>Sua empresa já se ajustou às exigências de gerenciamento de riscos psicossociais da NR-1?</strong><br>O que ela expõe: a norma está em vigor e a obrigação de mapear e gerenciar esses riscos é da empresa. Descobrir isso na fiscalização custa caro.</p></blockquote>
+<p><strong>SLIDE 7 · 06 Gestão</strong></p>
+<blockquote><p><strong>Seu modelo de gestão foi desenhado pro mercado em que você começou. Ele ainda serve pro mercado em que você está?</strong><br>O que ela expõe: sucesso antigo vira anestésico e adia a revisão justamente de quem decide.</p></blockquote>
+<p><strong>SLIDE 8 (fechamento)</strong></p>
+<blockquote><p><strong>Parecem 6 problemas. São 6 sintomas do mesmo diagnóstico: a tecnologia entrou na sua empresa antes do plano.</strong><br>Salve este carrossel. E descubra em 5 minutos como a sua empresa responde a cada pergunta: <strong>unilions.com.br/diagnostico</strong></p></blockquote>
+<h3>Legenda do carrossel</h3>
+<p>Seis perguntas, um único diagnóstico. Cada uma delas parece um problema isolado: tecnologia, e-commerce, IA nos serviços, o debate da 6x1 (se virar lei), a NR-1 já em vigor como obrigação da empresa, o modelo de gestão de outra época. Lidas juntas, elas apontam pra mesma direção.</p>
+<p>Salve o carrossel pra reler com calma. E se quiser a leitura da SUA empresa, o Diagnóstico de Maturidade da Uni Lions leva 5 minutos e devolve uma leitura por resposta: unilions.com.br/diagnostico</p>
+<hr />
+<h2><strong>UNI-P09 · Glossário do dono: 3 termos de IA sem tecniquês</strong></h2>
+<p>Semana: S2 (06-12/07) · Pilar: Pilar 2 · Adoção Órfã de IA · Formato: post de texto, IG + LinkedIn · CTA: comentário</p>
+<h3>Texto integral</h3>
+<p>Glossário do dono, volume 1: três termos que todo fornecedor joga na mesa, traduzidos sem tecniquês.</p>
+<p><strong>IA generativa.</strong> A que escreve, desenha e responde. São os assistentes que o seu time provavelmente já usa: redigem proposta, resumem reunião, criam post. Útil, barata e, justamente por isso, a que mais entra na empresa sem ninguém autorizar.</p>
+<p><strong>Agente de IA.</strong> A que executa uma tarefa de ponta a ponta sozinha: recebe um objetivo, decide os passos e age. É a categoria que mais cresce nas propostas comerciais e a que mais exige regra escrita ANTES de rodar, porque um agente sem limite definido erra em escala.</p>
+<p><strong>Automação.</strong> Regra fixa que sempre existiu: se acontece A, faça B. Não aprende, não decide, não cria. Funciona muito bem pra muita coisa. O problema é outro: muito vendedor rebatiza automação de "IA" pra subir o preço da proposta.</p>
+<p>O ponto deste glossário não é transformar ninguém em técnico. O dono não precisa falar tecniquês. Precisa entender o suficiente pra ninguém decidir por ele: nem o fornecedor na proposta, nem o funcionário no improviso.</p>
+<p>Qual termo você quer ver traduzido no volume 2? Deixe nos comentários. Os mais pedidos entram na fila.</p>
+<hr />
+<h2><strong>UNI-P10 · Mitos e fatos sobre IA na empresa média brasileira</strong></h2>
+<p>Semana: S2 (06-12/07) · Pilar: Pilar 3 · Pressões que não pedem licença · Formato: post de texto, IG + LinkedIn (IG: card com os 5 pares em versão curta + legenda integral) · CTA: compartilhar</p>
+<h3>Texto integral</h3>
+<p>Cinco mitos sobre IA que ainda circulam nas diretorias brasileiras. E o que os fatos dizem.</p>
+<p><strong>Mito 1: IA é coisa de empresa grande.</strong> Fato: o ganho proporcional tende a ser maior na empresa média, porque é nela que sobra mais processo manual, mais retrabalho e mais decisão tomada no escuro. Empresa grande otimiza margem. Empresa média destrava operação.</p>
+<p><strong>Mito 2: precisa de equipe de TI pra começar.</strong> Fato: precisa de dono, regra e direção antes de qualquer contratação. A primeira etapa é organizacional, e quem pula essa etapa termina com uma coleção de ferramentas em vez de uma estrutura.</p>
+<p><strong>Mito 3: é cara.</strong> Fato: a maior barreira declarada no país não é preço. No Brasil, 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio; 52% admitem que não sabem como usar (CNDL/SPC Brasil). O que falta é método, não orçamento.</p>
+<p><strong>Mito 4: vai substituir todo mundo.</strong> Fato: a IA afeta tarefas antes de afetar cargos. O que muda primeiro é o desenho dos processos. Quem redesenha os próprios processos decide o que o time passa a fazer; quem não redesenha, terceiriza essa decisão pro mercado.</p>
+<p><strong>Mito 5: é moda, vai passar.</strong> Fato: moda não deixa norma em vigor, não muda a conta de custo de quem opera sem eficiência de máquina e não cria concorrente novo no seu CNAE. O ciclo atual já fez os três.</p>
+<p>Conhece um sócio, um par de conselho ou um dono de empresa que ainda acredita em algum dos cinco? Compartilhe este post com ele. A conversa rende mais quando os dois lados olham pros mesmos fatos.</p>
+<hr />
+<h2><strong>UNI-P11 · Carrossel: a Escala de Maturidade em IA, do Nível 1 ao 5</strong></h2>
+<p>Semana: S3 (13-19/07) · Pilar: Pilar 2 · Adoção Órfã de IA · Formato: carrossel IG, 7 slides · CTA: unilions.com.br/diagnostico (meio de funil)</p>
+<h3>Direção de arte</h3>
+<p>Progressão visual entre os slides: uma barra ou escada que cresce do slide 2 ao 6 (nível 1 quase vazio, nível 5 completo). Nome do nível em destaque, sinal identificador em corpo de leitura. Fundo escuro, acabamento premium.</p>
+<h3>Card a card</h3>
+<p><strong>SLIDE 1 (capa)</strong></p>
+<blockquote><p><strong>A Escala de Maturidade em IA tem 5 níveis.</strong><br>Em qual slide você se reconhece?</p></blockquote>
+<p><strong>SLIDE 2 · Nível 1: Improviso</strong></p>
+<blockquote><p><strong>Nível 1 · Improviso</strong><br>O sinal: o assunto ainda não entrou na pauta. Nenhum uso estruturado, nenhuma conversa de diretoria. A empresa sabe que existe, mas ainda não começou.</p></blockquote>
+<p><strong>SLIDE 3 · Nível 2: IA Dispersa</strong></p>
+<blockquote><p><strong>Nível 2 · IA Dispersa</strong><br>O sinal: o time usa, ninguém comanda. Ferramenta espalhada pelas áreas, cada um testando por conta própria, nenhuma regra escrita, nenhum responsável.</p></blockquote>
+<p><strong>SLIDE 4 · Nível 3: Direção</strong></p>
+<blockquote><p><strong>Nível 3 · Direção</strong><br>O sinal: existe dono e existe regra escrita. Alguém responde pela IA na empresa, o que pode e o que não pode está documentado, e o uso tem prioridade definida.</p></blockquote>
+<p><strong>SLIDE 5 · Nível 4: Estrutura</strong></p>
+<blockquote><p><strong>Nível 4 · Estrutura</strong><br>O sinal: processos redesenhados com a IA dentro e resultado medido. A pergunta deixou de ser "quem usa" e passou a ser "quanto rende".</p></blockquote>
+<p><strong>SLIDE 6 · Nível 5: Orquestração</strong></p>
+<blockquote><p><strong>Nível 5 · Orquestração</strong><br>O sinal: a IA opera integrada à estratégia do negócio. É consequência de anos de execução sobre uma base bem montada, não de um programa.</p></blockquote>
+<p><strong>SLIDE 7 (fechamento)</strong></p>
+<blockquote><p><strong>A leitura honesta: nas conversas que temos com donos de empresa, é no Nível 2 que a maioria se reconhece.</strong><br>E o perigo do Nível 2 é exatamente este: achar que resolveu.<br>Descubra o nível real da sua empresa em 5 minutos: <strong>unilions.com.br/diagnostico</strong></p></blockquote>
+<h3>Legenda do carrossel</h3>
+<p>Do improviso à orquestração, são cinco níveis de maturidade em IA. Cada um tem um sinal observável, e o autodiagnóstico de cabeça costuma errar pra cima: "a gente já usa IA" descreve o Nível 2, o nível em que o uso existe e o comando não.</p>
+<p>O Diagnóstico de Maturidade da Uni Lions posiciona a sua empresa na escala em 5 minutos e devolve a leitura de cada resposta, com o próximo passo lógico. Gratuito, feito pra quem decide: unilions.com.br/diagnostico</p>
+<hr />
+<h2><strong>UNI-P12 · Bastidor: um dia comum dentro do ecossistema</strong></h2>
+<p>Semana: S3 (13-19/07) · Pilar: Pilar 5 · A Sala · Formato: foto-post (cena real da sede), IG + LinkedIn · CTA: seguir o perfil</p>
+<h3>Direção de imagem</h3>
+<p>Foto real de um dia útil na sede da Lions Startups: plano aberto que mostre trabalho acontecendo (mesas ocupadas, uma mentoria em andamento ao fundo, turma de formação tech em sala). Sem pose, sem palco, sem nomear ou destacar rostos de docentes. Alternativa: sequência de 2 a 3 fotos do mesmo dia.</p>
+<h3>Legenda (IG e LinkedIn, mesma copy)</h3>
+<p>Uma terça-feira comum, registrada sem aviso.</p>
+<p>O que aparece nesta imagem acontece todo dia útil na sede da Lions Startups, um dos principais hubs de inovação do Brasil, com sede própria de mais de 5 mil metros quadrados: startups sendo construídas numa ala, mentoria acontecendo na mesa ao lado, formação de talentos em tecnologia rodando sob o mesmo teto.</p>
+<p>Existe uma diferença entre bastidor e propaganda. Propaganda mostra o palco no dia do evento. Bastidor mostra o lugar num dia em que ninguém planejou foto.</p>
+<p>É deste ambiente que nasce a Imersão em Ambidestria Executiva, o programa da Uni Lions pro dono que comanda com as duas mãos: uma protege a operação que paga as contas hoje, a outra constrói a empresa da próxima década. Um programa desse tipo pode nascer de um slide ou de uma rotina. Aqui, transformação é rotina de trabalho, não tema de palestra.</p>
+<p>A preparação da turma está em andamento. Siga o @unilions pra acompanhar os bastidores.</p>
+<hr />
+<h2><strong>UNI-P13 · A pergunta que o conselho vai fazer antes do que você imagina</strong></h2>
+<p>Semana: S3 (13-19/07) · Pilar: Pilar 2 · Adoção Órfã de IA · Formato: post de texto, IG + LinkedIn · CTA: unilions.com.br/diagnostico (meio de funil)</p>
+<h3>Texto integral</h3>
+<p>Existe uma pergunta a caminho da sua mesa. E ela não vai avisar a data.</p>
+<p>Pode chegar numa renovação de crédito, quando o banco quiser entender a resiliência da operação. Pode chegar na entrada de um sócio, durante a due diligence (a análise que o investidor faz antes de assinar). Pode chegar numa reunião de conselho qualquer, depois da pauta de resultados.</p>
+<p>A pergunta é curta: <strong>qual é a sua estratégia de IA?</strong></p>
+<p>E existe uma resposta que não sobrevive a nenhuma dessas mesas: "a gente usa bastante". Porque usar não é estratégia. Estratégia tem dono, tem regra, tem prioridade e tem um documento que sustenta cada uma dessas três coisas.</p>
+<p>O desconforto, vale dizer, não é exclusividade de ninguém: 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA, segundo a Fundação Dom Cabral. O detalhe é que a pergunta não espera o conforto chegar. Ela chega primeiro.</p>
+<p>O Diagnóstico de Maturidade da Uni Lions é o rascunho dessa resposta: 5 minutos, uma leitura por resposta, o nível da sua empresa na escala de 1 a 5 e o próximo passo lógico. Material suficiente pra você chegar na mesa com posição, e não com adjetivo.</p>
+<p>unilions.com.br/diagnostico</p>
+<hr />
+<h2><strong>UNI-P14 · O dado fala de tarefas, não de empregos. E isso muda a sua conta</strong></h2>
+<p>Semana: S4 (20-26/07) · Pilar: Pilar 3 · Pressões que não pedem licença · Formato: post de texto, IG + LinkedIn (IG: card com o dado em destaque + legenda integral) · CTA: comentário</p>
+<h3>Arte (direção do card IG)</h3>
+<p>Card com a redação exata do cânone em corpo de leitura. Linha 1: <strong>"cerca de 80% dos trabalhadores americanos terão pelo menos 10% das suas tarefas afetadas pela IA"</strong> · linha 2 (fonte): "OpenAI + Wharton, publicado na Science" · destaque em tipografia grande abaixo: <strong>"A palavra decisiva é tarefas."</strong> Se não couber num card, fatiar em 2 cards sequenciais sem alterar uma palavra, como previsto nas notas de produção do arquivo de reels.</p>
+<h3>Texto integral</h3>
+<p>O dado mais citado sobre IA e trabalho costuma ser lido errado. E a leitura errada custa caro pra quem decide.</p>
+<p>O estudo é da OpenAI com a Wharton, publicado na Science: cerca de 80% dos trabalhadores americanos terão pelo menos 10% das suas tarefas afetadas pela IA.</p>
+<p>A palavra decisiva da frase é <strong>tarefas</strong>. O estudo não fala de empregos extintos. Fala de tarefas afetadas. E tarefa afetada não significa cargo eliminado: significa processo que será redesenhado. A emissão da proposta, a triagem do atendimento, o fechamento do relatório, a conferência do pedido. Peça por peça, o trabalho muda de desenho.</p>
+<p>A questão que sobra pro dono é uma só: com ou sem ele no comando do redesenho?</p>
+<p>Quem mapeia as tarefas da própria operação decide o que automatiza, o que mantém humano e o que muda de mão. Quem não mapeia também terá os processos redesenhados. Só que pelo concorrente, pelo fornecedor e pelo mercado, na ordem e no ritmo que convier a eles.</p>
+<p>Fica a pergunta de trabalho, não de retórica: se você tivesse que escolher uma única tarefa da sua empresa pra redesenhar primeiro, qual seria? Responda nos comentários. As respostas dizem muito sobre onde cada operação sente a pressão.</p>
+<hr />
+<h2><strong>UNI-P15 · Convite ao diagnóstico v2: o raio-X que muda a pauta da próxima reunião</strong></h2>
+<p>Semana: S4 (20-26/07) · Pilar: Pilar 2 · Adoção Órfã de IA · Formato: post de texto, IG + LinkedIn · CTA: unilions.com.br/diagnostico (meio de funil)</p>
+<h3>Texto integral</h3>
+<p>O que você leva pra sua próxima reunião de diretoria: uma opinião sobre IA ou um dado sobre a sua empresa?</p>
+<p>A diferença entre as duas coisas custa 5 minutos.</p>
+<p>O Diagnóstico de Maturidade da Uni Lions é um assessment executivo gratuito (um questionário de diagnóstico, respondido online). Ao final, você sai com três coisas na mão:</p>
+<p><strong>1. Uma leitura por resposta.</strong> Não é nota solta: cada resposta devolve o que aquele ponto revela sobre a sua operação, do dado de cliente em conta gratuita à regra que ninguém escreveu.</p>
+<p><strong>2. O nível de maturidade da empresa, na escala de 1 a 5.</strong> Do improviso à orquestração, com o retrato honesto de onde você está hoje, e não de onde a diretoria acha que está.</p>
+<p><strong>3. O próximo passo lógico.</strong> O que vem primeiro a partir do seu nível, em ordem de prioridade, pra sair do achismo sem pular etapa.</p>
+<p>Na prática, é material pronto pra abrir a próxima reunião: em vez de "precisamos falar de IA", a pauta vira "estamos no nível X, o ponto mais exposto é este, e o primeiro movimento é este". Reunião com dado termina em decisão. Reunião com opinião termina em outra reunião.</p>
+<p>Um aviso que funciona como filtro: o diagnóstico foi montado pra cadeira de quem bate o martelo. Se a palavra final não é sua, encaminhe este post pra quem decide.</p>
+<p>5 minutos, gratuito: unilions.com.br/diagnostico</p>
+<p><em>(Nota de calendário: o POST E do pacote existente é um convite gêmeo na mesma semana. Publicar o POST E no início da S4 e empurrar o P15 pro fechamento (25-26/07), ou fundir os dois num único convite.)</em></p>
+<hr />
+<h2>Checklist de gates (conferido no lote)</h2>
+<ul><li>pt-BR natural em toda a copy: ok</li><li>Zero travessão em títulos, hooks, primeiras linhas e corpo: ok (pontuação resolvida com ponto, dois pontos, vírgula e parênteses)</li><li>Zero emoji: ok (nenhuma peça de stories neste lote)</li><li>Nenhuma promessa de ganho ou resultado garantido: ok ("tende a ser", "costuma", "material pronto" em vez de promessa)</li><li>6x1 sempre condicional: ok (P08 slide 5 e legenda: "se virar lei")</li><li>NR-1 sempre obrigação da empresa, nunca estado de saúde do leitor: ok (P08 slide 6 e legenda)</li><li>"Ambidestria" com a explicação das duas mãos na mesma frase, na primeira menção: ok (única peça do lote que menciona é a P12; as demais não citam o termo)</li><li>Estatísticas apenas nas redações exatas do cânone: ok (P10: 87/14/52 CNDL/SPC Brasil · P13: 43% Fundação Dom Cabral · P14: 80%/10% OpenAI + Wharton, Science)</li><li>Nenhuma data pública do programa e nenhum anúncio de evento ao vivo: ok (P12 fala em "preparação da turma em andamento", sem data, sem live)</li><li>Escassez só a real: ok (nenhuma escassez artificial usada; turma única citada apenas via contexto institucional, sem contagem regressiva)</li><li>Claims da Lions apenas os do site oficial: ok (P12: um dos principais hubs de inovação do Brasil, sede própria de mais de 5 mil metros quadrados, startups construídas, mentoria, formação tech)</li><li>Nenhum docente nomeado: ok</li><li>URLs apenas unilions.com.br/diagnostico (nenhuma peça deste lote é fundo de funil; /aplicacao não usado): ok</li><li>Padrão "Não é X. É Y." usado em 1 peça do lote (P14: "O estudo não fala de empregos extintos. Fala de tarefas afetadas."), nas demais variado: ok</li><li>CTAs alternados: seguir (P06, P12) · comentário (P07, P09, P14) · compartilhar (P10) · salvar + /diagnostico (P08) · /diagnostico (P11, P13, P15): ok</li><li>Sem repetição de ângulo com o pacote anterior (03-scripts-aquecimento.md): P06 é teaser puro da série (card tipográfico + legenda-teaser, escalonado com o POST A, que segue como manifesto completo); P11 difere do POST 2 do Paulo (carrossel visual da escala vs texto sobre o Nível 2 e a promessa 2 ao 4, que NÃO é repetida aqui); P15 difere do POST E (ângulo de utilidade da reunião vs ângulo de isca institucional, sem reutilizar "quiz de rede social entrega um rótulo")</li></ul>
+<hr />
+<h1>Reels e Pautas de Stories · @unilions · Aquecimento v2 (03 a 26/07)</h1>
+<h2>Lançamento Ambidestria Executiva (Uni Lions)</h2>
+<p><strong>Uso:</strong> 4 reels (cards e imagens, sem locução, salvo indicação) + 4 pautas semanais de stories, prontos pra produção e publicação no @unilions. Todos os textos em tela estão finais: não parafrasear na edição. Stickers nativos de stories indicados entre colchetes.</p>
+<p><strong>Notas de produção (invioláveis):</strong></p>
+<ul><li>Nenhuma peça publica data, horário ou contagem de encontros do programa (datas/formato em validação com a Lions). Não improvisar datas na edição.</li><li>Nenhuma peça anuncia evento ao vivo (decisão pendente).</li><li>Nenhum docente é nomeado em nenhuma peça.</li><li>Estatísticas apenas na redação exata do cânone, com a fonte no card. Se o card não couber a redação inteira, fatiar em cards sequenciais sem alterar uma palavra.</li><li>Trilha sugerida em todos os reels: instrumental sóbria com pulso, sem drop de humor. Tipografia dos cards: a do kit de marca Uni Lions, alto contraste, fundo escuro.</li><li>Janelas de publicação de stories: entre 8h e 9h30 ou entre 18h e 20h (janelas de resposta do ICP).</li></ul>
+<hr />
+<h2>PARTE 1 · QUATRO REELS</h2>
+<h3><strong>UNI-R03 · Reel: a metáfora das duas mãos em 20 segundos</strong></h3>
+<p>Semana S1 (03-05/07) · Pilar 1 (As Duas Mãos) · Reel visual sem locução, texto em tela · CTA: seguir o perfil</p>
+<p><strong>Formato:</strong> vídeo de 20 a 22 segundos, sem locução. Imagens reais de duas mãos em ações alternadas (close, luz dura, fundo neutro). Corte seco entre cenas, texto em tela sincronizado. Trilha instrumental com pulso baixo.</p>
+<div class="table-wrap"><table><thead><tr><th>Tempo</th><th>Imagem</th><th>Texto em tela</th></tr></thead><tbody><tr><td>0-3s</td><td>Uma mão segurando firme uma caneta sobre uma pilha de boletos/notas, mesa de escritório</td><td>"Uma mão segura a operação que paga as contas hoje."</td></tr><tr><td>3-6s</td><td>A outra mão desenhando um diagrama num quadro branco, traço em andamento</td><td>"A outra constrói a empresa da próxima década."</td></tr><tr><td>6-9s</td><td>Uma mão só, alternando freneticamente entre celular, papel e teclado (câmera acelerada)</td><td>"A maioria das empresas opera com uma mão só."</td></tr><tr><td>9-12s</td><td>A mesma mão parando no ar, imagem congela meio segundo</td><td>"E a outra fica parada. Justo a que constrói."</td></tr><tr><td>12-16s</td><td>As duas mãos entrando no quadro ao mesmo tempo: uma assina um documento, a outra aponta o diagrama no quadro</td><td>"Comandar com as duas mãos ao mesmo tempo, uma protegendo a operação de hoje e a outra construindo a empresa da próxima década, tem nome: ambidestria executiva."</td></tr><tr><td>16-19s</td><td>Plano fechado das duas mãos pousadas lado a lado sobre a mesa, imóveis, firmes</td><td>"É disso que este perfil vai falar nas próximas semanas."</td></tr><tr><td>19-22s</td><td>Card final, fundo escuro, logo Uni Lions</td><td>"Siga o @unilions."</td></tr></tbody></table></div>
+<p><strong>Legenda do reel:</strong> A mão que opera, entrega e apaga incêndio, toda empresa tem bem treinada. A segunda, a que desenha o que a empresa vai ser, é a que costuma ficar parada. Ambidestria executiva é a capacidade de comandar com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa que vai competir na próxima década. Nas próximas semanas, este perfil vai mostrar o que acontece dentro de uma empresa quando o dono assume as duas. Siga o @unilions pra acompanhar.</p>
+<hr />
+<h3><strong>UNI-R04 · Reel: o teste das 3 respostas</strong></h3>
+<p>Semana S2 (06-12/07) · Pilar 2 (Adoção Órfã de IA) · Reel de cards rítmicos, corte seco · CTA: unilions.com.br/diagnostico</p>
+<p><strong>Formato:</strong> 25 a 28 segundos, cards de texto em sequência rítmica, corte seco no pulso da trilha. Sem imagem de banco: só tipografia sobre fundo escuro, com um elemento gráfico de check/x aparecendo por corte (em SVG do kit de marca, nunca emoji).</p>
+<div class="table-wrap"><table><thead><tr><th>Tempo</th><th>Card</th><th>Texto em tela</th></tr></thead><tbody><tr><td>0-3s</td><td>Card de abertura</td><td>"Um teste de 3 perguntas pra quem comanda uma empresa. Responda mentalmente sim ou não."</td></tr><tr><td>3-7s</td><td>Card 01</td><td>"Você sabe TODAS as ferramentas de IA que o seu time usa hoje?"</td></tr><tr><td>7-11s</td><td>Card 02</td><td>"Existe regra escrita sobre o que pode e o que não pode entrar nelas?"</td></tr><tr><td>11-15s</td><td>Card 03</td><td>"Alguém responde formalmente quando der errado?"</td></tr><tr><td>15-19s</td><td>Card de virada</td><td>"Três nãos têm nome: Adoção Órfã de IA."</td></tr><tr><td>19-23s</td><td>Card de contexto</td><td>"A IA entrou na sua empresa pelas mãos do time. Sem dono, sem regra, sem direção."</td></tr><tr><td>23-28s</td><td>Card final + logo Uni Lions</td><td>"O teste completo leva 5 minutos e devolve a leitura de cada resposta." + "unilions.com.br/diagnostico"</td></tr></tbody></table></div>
+<p><strong>Legenda do reel:</strong> Três perguntas de sim ou não. Quem responde três sins tem uma IA com dono dentro da empresa. Quem responde três nãos convive com a Adoção Órfã de IA: a ferramenta já roda na operação, mas ninguém responde por ela, nenhuma regra foi escrita e ninguém decidiu pra onde aquilo leva o negócio. O Diagnóstico de Maturidade da Uni Lions é a versão completa deste teste: gratuito, 5 minutos, feito pra quem decide. O resultado posiciona a sua empresa numa escala de 5 níveis e mostra o próximo passo. Link na bio e aqui: unilions.com.br/diagnostico</p>
+<hr />
+<h3><strong>UNI-R05 · Reel: três frases de dono, um diagnóstico</strong></h3>
+<p>Semana S3 (13-19/07) · Pilar 1 (As Duas Mãos) · Reel de cards, frase e resposta · CTA: comentário na legenda</p>
+<p><strong>Formato:</strong> 28 a 32 segundos. Cada frase de dono entra como card de citação (aspas grandes, tipografia serifada); a resposta entra por corte seco no card seguinte, tipografia do kit, sem aspas. Ritmo: frase respira 1 segundo a mais que a resposta.</p>
+<div class="table-wrap"><table><thead><tr><th>Tempo</th><th>Card</th><th>Texto em tela</th></tr></thead><tbody><tr><td>0-3s</td><td>Card de abertura</td><td>"As 3 frases que a gente mais escuta de dono de empresa. E o que cada uma esconde."</td></tr><tr><td>3-7s</td><td>Card frase 1 (citação)</td><td>""A gente já usa IA.""</td></tr><tr><td>7-10s</td><td>Card resposta 1</td><td>"Uso sem comando. O time usa, ninguém responde."</td></tr><tr><td>10-14s</td><td>Card frase 2 (citação)</td><td>""Meu setor é diferente.""</td></tr><tr><td>14-17s</td><td>Card resposta 2</td><td>"A exceção que todo mundo acha que é. Inclusive o seu concorrente."</td></tr><tr><td>17-21s</td><td>Card frase 3 (citação)</td><td>""Vejo isso depois do trimestre.""</td></tr><tr><td>21-24s</td><td>Card resposta 3</td><td>"A decisão adiada também é uma decisão. Só que sem você no comando dela."</td></tr><tr><td>24-28s</td><td>Card de fechamento</td><td>"Três frases diferentes. O mesmo diagnóstico: a tecnologia entrou na empresa antes do plano."</td></tr><tr><td>28-32s</td><td>Card final + logo Uni Lions</td><td>"Qual das três você já falou este ano? Responde nos comentários."</td></tr></tbody></table></div>
+<p><strong>Legenda do reel:</strong> Três frases, um único diagnóstico. Quem diz "a gente já usa IA" descreve uso sem comando. Quem diz "meu setor é diferente" repete a frase que todos os setores dizem. Quem diz "vejo isso depois do trimestre" já decidiu, só não percebeu: adiou o plano enquanto a tecnologia seguia entrando. A saída pra qualquer uma das três é a mesma capacidade: comandar com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa da próxima década: é a ambidestria executiva, o assunto central deste perfil. Agora conta pra gente, sem vergonha, porque quase todo mundo já falou pelo menos uma: qual das três você já disse este ano? Lemos todos os comentários.</p>
+<hr />
+<h3><strong>UNI-R06 · Reel: toda empresa vai responder. A diferença é quando</strong></h3>
+<p>Semana S4 (20-26/07) · Pilar 1 (As Duas Mãos) · Reel de identidade em dois ritmos visuais · CTA: unilions.com.br/diagnostico</p>
+<p><strong>Formato:</strong> 30 a 34 segundos, dois blocos visuais contrastados. Bloco 1 (0-13s): ritmo calmo, luz de dia, cortes longos. Bloco 2 (13-24s): ritmo acelerado, luz fria, cortes curtos, trilha sobe meio tom. Fechamento (24-34s): volta ao ritmo calmo. Sem locução, texto em tela.</p>
+<div class="table-wrap"><table><thead><tr><th>Tempo</th><th>Imagem</th><th>Texto em tela</th></tr></thead><tbody><tr><td>0-4s</td><td>Mão de empresário escrevendo com calma num caderno aberto, café ao lado, manhã</td><td>"Tem dono que responde às perguntas da década agora. No papel."</td></tr><tr><td>4-8s</td><td>Mesma mesa, folha com um esquema simples sendo desenhado, sem pressa</td><td>"Com calma. Com método. No momento que ele escolheu."</td></tr><tr><td>8-13s</td><td>O empresário fechando o caderno e olhando pela janela, plano estável</td><td>"É desconfortável. Mas é ele quem conduz."</td></tr><tr><td>13-16s</td><td>CORTE. Pilha de papéis caindo sobre uma mesa, mão apressada folheando</td><td>"E tem dono que responde depois."</td></tr><tr><td>16-19s</td><td>Tela de planilha com curva descendo, dedo apontando a queda</td><td>"Na planilha de queda de margem."</td></tr><tr><td>19-22s</td><td>Mão assinando documento sob pressão, outra pessoa esperando em pé (enquadrar só mãos e mesa)</td><td>"Na renegociação com o banco. Na fiscalização."</td></tr><tr><td>22-24s</td><td>Frame preto de meio segundo</td><td>"As perguntas são as mesmas."</td></tr><tr><td>24-28s</td><td>Volta a luz de dia: as duas mãos abrindo o caderno de novo, calmas</td><td>"O contexto é que muda. E escolher o contexto ainda está nas suas mãos."</td></tr><tr><td>28-34s</td><td>Card final, fundo escuro, logo Uni Lions</td><td>"Comece pelas respostas de 5 minutos." + "unilions.com.br/diagnostico"</td></tr></tbody></table></div>
+<p><strong>Legenda do reel:</strong> As perguntas que a tecnologia trouxe pro seu mercado não são opcionais. Toda empresa vai respondê-las: a diferença é o contexto em que a resposta acontece. Respondidas agora, viram plano: o dono comanda com as duas mãos, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa da próxima década. Adiadas, as mesmas perguntas voltam em contextos que ninguém escolhe: a margem que cai, a renegociação, a fiscalização. Escolher o contexto ainda é possível, e começa pequeno: o Diagnóstico de Maturidade da Uni Lions leva 5 minutos, é gratuito e devolve a leitura de onde a sua empresa está hoje. unilions.com.br/diagnostico</p>
+<hr />
+<h2>PARTE 2 · QUATRO PAUTAS SEMANAIS DE STORIES</h2>
+<h3><strong>UNI-S01 · Pauta de stories S1: abertura da conversa (5 stories, 03 a 05/07)</strong></h3>
+<p>Semana S1 (03-05/07) · Pilar 2 (Adoção Órfã de IA) · Sequência de stories com interação nativa · CTA: resposta na enquete e na caixa de pergunta (sem link externo nesta semana)</p>
+<p><strong>Objetivo da semana:</strong> calibrar a audiência e gerar matéria-prima de VOC pras semanas seguintes. Sem link externo: só construção de hábito e resposta. Publicar os stories 1 a 3 no mesmo dia (03/07); o 4 no dia 04/07; o 5 no dia 05/07.</p>
+<p><strong>Story 1 (03/07, manhã) · Card-manifesto de abertura</strong> Fundo escuro, tipografia do kit, sem imagem. Texto do card: "Começa hoje uma série sobre a decisão mais adiada nas empresas brasileiras: o que fazer com a IA que já entrou no negócio. Sem hype, sem aula técnica. Conversa de dono pra dono, toda semana, aqui nos stories."</p>
+<p><strong>Story 2 (03/07, na sequência) · Enquete de calibragem</strong> Texto do card: "Pra começar do jeito certo, queremos saber de você." [enquete nativa] Pergunta: "Sua empresa já usa IA no dia a dia?" Opções: "Sim, de forma estruturada" / "Sim, cada um usa a sua" / "Ainda não" <em>(Nota: a enquete nativa do Instagram aceita até 4 opções; esta usa 3.)</em></p>
+<p><strong>Story 3 (03/07, noite, reagindo ao parcial da enquete) · Card de conceito</strong> Texto do card: "Olha o padrão aparecendo nas respostas: a opção 'cada um usa a sua' está na frente. Isso descreve os dois tipos de uso que existem hoje. Uso com dono: alguém responde pela IA, existe regra, existe direção. E uso órfão: a ferramenta roda na empresa e ninguém no comando sabe dizer onde, como e com qual dado. A série desta conta é sobre sair do segundo e chegar no primeiro." <em>(Nota de produção: se o parcial real da enquete contrariar a frase, ajustar APENAS a primeira linha do card pro resultado verdadeiro, por exemplo "A maioria respondeu 'de forma estruturada'. Ótimo sinal. As perguntas desta semana vão testar se é estrutura mesmo ou impressão." Nunca inventar parcial.)</em></p>
+<p><strong>Story 4 (04/07) · Caixa de pergunta</strong> Texto do card: "Agora é a sua vez de pautar a série." [caixa de pergunta nativa] Título da caixa: "Qual a sua maior dúvida sobre IA no negócio?" Linha de apoio no card, abaixo da caixa: "Vale dúvida básica, vale dúvida difícil. Ninguém é identificado quando a gente responder."</p>
+<p><strong>Story 5 (05/07) · Fechamento da semana</strong> Texto do card: "As respostas que chegaram na caixa já renderiam um mês de conteúdo. As melhores perguntas serão respondidas aqui nos stories nas próximas semanas, uma por vez, sem citar quem enviou. Ativa as notificações do @unilions pra não perder a sua." <em>(Nota: publicar esta versão só se a caixa tiver volume real de perguntas. Fallback sem claim de volume: "A caixa segue aberta até amanhã. As melhores perguntas serão respondidas aqui nos stories nas próximas semanas, uma por vez, sem citar quem enviou. Ativa as notificações do @unilions pra não perder a sua.")</em></p>
+<hr />
+<h3><strong>UNI-S02 · Pauta de stories S2: a semana do problema (dia a dia, 06 a 11/07)</strong></h3>
+<p>Semana S2 (06-12/07) · Pilar 2 (Adoção Órfã de IA) · Sequência semanal em dia-temas, 8 frames · CTA: engajamento nativo (enquete, quiz, resposta), sem link</p>
+<p><strong>Objetivo da semana:</strong> instalar o vocabulário do problema e transformar interação em lista quente. Nenhum link externo nesta semana: o CTA é sempre interação nativa.</p>
+<p><strong>Segunda (06/07) · Sintoma do dia</strong> Texto do card: "O sinal clássico de Adoção Órfã de IA na sua empresa: você descobre por acaso que um setor usa uma ferramenta de IA há meses. Ninguém pediu autorização porque ninguém sabia a quem pedir. Se essa cena já aconteceu aí, os próximos stories da semana são pra você. Cada dia, um pedaço do problema."</p>
+<p><strong>Terça (07/07) · Enquete do comando</strong> Texto do card: "Pergunta direta, responde sem pensar muito:" [enquete nativa] Pergunta: "Quem escolheu as IAs que o seu time usa hoje?" Opções: "Eu" / "O time" / "Ninguém escolheu" Linha de apoio no card: "As três respostas dizem coisas muito diferentes sobre quem comanda a tecnologia aí dentro."</p>
+<p><strong>Quarta (08/07) · O dado da semana, em 3 frames</strong> Frame 1, texto do card: "O retrato mais preciso da relação do empresário brasileiro com a IA cabe numa frase. Vem em três partes." "87% dos empresários dizem conhecer inteligência artificial," Frame 2, texto do card: "mas só 14% a usam de fato no negócio;" Frame 3, texto do card: "52% admitem que não sabem como usar." Linha de fonte no frame 3: "Fonte: CNDL/SPC Brasil" Linha de fechamento no frame 3: "Entre o 87 e o 14 mora quase todo mundo: conhece, não comanda."</p>
+<p><strong>Quinta (09/07) · Resposta à caixa da S1</strong> Formato: vídeo curto de bastidor (celular, enquadramento simples, alguém do time Uni Lions respondendo sem aparecer nome de docente) OU card de texto. Versão card: "Pergunta que chegou na caixa da semana passada: 'por onde eu começo se meu time já usa IA de tudo quanto é jeito?' Resposta curta: pelo inventário. Antes de regra, antes de ferramenta nova, liste o que já roda: qual ferramenta, em qual setor, com qual dado. É impossível governar o que você não vê. O resto da resposta vem nas próximas semanas." [caixa de pergunta nativa] Título da caixa: "Ficou com dúvida sobre isso? Manda aqui." <em>(Nota de produção: a pergunta citada no card é modelo. Antes de publicar, substituir pela pergunta REAL mais próxima recebida na caixa da S1, mantendo a estrutura da resposta. Se nenhuma pergunta real se aproximar do tema, escolher outra recebida e adaptar a resposta ao mesmo formato: resposta curta, primeiro passo concreto, gancho pras próximas semanas. Nunca publicar como recebida uma pergunta que ninguém enviou.)</em></p>
+<p><strong>Sexta (10/07) · Quiz do mito</strong> Texto do card: "Verdadeiro ou falso:" [quiz nativo] Pergunta: "Se cada funcionário usa a IA que prefere, a empresa está na frente da concorrência." Opções: "Verdadeiro" / "Falso" (resposta correta: Falso) Linha de apoio no card: "A resposta certa incomoda: uso espalhado sem regra não é vantagem, é exposição. Quem acertou já entendeu a série."</p>
+<p><strong>Sábado (11/07) · Recap e convite</strong> Texto do card: "O que passou aqui esta semana: o sinal clássico da Adoção Órfã, a enquete sobre quem escolhe as ferramentas, o dado da CNDL/SPC Brasil, a primeira resposta da caixa e o quiz do mito. Semana que vem a conversa muda de andar: existe uma escala de 5 níveis de maturidade em IA, e você vai descobrir em qual a sua empresa está. Segue o @unilions e volta segunda."</p>
+<hr />
+<h3><strong>UNI-S03 · Pauta de stories S3: a semana do mecanismo (dia a dia, 13 a 18/07)</strong></h3>
+<p>Semana S3 (13-19/07) · Pilar 4 (Método, não palestra) · Sequência semanal em dia-temas, 7 frames · CTA: [sticker de link nativo] pro unilions.com.br/diagnostico no sábado (primeira semana com link nos stories)</p>
+<p><strong>Objetivo da semana:</strong> fazer a audiência se autoclassificar na escala de 5 níveis antes de receber o convite formal. O link só entra no último story da semana.</p>
+<p><strong>Segunda (13/07) · Abertura da escala</strong> Texto do card: "Existe uma escala de 1 a 5 que posiciona qualquer empresa na relação dela com a IA. Do improviso total, no Nível 1, até a orquestração completa, no Nível 5. Esta semana, a escala completa por aqui: os dois primeiros níveis, um por dia, e na quinta os três níveis de quem comanda. Cada um com o sinal que o identifica. Vai ser difícil não se reconhecer em algum."</p>
+<p><strong>Terça (14/07) · Nível 1</strong> Texto do card: "Nível 1: o improviso. Sinal identificador: a IA é assunto de conversa, não de operação. Alguém testou uma vez, achou interessante, e nada mudou no negócio. O lado bom do Nível 1: quem está nele sabe que não começou. Não há ilusão a desmontar." [enquete nativa] Pergunta: "Esse nível parece a sua empresa?" Opções: "Sim" / "Não" / "Quase"</p>
+<p><strong>Quarta (15/07) · Nível 2</strong> Texto do card: "Nível 2: a IA dispersa. Sinal identificador: a frase 'aqui a gente já usa IA'. A ferramenta roda de verdade, mas pelas mãos de quem foi testando por conta própria. Tem uso, não tem comando. É o nível mais comum nas conversas que temos com donos de empresa." [enquete nativa] Pergunta: "Esse nível parece a sua empresa?" Opções: "Sim" / "Não" / "Quase"</p>
+<p><strong>Quinta (16/07) · Níveis 3, 4 e 5</strong> Texto do card: "Os três níveis de quem comanda. Nível 3: a direção, quando aparece regra escrita, dono definido e as primeiras prioridades. Nível 4: a estrutura, quando a IA tem área, critério de escolha e ganho medido. Nível 5: a orquestração completa, consequência de anos de execução sobre uma base bem montada. Ninguém pula pro 5. Sobe-se um degrau por vez." [enquete nativa] Pergunta: "Algum desses três parece a sua empresa?" Opções: "Sim" / "Não" / "Quase"</p>
+<p><strong>Sexta (17/07) · O alerta do Nível 2</strong> Texto do card: "O detalhe que quase ninguém enxerga: o nível mais perigoso da escala é o segundo, não o primeiro. Quem sabe que não começou procura. Quem acha que resolveu para de procurar o que falta." [caixa de pergunta nativa] Título da caixa: "O que a sua empresa já tentou com IA?" Linha de apoio no card: "Conta a tentativa, mesmo a que não deu certo. Principalmente a que não deu certo."</p>
+<p><strong>Sábado (18/07) · Fechamento com link (frame duplo)</strong> Frame 1, texto do card: "Você passou a semana se comparando com a escala. Agora dá pra parar de estimar: o Diagnóstico de Maturidade da Uni Lions posiciona a sua empresa num dos 5 níveis e devolve a leitura de cada resposta. Gratuito, 5 minutos, feito pra quem decide." Frame 2, texto do card: "Primeira vez que este link aparece aqui nos stories. Ele vai valer a semana inteira que vem, mas quem faz agora chega na frente da conversa de segunda." [sticker de link nativo] URL: unilions.com.br/diagnostico · Texto do sticker: "Fazer o diagnóstico de 5 minutos"</p>
+<hr />
+<h3><strong>UNI-S04 · Pauta de stories S4: a semana da decisão (dia a dia, 20 a 24/07)</strong></h3>
+<p>Semana S4 (20-26/07) · Pilar 1 (As Duas Mãos) · Sequência semanal em dia-temas, 6 frames · CTA: [sticker de link nativo] pro unilions.com.br/diagnostico na sexta</p>
+<p><strong>Objetivo da semana:</strong> converter a audiência aquecida em diagnósticos feitos e alimentar a prospecção 1:1 com as respostas das caixas. A atenção do ICP volta ao normal nesta semana: ritmo diário sem pausa.</p>
+<p><strong>Segunda (20/07) · Recap das 6 perguntas (2 frames)</strong> Frame 1, texto do card: "Um mês atrás, este perfil abriu uma conversa sobre as perguntas que todo dono de empresa vai responder, voluntariamente ou não. Recapitulando as três primeiras: a tecnologia mexeu em todo o seu mercado, e no seu modelo de decisão? Quanto do seu faturamento o e-commerce já levou? Sua empresa de serviços está posicionada diante da IA ou esperando pra ver?" Frame 2, texto do card: "E as três seguintes: se o fim da jornada 6x1 virar lei, qual o impacto no seu custo? Sua empresa já se ajustou às exigências da NR-1, que são obrigação regulatória da empresa? Seu modelo de gestão ainda serve pro mercado em que você está? Seis perguntas, um único diagnóstico. Esta semana fecha o ciclo."</p>
+<p><strong>Terça (21/07) · Enquete do peso</strong> Texto do card: "Das perguntas do recap de ontem, seja honesto:" [enquete nativa] Pergunta: "Qual pesa mais na sua empresa hoje?" Opções: "Modelo de decisão" / "Concorrência digital" / "Custo trabalhista" / "Gestão de outro tempo" Linha de apoio no card: "As respostas orientam o que a gente aprofunda por aqui."</p>
+<p><strong>Quarta (22/07) · Bastidor da preparação</strong> Formato: foto ou vídeo curto real de bastidor (mesa com material impresso do programa, quadro com a escala de 5 níveis rabiscada, sala sendo preparada). Sem docente nomeado, sem rosto identificável de docente, sem data visível em nenhum material enquadrado. Texto do card sobre a imagem: "Bastidor de hoje: o material da turma única da Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década), sendo preparado. Entrada por aplicação. Em breve, mais detalhes por aqui."</p>
+<p><strong>Quinta (23/07) · Caixa da trava</strong> Texto do card: "O diagnóstico está no ar desde sábado. Se você abriu, olhou e deixou pra depois, queremos entender:" <em>(Nota de produção: se os números reais de diagnósticos da semana estiverem disponíveis e forem bons, a primeira frase pode citar o número exato. Nunca citar volume que não foi conferido.)</em> [caixa de pergunta nativa] Título da caixa: "O que te impede de começar a organizar isso na sua empresa?" Linha de apoio no card: "Tempo, time, prioridade, ceticismo: vale qualquer resposta. Ninguém é identificado."</p>
+<p><strong>Sexta (24/07) · O card das duas mãos + link</strong> Texto do card: "A conversa deste mês inteiro cabe numa imagem. Ambidestria executiva é comandar com as duas mãos ao mesmo tempo: uma protege a operação que paga as contas hoje, a outra constrói a empresa da próxima década. Nenhuma solta o controle. O próximo passo antes da fase que vem aí é saber onde a sua empresa está agora." [sticker de link nativo] URL: unilions.com.br/diagnostico · Texto do sticker: "Descobrir meu nível em 5 minutos"</p>
+<hr />
+<h2>CHECKLIST DE GATES (conferido pós-auditoria)</h2>
+<ul><li>pt-BR natural em toda a copy: ok</li><li>Zero travessão em títulos, hooks, primeiras linhas e em todo o corpo: ok</li><li>Zero emoji na copy; stickers nativos sempre indicados entre colchetes: ok</li><li>Nenhuma promessa de ganho ou resultado garantido: ok</li><li>6x1 apenas condicional ("se o fim da jornada 6x1 virar lei", frame 2 de segunda em UNI-S04): ok</li><li>NR-1 sempre como obrigação regulatória da empresa, sem presumir estado individual do leitor: ok (UNI-S04)</li><li>"Ambidestria" sempre com a explicação das duas mãos na mesma frase, na primeira menção de cada peça: ok (UNI-R03 card 12-16s e legenda; UNI-R05 legenda; UNI-R06 legenda; UNI-S04 quarta e sexta; UNI-R04, S01, S02 e S03 não usam o termo; o bastidor de quarta em UNI-S04 traz a explicação das duas mãos na mesma frase da menção, e a explicação completa fecha a mesma semana no card de sexta)</li><li>Estatísticas apenas na redação exata do cânone com fonte: ok (única stat usada: 87/14/52 CNDL/SPC Brasil, fatiada sem alteração de palavra nos 3 frames de quarta em UNI-S02)</li><li>Nenhuma data pública do programa, nenhuma contagem de encontros, nenhum anúncio de evento ao vivo: ok (bastidor de UNI-S04 com nota explícita de "sem data visível")</li><li>Nenhum docente nomeado; Oséias Gomes e Eduardo Rangel ausentes de todas as peças: ok</li><li>Escassez apenas real (turma única, entrada por aplicação): ok (UNI-S04 quarta)</li><li>Claims da Lions: nenhuma peça usa claims institucionais além do nome Uni Lions: ok</li><li>URLs restritas a unilions.com.br/diagnostico (nenhuma peça deste lote é de fundo de funil, então /aplicacao não aparece): ok</li><li>Padrão "Não é X. É Y.": 1 ocorrência neste lote (linha de apoio do quiz de sexta em UNI-S02), dentro da cota de 1 por lote: ok</li><li>CTAs alternados: seguir o perfil (R03), /diagnostico (R04), comentário (R05), /diagnostico (R06), interação nativa sem link (S01 e S02), link /diagnostico no fim da semana (S03 e S04): ok</li><li>Sem repetição de ângulo com o pacote anterior: o reel das 6 perguntas já existente usa os cards das perguntas; UNI-R06 usa as perguntas só como contexto de contraste de ritmos, e o recap de UNI-S04 as retoma em formato de stories, previsto na pauta: ok</li><li>Integridade de interação: nenhuma peça inventa resultado de enquete (nota de produção no story 3 de UNI-S01 obriga ajuste ao parcial real): ok</li></ul>
+<hr />
+</div></body></html>

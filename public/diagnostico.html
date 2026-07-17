@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="facebook-domain-verification" content="qypo1yvsimsazzv5kdaqjo6u7r7il9" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico de Maturidade — Ambidestria Executiva · Uni Lions</title>
+<meta name="theme-color" content="#0A1628" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0A1628; --char:#0E1C32; --char-2:#12243C; --navy:#173052;
+    --cta:#0066FF; --cta-soft:#3D8BFF; --paper:#FFFFFF; --mist:#D4DAE6; --mist-2:#6B7790;
+    --line:rgba(255,255,255,.12); --line-2:rgba(255,255,255,.06); --ok:#59D69B; --danger:#E06A56;
+    --serif:"Montserrat",-apple-system,BlinkMacSystemFont,sans-serif; --sans:"Montserrat",system-ui,sans-serif;
+    --mono:"JetBrains Mono",Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);background:var(--ink);color:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100svh;
+    background-image:radial-gradient(1200px 600px at 80% -10%,rgba(61,139,255,.12),transparent),radial-gradient(900px 500px at 0% 110%,rgba(0,102,255,.06),transparent)}
+  ::selection{background:var(--cta);color:var(--ink)}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+  p{color:var(--mist)}
+  svg.ic{width:18px;height:18px;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .accent{color:var(--cta)}
+
+  .pbar-wrap{position:fixed;top:0;left:0;right:0;height:4px;background:rgba(255,255,255,.06);z-index:40}
+  .pbar{height:100%;width:0;background:linear-gradient(90deg,var(--cta-soft),var(--cta));transition:width .5s cubic-bezier(.4,0,.2,1)}
+  .topnav{position:fixed;top:18px;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:0 28px;z-index:30}
+  .brand{font-family:var(--serif);font-size:15px;color:var(--paper)}.brand b{font-weight:600}.brand .lion{color:var(--cta);font-weight:600}
+  .qcount{font-size:12.5px;color:var(--mist-2);font-weight:500;letter-spacing:.04em}
+
+  .stage{max-width:760px;margin:0 auto;padding:110px 28px 80px;min-height:100svh}
+  .screen{display:none;animation:fade .4s ease}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  .center-stage{flex-direction:column;justify-content:center;min-height:calc(100svh - 190px)}
+  .screen.active.center-stage{display:flex}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--cta-soft);margin-bottom:20px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--cta);opacity:.6}
+
+  /* intro */
+  h1.intro-h{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:14px;max-width:16ch}
+  .intro-sub{font-family:var(--serif);font-size:clamp(1.15rem,2.4vw,1.5rem);color:var(--cta-soft);font-weight:400;margin-bottom:26px;max-width:30ch;line-height:1.3}
+  .intro-p{font-size:1.05rem;color:var(--mist);margin-bottom:18px;max-width:54ch}
+  .intro-p b{color:var(--paper);font-weight:600}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:16px;
+    padding:16px 30px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:.2s}
+  .btn-primary{background:linear-gradient(180deg,var(--cta),#0052CC);color:#FFFFFF;box-shadow:0 10px 32px -12px rgba(0,102,255,.55)}
+  .btn-primary:hover{background:#1A7AFF;transform:translateY(-1px)}
+  .btn-primary:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+  .btn-ghost{background:rgba(255,255,255,.05);color:var(--paper);border:1px solid var(--line)}
+  .btn-meta{margin-top:14px;font-size:.85rem;color:var(--mist-2)}
+  .trust{margin-top:28px;font-size:.85rem;color:var(--mist-2);max-width:52ch;display:flex;gap:10px;align-items:flex-start}
+  .trust .ic{color:var(--cta-soft);margin-top:2px}
+
+  /* dimension screen */
+  .dim-head{margin-bottom:30px;padding-bottom:22px;border-bottom:1px solid var(--line-2)}
+  .dim-num{font-family:var(--serif);font-size:.95rem;color:var(--cta);letter-spacing:.04em;margin-bottom:8px}
+  h2.dim-name{font-size:clamp(1.5rem,3.4vw,2rem);margin-bottom:8px}
+  .dim-tag{font-size:1rem;color:var(--mist-2);font-style:italic;font-family:var(--serif)}
+  .q-block{margin-bottom:28px}
+  .q-stem{font-size:1.05rem;color:var(--paper);font-weight:500;margin-bottom:14px;line-height:1.4}
+  .q-stem .qn{color:var(--cta-soft);font-family:var(--serif);margin-right:8px}
+  .q-opts{display:flex;flex-direction:column;gap:8px}
+  .o{display:flex;align-items:center;gap:13px;background:var(--char-2);border:1px solid var(--line);border-radius:11px;
+    padding:13px 16px;cursor:pointer;color:var(--mist);font-size:.97rem;line-height:1.35;transition:.14s}
+  .o:hover{border-color:rgba(0,102,255,.5);color:var(--paper)}
+  .o .mk{width:18px;height:18px;border-radius:50%;border:2px solid var(--mist-2);flex:none;transition:.14s;position:relative}
+  .o.sel{border-color:var(--cta);background:rgba(0,102,255,.1);color:var(--paper)}
+  .o.sel .mk{border-color:var(--cta);background:var(--cta)}
+  .o.sel .mk::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--ink)}
+  .dim-foot{display:flex;align-items:center;justify-content:space-between;margin-top:34px;padding-top:24px;border-top:1px solid var(--line-2)}
+  .back{display:inline-flex;align-items:center;gap:7px;background:none;border:none;color:var(--mist-2);font-family:var(--sans);font-size:14px;cursor:pointer;transition:.15s}
+  .back:hover{color:var(--paper)}.back.hidden{visibility:hidden}
+  .answered-note{font-size:.82rem;color:var(--mist-2)}
+
+  /* contact */
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:.84rem;font-weight:600;color:var(--mist);margin-bottom:7px}
+  .field input,.field select{width:100%;background:var(--char-2);border:1px solid var(--line);border-radius:11px;padding:14px 16px;color:var(--paper);font-family:var(--sans);font-size:1rem;transition:.15s}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--cta);background:#1f222d}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+  .consent{display:flex;gap:11px;align-items:flex-start;margin:18px 0;font-size:.84rem;color:var(--mist-2);line-height:1.5;cursor:pointer}
+  .consent input{margin-top:3px;width:17px;height:17px;accent-color:var(--cta);flex:none;cursor:pointer}
+  .consent a{color:var(--cta-soft)}
+  .lgpd-note{display:flex;gap:11px;background:rgba(27,42,74,.3);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:18px;font-size:.85rem;color:var(--mist);line-height:1.5}
+  .lgpd-note .ic{color:var(--cta-soft);margin-top:2px}
+
+  /* loading */
+  .calc{text-align:center;padding:60px 0}
+  .spinner{width:46px;height:46px;border:3px solid var(--line);border-top-color:var(--cta);border-radius:50%;margin:0 auto 24px;animation:spin 1s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  /* result */
+  .verdict{text-align:center;padding:20px 0 10px}
+  .verdict .lvl-badge{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cta-soft);background:rgba(0,102,255,.1);border:1px solid rgba(0,102,255,.3);padding:7px 15px;border-radius:999px;margin-bottom:20px}
+  .lvl-big{font-family:var(--serif);font-size:clamp(2.4rem,6vw,3.6rem);color:var(--paper);line-height:1.05;margin-bottom:6px}
+  .lvl-big .lvln{color:var(--cta)}
+  .lvl-name{font-family:var(--serif);font-style:italic;font-size:1.3rem;color:var(--cta-soft);margin-bottom:18px}
+  .lvl-frase{font-size:1.05rem;color:var(--mist);max-width:54ch;margin:0 auto}
+  .lvl-scale{display:flex;gap:6px;justify-content:center;margin:24px auto 0;max-width:340px}
+  .lvl-step{flex:1;height:7px;border-radius:4px;background:rgba(255,255,255,.08)}
+  .lvl-step.on{background:var(--cta)}
+
+  .rblock{margin:48px 0;padding-top:40px;border-top:1px solid var(--line-2)}
+  .rblock h2{font-size:clamp(1.4rem,3vw,1.9rem);margin-bottom:8px}
+  .rblock .rsub{font-size:1rem;color:var(--mist-2);margin-bottom:24px}
+  .radar-wrap{display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:center}
+  .radar-svg{width:300px;height:300px}
+  .dim-list{display:flex;flex-direction:column;gap:14px}
+  .dim-row{padding:13px 0;border-bottom:1px solid var(--line-2)}
+  .dim-row:last-child{border-bottom:none}
+  .dim-row .dr-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}
+  .dim-row .dr-name{font-weight:600;color:var(--paper);font-size:.98rem}
+  .dim-row .dr-lvl{font-family:var(--serif);font-size:.86rem;color:var(--cta-soft);white-space:nowrap}
+  .dim-row .dr-read{font-size:.92rem;color:var(--mist-2);line-height:1.45}
+  .dim-row.weak .dr-name{color:var(--cta)}
+
+  .hole{background:linear-gradient(160deg,rgba(0,102,255,.12),rgba(26,29,38,.5));border:1px solid rgba(0,102,255,.4);border-radius:16px;padding:30px 32px}
+  .hole .hl-label{font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--cta-soft);margin-bottom:12px}
+  .hole h2{margin-bottom:14px}
+  .hole h2 .hname{color:var(--cta)}
+  .hole p{font-size:1.05rem;color:var(--mist);line-height:1.55;margin-bottom:14px}
+  .hole p:last-child{margin-bottom:0}
+  .hole p b{color:var(--paper);font-weight:600}
+
+  .danger-box{background:rgba(224,106,86,.08);border:1px solid rgba(224,106,86,.35);border-radius:16px;padding:28px 30px}
+  .danger-box h2{color:var(--danger);font-size:1.4rem;margin-bottom:8px;display:flex;align-items:center;gap:11px}
+  .danger-box .dsub{font-size:.98rem;color:var(--mist);margin-bottom:18px}
+  .flag{display:flex;gap:13px;padding:13px 0;border-top:1px solid rgba(224,106,86,.18);font-size:.96rem;color:var(--mist);line-height:1.5}
+  .flag:first-of-type{border-top:none}
+  .flag .ic{color:var(--danger);margin-top:2px}
+  .flag b{color:var(--paper);font-weight:600}
+
+  .bridge{text-align:center;background:linear-gradient(180deg,var(--char),#0c1320);border:1px solid var(--line);border-radius:18px;padding:46px 38px;margin-top:48px}
+  .bridge h2{font-size:clamp(1.5rem,3.4vw,2.1rem);max-width:22ch;margin:0 auto 16px}
+  .bridge p{font-size:1.05rem;color:var(--mist);max-width:56ch;margin:0 auto 16px}
+  .bridge p b{color:var(--paper);font-weight:600}
+  .bridge .deliv-hint{font-size:.95rem;color:var(--cta-soft);font-style:italic;font-family:var(--serif);max-width:54ch;margin:0 auto 26px}
+  .bridge .btn-meta{margin-top:14px}
+
+  .disclaimer{margin-top:40px;font-size:.8rem;color:var(--mist-2);line-height:1.55;max-width:62ch;text-align:center;margin-left:auto;margin-right:auto}
+  footer{text-align:center;padding:30px;font-size:.82rem;color:var(--mist-2)}footer .lion{color:var(--cta-soft)}
+
+  @media(max-width:680px){
+    .radar-wrap{grid-template-columns:1fr;gap:24px;justify-items:center}
+    .radar-svg{width:260px;height:260px}
+    .dim-list{width:100%}
+    .field-row{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .stage{padding:92px 18px 60px}
+    .topnav{padding:0 16px}
+    .o{padding:12px 14px;font-size:.93rem}
+    .hole,.danger-box,.bridge{padding:26px 22px}
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '893900467086472');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=893900467086472&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<div class="pbar-wrap"><div class="pbar" id="pbar"></div></div>
+<div class="topnav">
+  <div class="brand"><a href="/" style="display:inline-flex;align-items:center;text-decoration:none;color:inherit"><img src="/assets/unilions-logo.jpg" alt="Uni Lions" style="height:28px;width:auto;border-radius:4px;object-fit:contain" /></a></div>
+  <div class="qcount" id="qcount"></div>
+</div>
+
+<div class="stage">
+
+  <!-- INTRO -->
+  <section class="screen active center-stage" id="s-intro">
+    <div class="eyebrow">Diagnóstico · Ambidestria Executiva</div>
+    <h1 class="intro-h">Em que degrau a sua operação realmente está?</h1>
+    <p class="intro-sub">A maioria dos líderes responde "estamos começando" ou "já usamos bastante" — e os dois estão chutando.</p>
+    <p class="intro-p">O que falta é o mapa: onde a sua empresa está hoje, onde estão os buracos, e o que priorizar primeiro — antes de gastar a próxima reunião, o próximo orçamento ou o próximo piloto no lugar errado. A tecnologia entra como instrumento, não como protagonista.</p>
+    <p class="intro-p">Em 6 minutos, este diagnóstico devolve o <b>Mapa de Maturidade da sua empresa</b> nos 5 eixos que decidem se a transformação vira margem e futuro — ou vira risco e assinatura parada. Sem teoria. Sem "curso de IA". O retrato real da sua operação, na sua mão.</p>
+    <div style="margin-top:8px">
+      <button class="btn btn-primary" onclick="start()">Começar o diagnóstico <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <div class="btn-meta">6 minutos · gratuito · resultado na hora</div>
+    </div>
+    <div class="trust">
+      <svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <span>Diagnóstico baseado no modelo de maturidade do Gartner e nos frameworks de governança que as instituições sérias usam (NIST, ISO/IEC 42001, OECD, IBGC).</span>
+    </div>
+  </section>
+
+  <!-- DIMENSION (dynamic) -->
+  <section class="screen" id="s-dim">
+    <div class="dim-head">
+      <div class="dim-num" id="d-num"></div>
+      <h2 class="dim-name" id="d-name"></h2>
+      <div class="dim-tag" id="d-tag"></div>
+    </div>
+    <div id="d-questions"></div>
+    <div class="dim-foot">
+      <button class="back" id="d-back" onclick="prevDim()"><svg class="ic" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Voltar</button>
+      <div style="display:flex;align-items:center;gap:16px">
+        <span class="answered-note" id="d-answered"></span>
+        <button class="btn btn-primary" id="d-next" onclick="nextDim()" disabled>Continuar <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="screen" id="s-contact">
+    <div class="eyebrow">Quase lá</div>
+    <h2 class="dim-name" style="font-size:clamp(1.6rem,3.6vw,2.2rem);margin-bottom:10px">Pra onde enviamos o seu Mapa de Maturidade?</h2>
+    <p style="color:var(--mist-2);margin-bottom:26px;max-width:48ch">Você respondeu tudo. Agora é só dizer pra quem mandamos o seu retrato — e a nossa equipe pode te ajudar a ler o resultado.</p>
+    <div class="lgpd-note">
+      <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      <span>Os seus dados são usados para gerar o seu diagnóstico e para a nossa equipe entrar em contato sobre o programa. Não compartilhamos com terceiros e você pode pedir a exclusão a qualquer momento.</span>
+    </div>
+    <form id="c-form" onsubmit="return finish(event)">
+      <div class="field-row">
+        <div class="field"><label>Nome completo</label><input type="text" required placeholder="Seu nome"></div>
+        <div class="field"><label>E-mail corporativo</label><input type="email" required placeholder="voce@suaempresa.com.br"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Empresa</label><input type="text" required placeholder="Nome da empresa"></div>
+        <div class="field"><label>Seu cargo</label><input type="text" required placeholder="CEO, Sócio, Diretor..."></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label>Setor</label><input type="text" required placeholder="Indústria, serviços, varejo..."></div>
+        <div class="field"><label>Porte (nº de pessoas)</label>
+          <select required><option value="">Selecione</option><option>Até 10</option><option>11 a 50</option><option>51 a 200</option><option>201 a 500</option><option>Mais de 500</option></select>
+        </div>
+      </div>
+      <label class="consent"><input type="checkbox" required id="c-consent"><span>Autorizo o uso dos meus dados para gerar o diagnóstico e receber contato sobre o programa, conforme a <a href="#">Política de Privacidade</a>.</span></label>
+      <button type="submit" class="btn btn-primary" style="width:100%">Ver o meu Mapa de Maturidade</button>
+    </form>
+    <div class="dim-foot" style="border-top:none;margin-top:8px">
+      <button class="back" onclick="backToLastDim()"><svg class="ic" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg> Voltar</button>
+    </div>
+  </section>
+
+  <!-- CALC -->
+  <section class="screen" id="s-calc">
+    <div class="calc"><div class="spinner"></div><p style="font-family:var(--serif);font-size:1.2rem;color:var(--paper)">Montando o seu Mapa de Maturidade…</p><p style="font-size:.9rem;color:var(--mist-2);margin-top:6px">Cruzando as suas 30 respostas nos 5 eixos.</p></div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="s-result"></section>
+
+  <footer>Diagnóstico de Maturidade · <span class="lion">Ambidestria Executiva · Uni Lions</span></footer>
+</div>
+
+<script>
+/* ===================== DADOS ===================== */
+const OPTS = ['A','B','C','D']; // peso = index+1
+const DIMS = [
+  { key:'visao', name:'Visão & Futuro', tag:'você lê pra onde o jogo vai, ou reage tarde?', priority:2,
+    Q:[
+      {s:'Tenho clareza de como a IA pode tornar o meu negócio ultrapassado nos próximos 2–3 anos — e o que fazer sobre isso.', o:['Sinceramente, isso me tira o sono e eu não tenho resposta.','Eu penso nisso, mas é mais angústia do que plano.','Tenho um mapa das ameaças, ainda incompleto.','Tenho cenários claros e revisão periódica disso.']},
+      {s:'Quando um concorrente menor, nascido digital, ataca pela base, eu enxergo o movimento antes de perder cliente.', o:['Só percebo quando o cliente já foi.','Percebo tarde, reajo no susto.','Acompanho os principais, com algum atraso.','Tenho radar competitivo ativo e respondo cedo.']},
+      {s:'Sei quais competências o meu time precisa desenvolver pros próximos 3 anos por causa da IA.', o:['Não faço ideia, é tudo nebuloso.','Tenho intuições, nada estruturado.','Tenho um plano inicial de reskilling.','Tenho trilha de competências definida e em andamento.']},
+      {s:'Como líder, me sinto seguro pra conduzir a empresa numa transformação que eu mesmo ainda estou aprendendo.', o:['Me sinto perdido e decidindo no escuro.','Vou levando, mas a insegurança contagia o time.','Tenho segurança na maior parte das decisões.','Conduzo com clareza e o time sente isso.']},
+      {s:'A urgência da IA é compartilhada na minha liderança — não sou o único que enxerga.', o:['Sou o único; os outros acham exagero.','Alguns enxergam, mas falta consenso.','A maioria da liderança está alinhada.','Há alinhamento e uma agenda comum de IA.']},
+      {s:'Eu separo o que é hype de IA do que de fato move o ponteiro do meu negócio.', o:['Não tenho critério; reajo à propaganda.','Desconfio de tudo, mas não sei filtrar.','Tenho algum critério próprio.','Tenho um filtro claro de relevância pro negócio.']},
+    ]},
+  { key:'estrategia', name:'Estratégia & Ambidestria', tag:'você equilibra proteger o hoje e apostar no futuro com método, ou no instinto?', priority:1,
+    Q:[
+      {s:'Sei dividir o investimento em IA entre proteger o que dá dinheiro hoje, expandir o que cresce, e apostar no futuro.', o:['Não tenho método; vai no instinto.','Penso nisso, mas a divisão é no feeling.','Tenho uma divisão informal entre curto e longo prazo.','Tenho alocação explícita entre os horizontes (hoje / adjacências / aposta).']},
+      {s:'Quando preciso decidir entre mexer no que já funciona ou refazer do zero, tenho critério — sem medo de travar a operação.', o:['Esse medo me paralisa.','Decido no susto, sem método.','Tenho critério na maioria dos casos.','Tenho um método claro de quando conservar e quando reinventar.']},
+      {s:'Consigo proteger a margem de hoje E construir o futuro com IA ao mesmo tempo — sem soltar nenhuma das duas mãos.', o:['Sinto que só consigo fazer uma coisa de cada vez.','Tento as duas e vivo no improviso.','Equilibro razoavelmente, com esforço.','Faço as duas com método e cadência.']},
+      {s:'As minhas apostas de IA seguem uma estratégia, não a oportunidade que apareceu na semana.', o:['É reativo, vai ao sabor do que surge.','Tem alguma intenção, mas pouca disciplina.','Sigo uma direção, com desvios.','Tenho roadmap estratégico e respeito ele.']},
+      {s:'Tenho um plano de IA escrito e fundamentado, pronto pra apresentar ao conselho, ao banco ou a um investidor.', o:['Não tenho nada escrito.','Tenho rascunhos soltos, nada apresentável.','Tenho um documento parcial.','Tenho um plano consolidado e já defendido.'], flag:'plano'},
+      {s:'Eu meço o retorno das iniciativas de IA com indicador, não com a sensação de que "está ajudando".', o:['É tudo achismo.','Olho de vez em quando, sem indicador firme.','Tenho alguns indicadores.','Tenho painel de retorno por iniciativa.']},
+    ]},
+  { key:'governanca', name:'Governança & Risco', tag:'você arrisca com IA sem expor a empresa, ou está com a porta aberta?', priority:4,
+    Q:[
+      {s:'Na minha empresa existe regra clara do que pode e não pode ser colocado numa IA — quem usa o quê, com que dado, sob qual norma.', o:['Não existe regra nenhuma; cada um faz o que quer.','Tem recomendações soltas que ninguém segue.','Tem uma política, ainda incompleta.','Tem política de uso documentada e em vigor.']},
+      {s:'Sei dizer se posso usar dados de cliente numa IA sem violar a LGPD — e tenho a base legal documentada.', o:['Não sei, e isso me deixa exposto.','Acho que sim, mas sem documentação.','Sei nos casos principais.','Tenho base legal e avaliação de impacto (DPIA) feitas.'], flag:'lgpd'},
+      {s:'Quando a IA erra e o erro vira decisão de negócio, está claro de quem é a responsabilidade.', o:['Ninguém assume; é terra de ninguém.','É confuso, decidido caso a caso.','Há responsáveis na maioria dos fluxos.','Há accountability definido, com revisão humana.']},
+      {s:'Tenho como conferir e auditar o que a IA produz dentro da empresa — existe registro de quem fez o quê.', o:['Não há registro nenhum.','Há registro parcial e disperso.','Há trilha de auditoria nos pontos críticos.','Há trilha de auditoria sistemática e revisável.']},
+      {s:'A "Shadow AI" (cada área comprando e usando IA por fora, sem aprovação) está sob controle aqui.', o:['É exatamente o que acontece e ninguém controla.','Sei que acontece, mas não consigo conter.','Está parcialmente sob controle.','Há processo de aprovação e inventário de ferramentas.'], flag:'shadow'},
+      {s:'Se o conselho (ou um cliente regulado) me perguntar a estratégia e a governança de IA, tenho uma resposta organizada.', o:['Eu travaria; não tenho resposta.','Eu improvisaria algo frágil.','Tenho uma resposta razoável.','Tenho um documento de governança pronto pra apresentar.'], flag:'conselho'},
+    ]},
+  { key:'eficiencia', name:'Eficiência & Operação', tag:'a IA já vira margem na sua operação, ou é slide e assinatura parada?', priority:5,
+    Q:[
+      {s:'Sei onde a minha operação perde dinheiro hoje e onde a IA entra primeiro — com critério, não no chute.', o:['Sei que tem desperdício, mas não sei onde a IA entra.','Tenho palpites, sem método.','Mapeei os principais gargalos.','Tenho diagnóstico de gargalos com priorização.']},
+      {s:'Tenho critério pra decidir qual processo automatizar primeiro — por impacto e esforço, não pelo que é mais fácil.', o:['Não tenho critério; é o que aparece.','Decido pelo mais óbvio, sem análise.','Uso algum critério de priorização.','Tenho backlog priorizado por impacto × esforço.']},
+      {s:'O meu time não desperdiça horas de gente cara em tarefa repetitiva que uma IA bem configurada faria.', o:['Talento sênior preso em trabalho operacional.','Acontece bastante, sem solução à vista.','Reduzimos isso em parte.','Tarefas repetitivas já estão automatizadas.']},
+      {s:'Consigo medir o ganho real de produtividade da IA — tenho ponto de partida e indicador.', o:['É tudo achismo, sem baseline.','Tenho percepção, sem número.','Tenho indicadores em algumas áreas.','Tenho indicadores e dashboards de ganho.']},
+      {s:'Os meus dados estão organizados o suficiente pra a IA receber informação boa e devolver resposta confiável.', o:['Dados espalhados em planilhas que não conversam.','Parcialmente organizados, com muito retrabalho.','Razoavelmente integrados.','Base de dados integrada e confiável.']},
+      {s:'Existe um padrão de como a IA é usada na operação — não é cada um do seu jeito.', o:['Cada pessoa usa de um jeito; zero padrão.','Há tentativas de padrão que não pegam.','Há padrão em parte da operação.','Há padrão documentado e treinado.']},
+    ]},
+  { key:'pessoas', name:'Pessoas & Liderança', tag:'seu time anda lado a lado com a IA, ou resiste em silêncio?', priority:3,
+    Q:[
+      {s:'O meu time encara a IA como aliada, não como ameaça que vai tirar o emprego deles.', o:['Há medo e resistência silenciosa.','O clima é de insegurança, mal disfarçado.','A maioria está aberta, com ressalvas.','O time adota IA com naturalidade.']},
+      {s:'As minhas tentativas anteriores de implantar IA ou tecnologia pegaram de verdade — não viraram treinamento esquecido.', o:['Já tentei e morreu; ninguém usou.','Pegou pouco e desandou.','Pegou em parte da empresa.','Implantações anteriores se sustentaram.']},
+      {s:'Os meus gerentes do meio impulsionam a inovação — não a travam pra proteger território.', o:['A camada do meio é o gargalo político.','Resistem mais do que ajudam.','Estão neutros a favoráveis.','São motores ativos da mudança.']},
+      {s:'Tenho com quem pensar a minha reinvenção como líder nesse novo cenário — não decido tudo sozinho no escuro.', o:['É solidão no topo; não tenho par.','Tenho conversas esparsas, nada estruturado.','Tenho alguns interlocutores de confiança.','Tenho uma rede / conselho com quem penso junto.']},
+      {s:'Sei conduzir a comunicação da mudança sem causar pânico de demissão em massa no time.', o:['Tenho medo de até tocar no assunto.','Comunico mal e gera ruído.','Comunico razoavelmente.','Tenho um plano de comunicação da mudança.']},
+      {s:'A cultura da empresa abraça mudança — não é refém do "sempre fizemos assim".', o:['Qualquer mudança aqui vira guerra.','A cultura resiste mais do que aceita.','Há abertura crescente.','A cultura já é de aprendizado contínuo.']},
+    ]},
+];
+
+const LEVEL_NAME = ['','Awareness','Active','Operational','Systemic','Transformational'];
+const LEVEL_TR = ['','Só se fala','Experimenta no escuro','Já roda, com dono','Vira sistema','IA no DNA'];
+const LEVEL_FRASE = ['',
+  'A IA ainda é assunto de reunião, não de operação. A boa notícia: você está vendo isso agora, e não depois do prejuízo.',
+  'Tem gente testando IA na sua empresa — mas no escuro, sem regra e sem virar resultado. É o degrau onde a maioria das empresas brasileiras está parada. E é o degrau mais perigoso, porque parece movimento sem ser avanço.',
+  'A IA já saiu do improviso na sua empresa. Agora o jogo é transformar pontos isolados em sistema — e ter o plano que se defende na frente do conselho.',
+  'A sua empresa já opera com IA de forma sistêmica. O próximo salto é estratégico: transformar maturidade em vantagem competitiva defensável e em liderança de mercado.',
+  'A IA já está no DNA da sua operação. Aqui o desafio deixa de ser maturidade e passa a ser manter a dianteira — e formar a próxima camada de líderes ambidestros da sua organização.'];
+
+const READ = { // [weak(1-2), mid(3), strong(4-5)]
+  visao:['Você reage tarde ao movimento do mercado — o risco de virar ultrapassado antes de reagir está aberto.','Você lê o jogo, mas ainda com pontos cegos. Dá pra antecipar mais.','Você antecipa o movimento e já age cedo. É vantagem de líder.'],
+  estrategia:['Você decide entre proteger e construir no instinto. Sem método, uma das mãos sempre solta.','Você equilibra hoje e futuro com esforço, mas sem cadência firme.','Você aloca entre os horizontes com método. É ambidestria de verdade.'],
+  governanca:['A porta está aberta: sem regra, com risco de LGPD e de Shadow AI. É a bomba-relógio do conselho.','Você tem alguma rede de segurança, ainda com brechas.','Você arrisca com IA sem expor a empresa. A rede está montada.'],
+  eficiencia:['A IA ainda é slide e assinatura parada — não virou margem na sua operação.','Você já corta algum desperdício, mas sem medir o ganho real.','A IA já vira margem medida na sua operação. É a mão que defende funcionando.'],
+  pessoas:['O time resiste, a mudança não pega, e você decide muito sozinho. É o gargalo mais caro.','Há abertura, mas a mudança ainda emperra na camada do meio.','Seu time anda lado a lado com a IA e a cultura abraça mudança.'],
+};
+const HOLE = {
+  visao:'Você está conduzindo no escuro sobre pra onde o jogo vai. Sem esse mapa, qualquer aposta de IA é chute — e o concorrente que enxerga primeiro toma a faixa que era sua.',
+  estrategia:'Você está preso na escolha forçada: ou protege o caixa de hoje, ou aposta no futuro. Sem um método pra fazer as duas coisas, uma das mãos sempre vai soltar — e esse é o erro mais caro de todos.',
+  governanca:'A sua empresa está exposta: IA rodando sem regra, com risco de LGPD e de Shadow AI. É o tipo de buraco que não dói até estourar no seu colo, na frente do conselho ou de um cliente.',
+  eficiencia:'A IA ainda não virou dinheiro na sua operação. Você paga por ferramenta que não mede ganho, enquanto talento caro faz trabalho que a IA faria. A margem some sem ninguém ver.',
+  pessoas:'A sua transformação trava nas pessoas, não na tecnologia. Time com medo, mudança que não pega, e o peso de decidir sozinho. É o buraco que faz todos os outros planos morrerem na execução.',
+};
+const BRIDGE = {
+  visao:{deliv:'Mapa de Maturidade + Mapa de Exposição (Eixo I)', txt:'O programa começa exatamente onde você está mais cego: lendo a exposição do seu negócio e o que priorizar — pra você parar de reagir tarde.'},
+  estrategia:{deliv:'Portfólio dos 3 Horizontes + Plano Diretor (Eixos II/V)', txt:'O programa te dá o método pra dividir a IA entre defender o hoje e construir o futuro — e fecha no Plano Diretor que você defende no conselho.'},
+  governanca:{deliv:'Blueprint do Escritório de IA (Eixo II)', txt:'O programa monta com você o Blueprint do Escritório de IA: a política de uso, os gates de risco e a trilha de auditoria que o seu jurídico aprova.'},
+  eficiencia:{deliv:'Plano de Eficiência + Stack de IA Curada (Eixos III/IV)', txt:'O programa te dá o backlog de automação priorizado e os indicadores pra IA virar margem medida — não slide.'},
+  pessoas:{deliv:'Roadmap de Transformação + Conselho de Transformação (Eixo V)', txt:'O programa ataca o que mata os planos: a resistência das pessoas. E te coloca pra defender o seu plano numa banca, com feedback de quem senta em conselhos de verdade.'},
+};
+const FLAG_TXT = {
+  lgpd:['Exposição LGPD','Você não tem certeza se pode usar dados de cliente numa IA sem violar a LGPD. Isso é exposição jurídica real, não teórica.'],
+  shadow:['Shadow AI ativa','Há IA sendo usada na sua empresa por fora, sem aprovação (Shadow AI). Risco espalhado, custo invisível, zero controle.'],
+  conselho:['Sem resposta pro conselho','Se o conselho te perguntasse hoje a estratégia de IA, você travaria. Esse é o cenário que o programa resolve primeiro.'],
+  plano:['Sem plano pro conselho/banco','Você não tem um plano de IA escrito pra apresentar ao conselho, ao banco ou a um investidor. Sem ele, você perde acesso a capital e o controle da narrativa do seu futuro.'],
+};
+
+/* ===================== ESTADO ===================== */
+const answers = {}; // answers['d0q3'] = weight 1-4
+let di = 0;
+
+function start(){ di=0; renderDim(); }
+function show(id){ document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); window.scrollTo(0,0); }
+
+function renderDim(){
+  show('s-dim');
+  const d = DIMS[di];
+  document.getElementById('d-num').textContent = 'Eixo '+(di+1)+' de 5';
+  document.getElementById('d-name').textContent = d.name;
+  document.getElementById('d-tag').textContent = d.tag;
+  const wrap = document.getElementById('d-questions'); wrap.innerHTML='';
+  d.Q.forEach((q, qi)=>{
+    const key = 'd'+di+'q'+qi;
+    const blk = document.createElement('div'); blk.className='q-block';
+    let opts='';
+    q.o.forEach((label, oi)=>{
+      const sel = answers[key]===oi+1 ? ' sel':'';
+      opts += '<div class="o'+sel+'" onclick="pick(\''+key+'\','+(oi+1)+',this)"><span class="mk"></span><span>'+label+'</span></div>';
+    });
+    blk.innerHTML = '<div class="q-stem"><span class="qn">'+(qi+1)+'.</span>'+q.s+'</div><div class="q-opts">'+opts+'</div>';
+    wrap.appendChild(blk);
+  });
+  document.getElementById('d-back').classList.toggle('hidden', di===0);
+  updateDimState();
+  updateProgress();
+}
+function pick(key, w, el){
+  answers[key]=w;
+  el.parentElement.querySelectorAll('.o').forEach(x=>x.classList.remove('sel'));
+  el.classList.add('sel');
+  updateDimState();
+}
+function dimAnsweredCount(){ let c=0; for(let q=0;q<6;q++){ if(answers['d'+di+'q'+q]) c++; } return c; }
+function updateDimState(){
+  const c=dimAnsweredCount();
+  document.getElementById('d-answered').textContent = c+' de 6 respondidas';
+  document.getElementById('d-next').disabled = c<6;
+}
+function nextDim(){ if(dimAnsweredCount()<6) return; if(di<4){ di++; renderDim(); } else { show('s-contact'); updateProgress(0.92); } }
+function prevDim(){ if(di>0){ di--; renderDim(); } else { show('s-intro'); updateProgress(0); } }
+function backToLastDim(){ di=4; renderDim(); }
+
+function updateProgress(forced){
+  let frac = forced!=null ? forced : (di)/5*0.9;
+  document.getElementById('pbar').style.width=(frac*100)+'%';
+  const qc=document.getElementById('qcount');
+  const active=document.querySelector('.screen.active').id;
+  if(active==='s-dim') qc.textContent='Eixo '+(di+1)+' de 5';
+  else if(active==='s-contact') qc.textContent='Quase lá';
+  else qc.textContent='';
+}
+
+function levelOf(avg){ if(avg<1.5)return 1; if(avg<2.5)return 2; if(avg<3.25)return 3; if(avg<3.75)return 4; return 5; }
+
+function finish(e){
+  e.preventDefault();
+  document.getElementById('pbar').style.width='100%'; document.getElementById('qcount').textContent='';
+  show('s-calc');
+  // (no build: dispara "diagnóstico concluído + contato capturado" no Growai Ecossistema)
+  setTimeout(buildResult, 1400);
+}
+
+function buildResult(){
+  // médias por dimensão
+  const dimAvg = DIMS.map((d,i)=>{ let s=0; for(let q=0;q<6;q++) s+=answers['d'+i+'q'+q]; return s/6; });
+  const dimLvl = dimAvg.map(levelOf);
+  const overall = levelOf(dimAvg.reduce((a,b)=>a+b,0)/5);
+  // maior buraco: menor média, desempate por priority (menor priority vence)
+  let weak=0;
+  for(let i=1;i<5;i++){ if(dimAvg[i]<dimAvg[weak]-1e-9 || (Math.abs(dimAvg[i]-dimAvg[weak])<1e-9 && DIMS[i].priority<DIMS[weak].priority)) weak=i; }
+  // segundo buraco
+  let second=-1;
+  for(let i=0;i<5;i++){ if(i===weak) continue; if(second<0 || dimAvg[i]<dimAvg[second]-1e-9 || (Math.abs(dimAvg[i]-dimAvg[second])<1e-9 && DIMS[i].priority<DIMS[second].priority)) second=i; }
+  // flags
+  const flags=[];
+  DIMS.forEach((d,i)=>d.Q.forEach((q,qi)=>{ if(q.flag && answers['d'+i+'q'+qi]===1) flags.push(q.flag); }));
+
+  const wkey = DIMS[weak].key;
+  const band = (lvl)=> lvl<=2?0 : lvl===3?1 : 2;
+
+  // radar
+  const radar = drawRadar(dimLvl);
+
+  // dim rows
+  let rows='';
+  DIMS.forEach((d,i)=>{
+    rows += '<div class="dim-row'+(i===weak?' weak':'')+'"><div class="dr-top"><span class="dr-name">'+d.name+(i===weak?' · seu maior buraco':'')+'</span><span class="dr-lvl">Nível '+dimLvl[i]+' — '+LEVEL_NAME[dimLvl[i]]+'</span></div><div class="dr-read">'+READ[d.key][band(dimLvl[i])]+'</div></div>';
+  });
+
+  // flags block
+  let flagsHtml='';
+  if(flags.length){
+    let items='';
+    flags.forEach(f=>{ items += '<div class="flag"><svg class="ic" viewBox="0 0 24 24"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg><span><b>'+FLAG_TXT[f][0]+'.</b> '+FLAG_TXT[f][1]+'</span></div>'; });
+    flagsHtml = '<div class="rblock"><div class="danger-box"><h2><svg class="ic" viewBox="0 0 24 24" style="width:22px;height:22px"><path d="M10.3 3.9L1.8 18a2 2 0 001.7 3h17a2 2 0 001.7-3L13.7 3.9a2 2 0 00-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg> Pontos que pedem atenção imediata</h2><div class="dsub">Pelo que você marcou, há riscos que não dá pra deixar pra depois:</div>'+items+'</div></div>';
+  }
+
+  const br = BRIDGE[wkey];
+  const html = `
+    <div class="verdict">
+      <div class="lvl-badge"><svg class="ic" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg> O seu retrato está pronto</div>
+      <div class="lvl-big">Sua empresa está no <span class="lvln">Nível ${overall} de 5</span></div>
+      <div class="lvl-name">${LEVEL_NAME[overall]} — "${LEVEL_TR[overall]}"</div>
+      <div class="lvl-scale">${[1,2,3,4,5].map(n=>'<div class="lvl-step'+(n<=overall?' on':'')+'"></div>').join('')}</div>
+      <p class="lvl-frase" style="margin-top:20px">${LEVEL_FRASE[overall]}</p>
+    </div>
+
+    <div class="rblock">
+      <h2>O retrato da sua empresa nos 5 eixos</h2>
+      <div class="rsub">Cada eixo do diagnóstico é um eixo do programa. Veja onde você está forte — e onde está o buraco.</div>
+      <div class="radar-wrap"><div>${radar}</div><div class="dim-list">${rows}</div></div>
+    </div>
+
+    <div class="rblock">
+      <div class="hole">
+        <div class="hl-label">A sua prioridade nº 1</div>
+        <h2>O seu maior buraco hoje: <span class="hname">${DIMS[weak].name}</span></h2>
+        <p>${HOLE[wkey]}</p>
+        <p>É por aqui que você perde mais — e é por aqui que o ganho aparece mais rápido se for atacado com método. ${br.txt} <span style="color:var(--mist-2)">E logo atrás vem <b style="color:var(--mist)">${DIMS[second].name}</b>, o segundo ponto a fechar.</span></p>
+      </div>
+    </div>
+
+    ${flagsHtml}
+
+    <div class="rblock" style="border-top:none;padding-top:0">
+      <div class="bridge">
+        <h2>Você já tem o mapa. Agora falta o plano que se defende no conselho.</h2>
+        <p>Este diagnóstico te mostrou onde a sua empresa está — e onde está o maior buraco. O próximo passo é fechar esse buraco com método: sair com o <b>plano de transformação da sua empresa montado e defendido</b>, não com mais teoria.</p>
+        <p>É exatamente isso que o programa <b>Ambidestria Executiva</b> entrega: em 8 semanas você organiza a IA da sua empresa em resultado, protege o que paga as contas hoje, constrói o futuro, e sai com um Plano Diretor que apresenta na frente de um conselho de verdade.</p>
+        <div class="deliv-hint">Pro seu caso, o programa começa por: ${br.deliv}.</div>
+        <a href="/aplicacao" class="btn btn-primary">Quero conversar sobre o meu caso <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <div class="btn-meta">Conversa de diagnóstico, sem compromisso.</div>
+      </div>
+    </div>
+
+    <p class="disclaimer">Escala segundo o modelo de maturidade em IA do Gartner. Este diagnóstico é uma ferramenta de autoavaliação: os resultados dependem das respostas informadas e do contexto de cada empresa. Nenhuma promessa de ganho financeiro, corte de custo ou retorno é feita aqui.</p>
+  `;
+  document.getElementById('s-result').innerHTML = html;
+  show('s-result');
+}
+
+function drawRadar(levels){
+  const cx=150, cy=150, R=100, N=5;
+  const labels=['Visão','Estratégia','Governança','Eficiência','Pessoas'];
+  const ang=i=> (-90 + i*72) * Math.PI/180;
+  const pt=(i,r)=>[cx+r*Math.cos(ang(i)), cy+r*Math.sin(ang(i))];
+  let grid='';
+  // rings
+  for(let ring=1;ring<=5;ring++){
+    const r=R*ring/5; let p='';
+    for(let i=0;i<N;i++){ const [x,y]=pt(i,r); p+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' '; }
+    grid+='<path d="'+p+'Z" fill="none" stroke="rgba(255,255,255,'+(ring===5?0.18:0.08)+')" stroke-width="1"/>';
+  }
+  // axes + labels
+  let axes='', labs='';
+  for(let i=0;i<N;i++){
+    const [x,y]=pt(i,R); axes+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,0.08)"/>';
+    const [lx,ly]=pt(i,R+24);
+    const anchor = Math.abs(lx-cx)<8?'middle':(lx>cx?'start':'end');
+    labs+='<text x="'+lx.toFixed(1)+'" y="'+(ly+4).toFixed(1)+'" fill="#6B7790" font-size="11" font-family="Montserrat,sans-serif" text-anchor="'+anchor+'">'+labels[i]+'</text>';
+  }
+  // data polygon
+  let dp='';
+  for(let i=0;i<N;i++){ const [x,y]=pt(i,R*levels[i]/5); dp+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1)+' '; }
+  let dots='';
+  for(let i=0;i<N;i++){ const [x,y]=pt(i,R*levels[i]/5); dots+='<circle cx="'+x.toFixed(1)+'" cy="'+y.toFixed(1)+'" r="3.5" fill="#0066FF"/>'; }
+  return '<svg class="radar-svg" viewBox="-54 -16 408 332" xmlns="http://www.w3.org/2000/svg">'+grid+axes+'<path d="'+dp+'Z" fill="rgba(0,102,255,0.18)" stroke="#0066FF" stroke-width="2"/>'+dots+labs+'</svg>';
+}
+</script>
+</body>
+</html>

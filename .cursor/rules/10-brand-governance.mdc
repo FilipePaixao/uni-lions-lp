@@ -1,0 +1,21 @@
+---
+description: Uni Lions brand positioning and visual governance
+alwaysApply: false
+globs:
+  - "src/**/*.{ts,tsx,js,jsx,css,scss}"
+  - "public/**/*"
+  - "content/**/*.md"
+---
+
+Read `knowledge/brand/brand-core.md` and `knowledge/brand/visual-language.md`.
+
+brand-governance:
+- Public hierarchy is Uni Lions as the institution and Ambidestria Executiva as the offer.
+- Prefer the lockup “Ambidestria Executiva · Uni Lions”.
+- Explain ambidestria through the two hands.
+- AI is an instrument used to read, organize, document, and support decisions.
+- Visual direction is premium corporate editorial, not cyberpunk, SaaS neon, or low-ticket course.
+- Use the inferred palette through semantic design tokens, never scattered hex values.
+- Prefer real classroom, boardroom, mentor, and participant imagery.
+- Circuit graphics are accents, not the main subject.
+- Any new visual claim must reinforce authority, clarity, or the two-hands thesis.

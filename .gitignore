@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+.wrangler/
+dist/
+*.local
+_tmp_static/

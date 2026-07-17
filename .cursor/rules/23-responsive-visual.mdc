@@ -1,0 +1,19 @@
+---
+description: Responsive behavior and visual fidelity requirements
+alwaysApply: false
+globs:
+  - "src/**/*.{css,scss,ts,tsx}"
+---
+
+responsive-visual:
+- Start from mobile content priority, not desktop shrinkage.
+- Verify at 360, 390, 768, 1024, 1440, and 1920 CSS pixels.
+- No horizontal overflow.
+- Hero must remain readable without depending on text over a busy face or subject.
+- Do not hide essential content on mobile.
+- Convert dense grids into ordered stacks with preserved meaning.
+- Avoid fixed heights for text-heavy sections.
+- Reserve image dimensions to prevent layout shift.
+- Use art direction when one crop cannot serve mobile and desktop.
+- Keep primary CTA reachable early without creating intrusive sticky behavior.
+- Capture before/after screenshots for major visual work.

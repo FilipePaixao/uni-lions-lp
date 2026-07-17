@@ -1,0 +1,24 @@
+---
+description: Public copy rules for Uni Lions and Ambidestria Executiva
+alwaysApply: false
+globs:
+  - "src/**/*.{ts,tsx,js,jsx,json}"
+  - "content/**/*.{md,mdx,json}"
+  - "public/**/*.{html,json}"
+---
+
+Read `knowledge/brand/voice-and-messaging.md` and `knowledge/product/ambidestria-executiva.md`.
+
+copy-governance:
+- Write in natural Brazilian Portuguese.
+- Speak peer-to-peer from the executive chair.
+- Use the sequence: provocation, evidence or reasoning, invitation.
+- Do not use emojis in public brand copy.
+- Avoid em dashes in public headlines and hooks.
+- Do not promise guaranteed financial return.
+- Do not use artificial countdowns, fake vacancy counts, or invented urgency.
+- Do not say AI replaces, fires, or eliminates people.
+- Keep claims specific, verifiable, and traceable.
+- CTA destination is `/aplicacao`; `/diagnostico` may be used as an intermediate step.
+- Do not expose unvalidated faculty names or bios.
+- Prefer “aplicar para a turma” to generic ecommerce language such as “comprar agora”.

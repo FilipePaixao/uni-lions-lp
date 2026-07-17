@@ -1,0 +1,20 @@
+---
+description: React and TypeScript implementation standards for the landing page
+alwaysApply: false
+globs:
+  - "src/**/*.{ts,tsx}"
+---
+
+react-typescript:
+- Keep the current framework and routing unless migration is explicitly approved.
+- Use strict TypeScript and avoid `any`.
+- Prefer semantic section components with clear responsibilities.
+- Keep content data separate from visual rendering when it improves governance.
+- Do not create giant page components. Extract sections and primitives.
+- Use stable keys, explicit prop types, and predictable state.
+- Prefer CSS and platform behavior over JavaScript for layout and visual effects.
+- Avoid client-side state for static content.
+- Do not add a dependency when the platform or existing stack already solves the problem.
+- Lazy-load below-the-fold media when appropriate.
+- Preserve SSR/SSG compatibility if the current stack supports it.
+- Treat external links, forms, and analytics as failure-prone integrations with safe fallbacks.

@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="robots" content="noindex, nofollow">
+<title>Scripts e Copies do Aquecimento — Ambidestria Executiva · Growai Ecossistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style> completa + a
+  estrutura de componentes (e o <script> de animação), adapte apenas o conteúdo.
+
+  Estética: moderno, light, premium (Apple / Human Academy / academypass.ai). Sans
+  geométrica (Satoshi → Inter). Fundo com GLOW AMBIENTE sutil. Cards em LIQUID GLASS
+  (frosted, backdrop-blur). Títulos grandes, stats gigantes com divisores, overlines.
+  ANIMAÇÕES: reveal no scroll, count-up nos números, hover-lift nos cards. Glow leve
+  no winner e nos números. Tudo com progressive enhancement (visível sem JS).
+
+  PRESERVE os nomes de classe (skills dependem). Mantenha o <script> no fim do body.
+  Cada .md em workspace/ tem um .html. Self-contained. Não altere sem aprovar o membro.
+
+  COMPONENTES note/callout/opportunity/danger: o PRIMEIRO <strong> filho direto é o RÓTULO
+  (overline maiúsculo). Pode usar <strong> à vontade no CORPO pra ênfase — só o primeiro vira
+  rótulo; os demais ficam negrito inline e não quebram a frase (garantido por :first-of-type no CSS).
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<!--
+  RENDERING CONTRACT: placeholders `{{KEY}}` recebem dados JÁ escapados (html.escape / Jinja2 autoescape).
+  `{{KEY_HTML}}` aceita HTML sanitizado (DOMPurify/bleach).
+-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com; font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com data:; script-src 'self' 'unsafe-inline';">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Scripts e Copies do Aquecimento — Ambidestria Executiva — Growai Ecossistema</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ═══════════ GROWAI ECOSSISTEMA DESIGN SYSTEM v5 · Premium / Liquid Glass ═══════════ */
+  :root{
+    --bg:#EFF1F5; --surface:#FFFFFF; --ink:#14161D; --ink-2:#3A3E4A; --muted:#565B68; --faint:#9499A5;
+    --line:#E5E7EE; --line-2:#EEF0F4; --accent:#2D5BFF; --accent-2:#7C5CFF; --accent-soft:#EEF2FF;
+    --green:#0E9F6E; --green-soft:#E9F8F1; --red:#E5484D; --red-soft:#FDF0F0;
+    --amber:#B7791F; --amber-soft:#FBF4E6; --deep:#0E1016;
+    --glass:rgba(255,255,255,.62); --glass-line:rgba(255,255,255,.75);
+    --r:22px; --r-sm:16px;
+    --shadow:0 1px 2px rgba(20,22,29,.04), 0 14px 40px rgba(20,22,29,.07);
+    --shadow-sm:0 1px 2px rgba(20,22,29,.04), 0 6px 18px rgba(20,22,29,.05);
+    --shadow-lift:0 4px 8px rgba(20,22,29,.05), 0 24px 60px rgba(20,22,29,.12);
+    --display:'Satoshi','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;
+    --mono:'SF Mono','JetBrains Mono','Fira Code','Consolas',monospace;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { overflow-x:hidden; max-width:100%; }
+  body {
+    font-family:var(--sans); background:var(--bg); color:var(--ink);
+    font-size:16px; line-height:1.62; letter-spacing:-0.011em;
+    min-height:100vh; display:flex; justify-content:center;
+    padding:64px 24px 140px; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+    position:relative;
+  }
+  /* GLOW AMBIENTE (fundo, sutil — dá profundidade e faz o glass refratar) */
+  body::before { content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:
+      radial-gradient(48% 38% at 82% -4%, rgba(45,91,255,.13), transparent 72%),
+      radial-gradient(42% 40% at 8% 102%, rgba(124,92,255,.11), transparent 72%),
+      radial-gradient(38% 34% at 60% 48%, rgba(16,200,170,.05), transparent 70%); }
+  .container { max-width:840px; width:100%; position:relative; z-index:1; }
+
+  /* superfície de vidro reutilizada conceitualmente nas classes abaixo */
+  .logo-wrap { margin-bottom:30px; }
+  .logo-wrap svg { height:28px; width:auto; }
+
+  /* === HEADER === */
+  .page-title { font-family:var(--display); font-size:clamp(40px,6vw,62px); font-weight:600; line-height:1.0; letter-spacing:-0.045em; color:var(--ink); margin:8px 0 22px; }
+  .page-subtitle { font-size:19px; color:var(--muted); font-weight:400; line-height:1.5; margin-bottom:44px; max-width:60ch; letter-spacing:-0.012em; }
+
+  /* === META BAR (grid glass — corrige valor longo) === */
+  .meta-bar { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:1px; margin-bottom:72px;
+    background:linear-gradient(var(--line),var(--line)); border:1px solid var(--glass-line); border-radius:var(--r-sm); overflow:hidden;
+    box-shadow:var(--shadow-sm); }
+  .meta-bar > div { background:var(--glass); -webkit-backdrop-filter:blur(18px) saturate(150%); backdrop-filter:blur(18px) saturate(150%); padding:18px 22px; line-height:1.45; font-size:15px; color:var(--ink); }
+  .meta-bar strong { display:block; font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; color:var(--faint); font-weight:600; }
+
+  /* === TOC (lista limpa) === */
+  .toc { margin-bottom:88px; }
+  .toc-title { font-size:11px; font-weight:600; color:var(--faint); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:18px; }
+  .toc ol { list-style:none; margin:0; padding:0; counter-reset:toc-counter; border-top:1px solid var(--line); }
+  .toc li { counter-increment:toc-counter; font-size:17px; line-height:1.4; display:flex; gap:18px; align-items:center; padding:16px 4px; border-bottom:1px solid var(--line); transition:padding-left .25s ease,background .25s ease; border-radius:10px; }
+  .toc li:hover { padding-left:14px; background:rgba(45,91,255,.04); }
+  .toc li::before { content:counter(toc-counter,decimal-leading-zero); color:var(--accent); font-variant-numeric:tabular-nums; font-size:13px; font-weight:600; min-width:22px; }
+  .toc a { color:var(--ink); text-decoration:none; flex:1; }
+  .toc li:hover a { color:var(--accent); }
+
+  /* === SECTIONS === */
+  .section { margin-bottom:96px; }
+  .section-label { font-family:var(--sans); font-size:12px; font-weight:600; color:var(--ink); text-transform:uppercase; letter-spacing:0.12em; margin-bottom:34px; border:0; display:flex; align-items:center; gap:14px; }
+  .section-label::after { content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent); }
+  .section-label .num { color:var(--accent); font-variant-numeric:tabular-nums; font-weight:600; }
+
+  .subsection { margin-bottom:40px; }
+  .subsection-title { font-family:var(--display); font-size:27px; font-weight:600; color:var(--ink); margin-bottom:16px; letter-spacing:-0.03em; line-height:1.12; }
+
+  /* === TYPOGRAPHY === */
+  p { font-size:17px; color:var(--ink-2); line-height:1.68; margin-bottom:17px; letter-spacing:-0.011em; }
+  p strong { color:var(--ink); font-weight:600; }
+  ul, ol { margin:10px 0 22px 22px; color:var(--ink-2); font-size:17px; line-height:1.7; }
+  li { margin-bottom:10px; padding-left:6px; } li::marker { color:var(--faint); } li strong { color:var(--ink); font-weight:600; }
+  code { font-family:var(--mono); font-size:13.5px; background:var(--line-2); padding:2px 7px; border-radius:7px; color:var(--ink); word-break:break-all; overflow-wrap:anywhere; }
+
+  /* === TABLES === */
+  .table-wrap { overflow-x:auto; margin:20px 0 26px; }
+  table { width:100%; border-collapse:collapse; font-size:15px; }
+  th { text-align:left; font-weight:600; color:var(--faint); padding:0 20px 14px 0; border-bottom:1px solid var(--ink); font-size:11px; text-transform:uppercase; letter-spacing:0.07em; }
+  td { padding:18px 20px 18px 0; color:var(--ink-2); border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5; }
+  tr:last-child td { border-bottom:none; } td strong { color:var(--ink); font-weight:600; } td code { font-size:13px; }
+
+  /* === GLASS CARDS (compartilham o tratamento frosted + hover-lift) === */
+  .quote, .script-block, .brand-card, .concept-card, .tier-card, .timeline-day,
+  .primary-text-box, .faq, .hook-row, .headline-card, .ascii-map,
+  .note, .callout, .opportunity, .danger {
+    background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow-sm);
+  }
+  .brand-card, .concept-card, .tier-card, .timeline-day, .primary-text-box, .faq, .hook-row, .headline-card {
+    transition:transform .3s cubic-bezier(.2,.7,.3,1), box-shadow .3s ease; }
+  .brand-card:hover, .concept-card:hover, .tier-card:hover, .timeline-day:hover, .faq:hover, .hook-row:hover, .headline-card:hover {
+    transform:translateY(-3px); box-shadow:var(--shadow-lift); }
+
+  /* === QUOTE / VOC === */
+  .quote { margin:14px 0; padding:22px 26px; border-radius:var(--r-sm); font-size:16px; color:var(--ink); line-height:1.55; font-family:var(--mono); }
+  .quote-source { display:block; margin-top:14px; font-size:11px; color:var(--faint); font-family:var(--sans); letter-spacing:0.08em; text-transform:uppercase; font-weight:600; }
+  .script-block { border-radius:var(--r-sm); padding:22px 26px; margin:16px 0; font-family:var(--mono); font-size:13.5px; color:var(--ink-2); line-height:1.62; white-space:pre-wrap; word-break:break-word; }
+
+  /* === NOTE / CALLOUT / OPPORTUNITY / DANGER (cards glass + overline-label + glow leve) === */
+  .note, .callout, .opportunity, .danger { font-size:16.5px; line-height:1.6; padding:24px 28px; border-radius:var(--r); margin:24px 0; position:relative; }
+  /* RÓTULO = só o PRIMEIRO <strong> (filho direto) do card. Qualquer <strong> seguinte é ênfase inline no corpo — NUNCA vira rótulo (evita quebrar a frase no meio). */
+  .note > strong:first-of-type, .callout > strong:first-of-type, .opportunity > strong:first-of-type, .danger > strong:first-of-type { display:block; font-family:var(--sans); font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; }
+  .note strong, .callout strong, .opportunity strong, .danger strong { font-weight:600; }
+  .note { color:var(--muted); } .note > strong:first-of-type { color:var(--faint); }
+  .callout { color:var(--ink); background:linear-gradient(180deg,rgba(238,242,255,.85),rgba(238,242,255,.6)); border-color:#DDE4FF; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 10px 30px rgba(45,91,255,.10); }
+  .callout > strong:first-of-type { color:var(--accent); }
+  .opportunity { color:#0C2A20; background:linear-gradient(180deg,rgba(233,248,241,.85),rgba(233,248,241,.6)); border-color:#CFEEE1; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 10px 30px rgba(14,159,110,.10); }
+  .opportunity > strong:first-of-type { color:#0B7A53; }
+  .danger { color:#3A1416; background:linear-gradient(180deg,rgba(253,240,240,.85),rgba(253,240,240,.6)); border-color:#F7D8D9; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 10px 30px rgba(229,72,77,.10); }
+  .danger > strong:first-of-type { color:#C9343A; }
+
+  /* === PILLS / BADGES (liquid glass) === */
+  .pill { display:inline-block; font-size:11px; font-weight:600; padding:5px 12px; border-radius:9px; letter-spacing:0.01em; text-transform:uppercase; margin-right:5px;
+    -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.5); }
+  .pill-saturated, .pill-bof, .pill-pending { background:rgba(229,72,77,.12); color:#C9343A; border-color:rgba(229,72,77,.2); }
+  .pill-common, .pill-mof { background:rgba(183,121,31,.13); color:#92600F; border-color:rgba(183,121,31,.22); }
+  .pill-rare, .pill-win, .pill-ok { background:rgba(14,159,110,.13); color:#0B7A53; border-color:rgba(14,159,110,.22); }
+  .pill-absent, .pill-tof { background:rgba(45,91,255,.11); color:#2849C9; border-color:rgba(45,91,255,.2); }
+
+  .voc-words { margin:16px 0 4px; line-height:2.4; }
+  .voc-words span { display:inline-block; background:var(--glass); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border:1px solid var(--glass-line); color:var(--muted); padding:7px 14px; border-radius:11px; margin:3px 7px 3px 0; font-size:13px; font-family:var(--mono); }
+
+  .score { display:inline-block; background:var(--ink); color:#FFF; font-size:11px; font-weight:600; padding:3px 10px; border-radius:8px; }
+  .score-high { background:var(--green); } .score-mid { background:var(--amber); } .score-low { background:var(--red); }
+
+  /* === WINNER (dark glass + glow halo) === */
+  .winner { position:relative; background:linear-gradient(160deg,rgba(22,24,34,.96),rgba(14,16,22,.96)); color:#D7D9E3; border-radius:26px; padding:46px 48px; margin:36px 0; border:1px solid rgba(255,255,255,.08); box-shadow:0 30px 80px rgba(14,16,22,.28); overflow:hidden; }
+  .winner::after { content:""; position:absolute; top:-40%; right:-10%; width:60%; height:120%; z-index:0; background:radial-gradient(circle,rgba(124,92,255,.45),transparent 62%); filter:blur(40px); pointer-events:none; }
+  .winner > * { position:relative; z-index:1; }
+  .winner strong { color:#FFF; font-weight:600; }
+  .winner p { color:#9EA3B2; font-size:17px; line-height:1.62; margin-bottom:8px; }
+  .winner .winner-label { font-size:11px; text-transform:uppercase; letter-spacing:0.13em; color:#9E92FF; margin-bottom:18px; font-weight:600; }
+  .winner .winner-name { font-family:var(--display); font-size:34px; font-weight:700; color:#FFF; margin-bottom:18px; letter-spacing:-0.035em; line-height:1.04; text-shadow:0 2px 30px rgba(124,92,255,.35); }
+
+  /* === KPI — STATS GIGANTES num painel glass com divisores + glow === */
+  .kpi-grid { display:flex; flex-wrap:wrap; gap:0; margin:32px 0; padding:34px 36px; border-radius:var(--r);
+    background:var(--glass); -webkit-backdrop-filter:blur(22px) saturate(155%); backdrop-filter:blur(22px) saturate(155%);
+    border:1px solid var(--glass-line); box-shadow:var(--shadow); }
+  .kpi-card { flex:1 1 0; min-width:140px; padding:0 32px; display:flex; flex-direction:column; }
+  .kpi-card:first-child { padding-left:0; } .kpi-card:last-child { padding-right:0; }
+  .kpi-card + .kpi-card { border-left:1px solid var(--line); }
+  .big-num { order:1; font-family:var(--display); font-size:clamp(44px,6vw,62px); font-weight:700; letter-spacing:-0.05em; line-height:0.96; color:var(--ink); font-variant-numeric:tabular-nums; margin-bottom:12px; text-shadow:0 2px 24px rgba(45,91,255,.14); }
+  .big-num-label { order:2; font-size:13px; color:var(--muted); letter-spacing:-0.005em; font-weight:500; line-height:1.35; }
+
+  /* === outras cards (radius/padding) === */
+  .brand-card, .concept-card { border-radius:var(--r); padding:30px 32px; margin-bottom:24px; }
+  .tier-card { border-radius:var(--r); padding:26px 28px; margin-bottom:14px; display:flex; justify-content:space-between; align-items:center; gap:16px; }
+  .tier-card.popular { border:1.5px solid var(--accent); position:relative; box-shadow:0 1px 2px rgba(20,22,29,.04), 0 14px 40px rgba(45,91,255,.16); }
+  .tier-card.popular::before { content:"POPULAR"; position:absolute; top:-10px; left:24px; background:var(--accent); color:#FFF; font-size:10px; font-weight:600; letter-spacing:0.07em; padding:4px 12px; border-radius:8px; box-shadow:0 4px 14px rgba(45,91,255,.4); }
+  .timeline-day { border-radius:var(--r); padding:26px 28px; margin-bottom:16px; }
+  .timeline-day-label { display:inline-block; font-size:10.5px; color:#FFF; background:var(--ink); padding:4px 13px; border-radius:8px; text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-bottom:16px; }
+  .timeline { margin:18px 0; }
+  .timeline-row { display:flex; gap:20px; padding:15px 0; border-bottom:1px solid var(--line-2); }
+  .timeline-time { flex-shrink:0; width:94px; font-family:var(--mono); font-size:11.5px; color:var(--faint); padding-top:3px; }
+  .timeline-label { font-size:10.5px; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; color:var(--ink); }
+  .timeline-content { flex:1; } .timeline-content p { margin-bottom:6px; font-size:15px; }
+
+  .primary-text-box { border-radius:var(--r); padding:24px 28px; margin:14px 0; }
+  .pt-label { font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:12px; }
+  .primary-text-box p { font-size:15px; color:var(--ink-2); line-height:1.64; }
+  .faq { margin:14px 0; padding:26px 30px; border-radius:var(--r); }
+  .faq-q { font-family:var(--display); font-size:19px; font-weight:600; margin-bottom:10px; letter-spacing:-0.025em; }
+  .faq-a { font-size:15.5px; color:var(--muted); line-height:1.62; }
+  .hook-row { border-radius:var(--r); padding:22px 26px; margin-bottom:12px; }
+  .hook-label { font-size:10.5px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:10px; }
+  .hook-text { font-size:18px; color:var(--ink); line-height:1.45; font-weight:600; margin-bottom:8px; letter-spacing:-0.02em; }
+  .hook-use { font-size:13px; color:var(--muted); line-height:1.5; }
+  .headline-card { border-radius:var(--r); padding:24px 28px; margin-bottom:14px; font-family:var(--display); font-size:21px; font-weight:600; line-height:1.32; letter-spacing:-0.03em; }
+  .headline-card.top { border:1.5px solid var(--accent); box-shadow:0 1px 2px rgba(20,22,29,.04), 0 14px 40px rgba(45,91,255,.14); }
+  .headline-card .hl-num { font-family:var(--sans); font-size:10.5px; color:var(--faint); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px; font-weight:600; }
+  .headline-card .hl-justify { font-family:var(--sans); font-size:14px; color:var(--muted); margin-top:12px; line-height:1.55; font-weight:400; letter-spacing:-0.008em; }
+  .ascii-map { border-radius:var(--r); padding:26px; font-family:var(--mono); font-size:12.5px; line-height:1.55; color:var(--ink-2); white-space:pre; overflow-x:auto; }
+
+  .check-row { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+  .check-icon { flex-shrink:0; width:24px; height:24px; border-radius:8px; background:var(--green); color:#FFF; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600; margin-top:1px; box-shadow:0 4px 14px rgba(14,159,110,.3); }
+
+  /* === ADVERTORIAL === */
+  .advertorial { background:var(--glass); -webkit-backdrop-filter:blur(20px) saturate(155%); backdrop-filter:blur(20px) saturate(155%); border:1px solid var(--glass-line); border-radius:26px; padding:clamp(32px,5vw,56px); margin:28px 0; box-shadow:var(--shadow); }
+  .adv-kicker { font-size:11px; color:var(--accent); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:22px; }
+  .adv-headline { font-family:var(--display); font-size:clamp(30px,3.8vw,44px); font-weight:700; line-height:1.04; letter-spacing:-0.04em; margin-bottom:18px; }
+  .adv-deck { font-size:20px; color:var(--muted); line-height:1.46; margin-bottom:16px; font-weight:400; letter-spacing:-0.015em; }
+  .adv-byline { font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:38px; font-weight:600; }
+  .adv-section-label { font-size:11px; color:var(--faint); text-transform:uppercase; letter-spacing:0.08em; font-weight:600; margin-top:42px; margin-bottom:16px; padding-bottom:12px; border-bottom:1px solid var(--line); }
+  .advertorial p { font-size:17.5px; color:var(--ink-2); line-height:1.72; margin-bottom:18px; } .advertorial p strong { color:var(--ink); font-weight:600; }
+  .advertorial hr { margin:32px 0; border:none; border-top:1px solid var(--line); }
+  .adv-cta { display:inline-block; background:var(--ink); color:#FFF; padding:16px 32px; border-radius:12px; font-size:15px; font-weight:600; letter-spacing:-0.01em; text-decoration:none; margin:14px 0; box-shadow:0 10px 30px rgba(20,22,29,.25); }
+
+  hr { border:none; border-top:1px solid var(--line); margin:72px 0; }
+  .footer { font-size:13px; color:var(--faint); text-align:center; margin-top:96px; padding-top:40px; border-top:1px solid var(--line); letter-spacing:0.02em; }
+
+  /* === ANIMAÇÃO (progressive enhancement: visível sem JS) === */
+  .js .reveal { opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1); }
+  .js .reveal.in { opacity:1; transform:none; }
+  @media (prefers-reduced-motion:reduce){ .js .reveal{opacity:1;transform:none;transition:none} *{scroll-behavior:auto} .brand-card,.faq,.hook-row,.headline-card,.tier-card,.timeline-day,.concept-card{transition:none} }
+
+  @media (max-width:640px) {
+    body { padding:32px 18px 90px; }
+    .page-subtitle { font-size:17px; }
+    th, td { padding:12px 12px 12px 0; font-size:13.5px; }
+    .section { margin-bottom:64px; }
+    .kpi-grid { flex-direction:column; gap:28px; padding:28px 24px; }
+    .kpi-card { padding:0; min-width:0; } .kpi-card + .kpi-card { border-left:none; border-top:1px solid var(--line); padding-top:28px; }
+    .brand-card, .concept-card { padding:22px 20px; }
+    .winner { padding:34px 26px; } .winner .winner-name { font-size:28px; }
+    .advertorial { padding:28px 22px; }
+    .timeline-row { flex-direction:column; gap:4px; } .timeline-time { width:auto; }
+    .tier-card { flex-direction:column; align-items:flex-start; }
+  }
+</style>
+<style>.container h1{font-family:var(--display);font-size:clamp(32px,5vw,50px);font-weight:600;line-height:1.05;letter-spacing:-0.04em;color:var(--ink);margin:46px 0 20px}.container > h1:first-of-type{margin-top:4px}.container h2{font-family:var(--display);font-size:27px;font-weight:600;letter-spacing:-0.025em;color:var(--ink);margin:46px 0 16px;padding-top:26px;border-top:1px solid var(--line)}.container h3{font-size:20px;font-weight:600;color:var(--ink);margin:30px 0 12px}.container h4{font-size:16.5px;font-weight:700;color:var(--ink-2);margin:22px 0 9px}.container p{font-size:16px;line-height:1.72;color:var(--ink-2);margin:0 0 16px}.container ul,.container ol{margin:0 0 18px 24px;color:var(--ink-2);line-height:1.7;font-size:15.5px}.container li{margin-bottom:7px}.container blockquote{margin:22px 0;padding:18px 22px;background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 var(--r-sm) var(--r-sm) 0;color:var(--ink-2)}.container blockquote p{margin-bottom:10px}.container blockquote p:last-child{margin-bottom:0}.container code{font-family:var(--mono);font-size:13px;background:rgba(20,22,29,.06);padding:2px 7px;border-radius:6px;word-break:break-word;color:var(--ink)}.container pre{background:#14161D;color:#E8EAF0;padding:18px;border-radius:var(--r-sm);overflow-x:auto;margin:0 0 18px;font-size:13px}.container pre code{background:none;padding:0;color:inherit}.container hr{border:none;border-top:1px solid var(--line);margin:38px 0}.container strong{color:var(--ink);font-weight:600}.container a{color:var(--accent);text-decoration:underline}.container .table-wrap{overflow-x:auto;margin:0 0 24px;-webkit-overflow-scrolling:touch}.container table{margin-bottom:0;min-width:540px}.container td{overflow-wrap:anywhere}@media(max-width:640px){.container h2{font-size:23px}.container ul,.container ol{margin-left:20px}.container table{min-width:0}}</style>
+</head><body><div class="container">
+<div class="logo-wrap reveal" role="img" aria-label="Growai Ecossistema"><img src="data:image/png;base64,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" alt="Growai Ecossistema" style="height:30px;width:auto;display:block;"></div>
+
+<h1>Scripts e Copies · Aquecimento (03 a 19/07)</h1>
+<h2>Lançamento Ambidestria Executiva (Uni Lions)</h2>
+<h1>Pacote de Scripts · André Paixão · Aquecimento (03 a 19/07)</h1>
+<p><strong>Uso:</strong> gravação em lote semanal, celular + boa luz, olhar direto pra câmera. Os roteiros estão escritos pra teleprompter, mas em frases curtas de fala: leia como quem conversa, não como quem lê. Tudo termina em aplicação (unilions.com.br/aplicacao); o /diagnostico é o CTA intermediário permitido.</p>
+<p><strong>Notas de produção (invioláveis):</strong></p>
+<ul><li>Datas públicas do programa (22/08, 4 sábados) só entram na fala depois que a coordenação validar com a Lions o formato do evento. Os roteiros abaixo já estão escritos SEM data pública: não improvisar datas na gravação.</li><li>Estatísticas: falar exatamente como está no roteiro, com a fonte em voz alta. Se errar a redação do dado, regravar o trecho.</li><li>O roteiro da live pressupõe a validação da identidade pública do Paulo Nogueira (pendência aberta com a Lions, prazo antes da Fase 2). Até lá, a live não é anunciada com o nome dele em peça pública.</li></ul>
+<hr />
+<h2>PARTE 1 · Seis roteiros de vídeo (60 a 90 segundos, um por provocação)</h2>
+<h3>Vídeo 01 · Tecnologia e o modelo de decisão</h3>
+<p><strong>HOOK</strong> <em>(olhar fixo, tom de constatação, sem pressa)</em></p>
+<p>A tecnologia já mexeu em todos os ambientes da sua empresa. Menos num. O seu modelo de decisão.</p>
+<p><strong>CORPO</strong></p>
+<p>Pensa comigo. Seu financeiro mudou. Seu estoque mudou. Seu marketing mudou. A forma como o seu cliente compra mudou. <em>(pausa)</em> E a forma como VOCÊ decide? Essa continua igual à de dez anos atrás.</p>
+<p>Eu converso com dono de empresa todo dia dentro do ecossistema Lions. E os números confirmam o que eu vejo nas salas: no Brasil, 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio. E a maior barreira não é preço: 52% admitem que não sabem como usar. Isso é da CNDL com o SPC Brasil.</p>
+<p><em>(inclina levemente pra frente)</em> Ou seja: quase todo mundo sabe que existe. Quase ninguém sabe o que fazer com isso. E o dono fica no meio, decidindo no escuro.</p>
+<p><strong>VIRADA</strong></p>
+<p>Foi exatamente pra esse vão que a gente criou a Imersão em Ambidestria Executiva: um programa pra você comandar com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa que vai competir na próxima década. Não é curso de ferramenta. É método pra quem decide.</p>
+<p><strong>CTA</strong> <em>(tom de conversa, meio sorriso)</em></p>
+<p>Me responde uma coisa nos comentários: na sua empresa, quem é o dono da decisão sobre IA quando dá errado? Quero ler as respostas.</p>
+<hr />
+<h3>Vídeo 02 · E-commerce contra o varejo físico</h3>
+<p><strong>HOOK</strong> <em>(sério, direto, sem sorrir)</em></p>
+<p>Se você atua no varejo físico, faça a conta que ninguém faz em voz alta. Quanto do seu faturamento o e-commerce já levou?</p>
+<p><strong>CORPO</strong></p>
+<p>E a segunda parte da conta é pior: quanto ele ainda vai levar enquanto você observa?</p>
+<p>O cliente que entrava na sua loja agora compara preço no celular dentro dela. Na frente do seu vendedor. Do lado da sua vitrine. <em>(pausa)</em> E o concorrente que nasceu digital não paga o seu aluguel, não carrega a sua folha, não tem o seu estoque parado. E disputa exatamente o mesmo cliente que você.</p>
+<p>Eu não estou dizendo que a loja física morreu. Estou dizendo outra coisa: quem opera no físico não pode mais se dar ao luxo de operar sem eficiência de digital. A margem que sobra é a margem de quem organiza a operação primeiro.</p>
+<p><strong>VIRADA</strong></p>
+<p>E é aí que entra a pergunta que a gente faz na Imersão em Ambidestria Executiva: você consegue proteger a loja que sustenta o seu caixa hoje com uma mão, enquanto a outra constrói a operação que compete com quem nasceu digital? Porque fazer só um dos dois é o jeito mais lento de perder os dois.</p>
+<p><strong>CTA</strong></p>
+<p>O link está na bio: unilions.com.br/diagnostico. Em 5 minutos você descobre como a sua empresa responde a essas perguntas.</p>
+<p><em>(Nota de produção: se a seção das seis perguntas estiver publicada na home antes do vídeo ir ao ar, o CTA pode voltar a apontar pra unilions.com.br com a promessa das seis perguntas. Confirmar com quem constrói a página antes de trocar.)</em></p>
+<hr />
+<h3>Vídeo 03 · IA em empresas de serviços</h3>
+<p><strong>HOOK</strong> <em>(tom de quem conta um segredo de bastidor)</em></p>
+<p>62% dos executivos admitem uma coisa que quase ninguém fala em público.</p>
+<p><strong>CORPO</strong></p>
+<p>Numa pesquisa com 4.300 executivos, publicada pela Exame, 62% admitem dificuldade em distinguir IA genuína de iniciativa que só usa o termo como marketing. <em>(pausa)</em> Sessenta e dois por cento. Gente experiente, gente que assina orçamento, confessando que não sabe separar o que é real do que é embalagem.</p>
+<p>Se a sua empresa vive de serviços, isso te afeta duas vezes. Primeiro porque você é comprador: todo fornecedor hoje te vende "IA" e você precisa saber avaliar. Segundo porque você é vendedor: o seu cliente também não sabe distinguir, e vai comprar de quem demonstrar critério, não de quem gritar mais alto.</p>
+<p>Esperar pra ver no que dá não protege ninguém. Saber avaliar, sim.</p>
+<p><strong>VIRADA</strong></p>
+<p>É por isso que na Imersão em Ambidestria Executiva a gente não ensina hype: ensina o dono a comandar com as duas mãos, uma sustentando o serviço que gera receita agora e a outra montando, com critério, a estrutura de IA que vai diferenciar a empresa daqui pra frente. Curadoria, governança e um plano escrito. O resto é marketing.</p>
+<p><strong>CTA</strong></p>
+<p>Comenta aqui embaixo: você já comprou alguma "solução de IA" que na prática era só o termo na embalagem? Sua resposta vale mais do que parece.</p>
+<hr />
+<h3>Vídeo 04 · O debate da jornada 6x1</h3>
+<p><strong>HOOK</strong> <em>(tom sóbrio, de análise, não de alarme)</em></p>
+<p>O debate sobre o fim da jornada 6x1 avança em Brasília. E eu quero te fazer a pergunta que importa.</p>
+<p><strong>CORPO</strong></p>
+<p>Não é a pergunta ideológica. É a pergunta de dono: SE isso virar lei, qual o impacto na sua escala, no seu quadro e no seu custo de operação? <em>(pausa)</em></p>
+<p>Repara que eu disse "se". Ninguém sabe se vira lei, quando vira, nem em que formato. Você não controla o calendário de Brasília. Nunca controlou. <em>(inclina pra frente)</em> Mas tem uma coisa que você controla completamente: o quanto a sua operação depende de horas humanas que a legislação pode encarecer.</p>
+<p>Empresa que depende de volume de hora pra entregar resultado fica refém de qualquer mudança de regra. Empresa eficiente atravessa o debate, seja qual for o desfecho. Eficiência operacional deixou de ser detalhe. Virou seguro.</p>
+<p><strong>VIRADA</strong></p>
+<p>E seguro não se contrata no dia do sinistro. É isso que a gente trabalha na Imersão em Ambidestria Executiva: o dono comandando com as duas mãos, uma protegendo a operação de hoje e a outra construindo, com IA e método, uma empresa que produz mais sem depender de esticar hora.</p>
+<p><strong>CTA</strong></p>
+<p>Me diz nos comentários, sem precisar de nome de empresa: se a regra da jornada mudasse amanhã, sua operação aguentava o tranco? Quero entender como os donos estão lendo esse cenário.</p>
+<hr />
+<h3>Vídeo 05 · NR-1 e riscos psicossociais</h3>
+<p><strong>HOOK</strong> <em>(direto, tom de aviso entre pares)</em></p>
+<p>Tem uma norma em vigor agora que muito dono de empresa vai descobrir do pior jeito: na fiscalização.</p>
+<p><strong>CORPO</strong></p>
+<p>Sua organização já se ajustou às exigências de gerenciamento de riscos psicossociais da NR-1? <em>(pausa)</em></p>
+<p>Deixa eu ser preciso, porque aqui não cabe achismo: a norma está em vigor, e a responsabilidade de mapear e gerenciar esses riscos é da EMPRESA. Isso não é opinião nem tendência de RH. É obrigação regulatória. Da pessoa jurídica. Ou seja: sua.</p>
+<p>E o padrão que eu vejo se repetir é sempre o mesmo: o dono está com a cabeça no caixa, na venda, no time, e a conformidade fica pra depois. Até o dia em que "depois" chega com um auto de infração junto. Quem descobre a obrigação na fiscalização descobre tarde. E caro.</p>
+<p><strong>VIRADA</strong></p>
+<p>O ponto de fundo é maior que a NR-1: as pressões externas não pedem licença nem esperam o seu planejamento. Por isso a Imersão em Ambidestria Executiva trata governança como disciplina do dono: uma mão mantendo a casa em ordem e em conformidade hoje, a outra construindo a empresa que vem aí. Nenhuma solta o controle.</p>
+<p><strong>CTA</strong></p>
+<p>Na bio tem o link do nosso diagnóstico gratuito: são 5 minutos e você sai com um raio-X de como está a governança da sua empresa. unilions.com.br/diagnostico. Vale fazer antes que alguém faça por você.</p>
+<hr />
+<h3>Vídeo 06 · O modelo de gestão desenhado pra outro mercado</h3>
+<p><strong>HOOK</strong> <em>(tom mais pessoal, quase confessional)</em></p>
+<p>Seu modelo de gestão foi desenhado para o mercado em que você começou. Ele ainda serve para o mercado em que você está?</p>
+<p><strong>CORPO</strong></p>
+<p>Essa pergunta incomoda porque a resposta honesta, na maioria dos casos, é "não sei". <em>(pausa)</em></p>
+<p>E olha o que a Fundação Dom Cabral encontrou: 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA. Quase metade. Não é gente despreparada. É gente boa, com décadas de estrada, admitindo que o jogo trocou as regras enquanto ela operava.</p>
+<p>O problema não é falta de inteligência. É decidir sozinho, sem método, num jogo novo. O que fez sua empresa crescer vinte anos é exatamente o que mais te cega agora, porque sucesso vira anestésico. E a tecnologia não quebra quem está mal. Quebra quem está confortável.</p>
+<p><strong>VIRADA</strong></p>
+<p>Foi pra esse empresário que a gente desenhou a Imersão em Ambidestria Executiva: uma sala fechada de donos de empresa, presencial em São Paulo, onde você constrói a capacidade de comandar com as duas mãos, uma protegendo o que paga as contas hoje e a outra montando a empresa que vai existir daqui a dez anos. Você sai com um plano escrito, da SUA empresa, defensável diante de sócio, conselho ou banco.</p>
+<p><strong>CTA</strong> <em>(pausa antes, tom de convite direto)</em></p>
+<p>A entrada é por aplicação, porque a sala é curada e tem número real de cadeiras. Se essa pergunta te incomodou, aplica. É em unilions.com.br/aplicacao. E aí a gente conversa.</p>
+<hr />
+<h2>PARTE 2 · Quatro posts LinkedIn do André</h2>
+<h3>Post 01 · Abertura do lançamento (apresentando a Imersão)</h3>
+<p>Hoje eu abro publicamente uma coisa que a gente vem construindo há meses dentro do ecossistema Lions.</p>
+<p>Nos últimos anos, sentei com centenas de fundadores e donos de empresa na nossa sede. E uma conversa começou a se repetir, quase palavra por palavra: "André, a tecnologia mexeu em tudo no meu mercado. Menos no meu jeito de decidir. E eu não sei por onde começar."</p>
+<p>Não é falta de inteligência. A Fundação Dom Cabral mostrou que 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA. Quase metade dos melhores do país, na mesma dúvida.</p>
+<p>A resposta que a gente construiu chama Imersão em Ambidestria Executiva: um programa presencial em São Paulo, criado pela Uni Lions, o braço de formação executiva da Lions Startups, pra formar o dono que comanda com as duas mãos ao mesmo tempo, uma protegendo a operação que paga as contas hoje e a outra construindo a empresa que vai competir na próxima década.</p>
+<p>Palestra de tendências você encontra em qualquer evento. Aqui é método, diagnóstico e um plano escrito da SUA empresa no fim, defensável diante de sócio, conselho ou banco.</p>
+<p>É turma única, e a entrada é por aplicação, porque a sala é pensada pra poucos decisores, olho no olho.</p>
+<p>Se a conversa lá de cima parece a sua, aplica e a gente conversa: unilions.com.br/aplicacao</p>
+<h3>Post 02 · Pilar As Duas Mãos</h3>
+<p>Toda empresa boa tem uma mão forte: a que faz o que já funciona. Pouquíssimas têm a segunda, a que constrói o que ainda não existe.</p>
+<p>Eu vejo isso todos os dias no ecossistema Lions. O empresário de vinte anos de estrada tem a primeira mão treinadíssima. Ele opera, ele apaga incêndio, ele entrega. E é exatamente por isso que ele está em risco: o que fez a empresa dele crescer duas décadas é o que mais o cega agora. Sucesso vira anestésico.</p>
+<p>Aí aparece a frase que eu mais escuto: "vou focar no que dá resultado e olho essa história de IA depois."</p>
+<p>Parece prudência. Pode ser a decisão mais cara da década. Porque proteger o hoje e construir o amanhã nunca foi uma escolha entre um e outro. Quem escolhe só o hoje entrega o amanhã pro concorrente. Quem escolhe só o amanhã quebra antes de chegar lá.</p>
+<p>O nome disso é ambidestria executiva: a capacidade de comandar com as duas mãos ao mesmo tempo, uma sustentando a operação que gera resultado agora e a outra montando a estrutura da empresa que vai competir na próxima década.</p>
+<p>Não é dom. É método. E método se aprende, de preferência ao lado de quem já fez na própria empresa.</p>
+<p>Pergunta honesta pra fechar: qual das suas duas mãos está atrofiada?</p>
+<h3>Post 03 · Pilar Adoção Órfã de IA</h3>
+<p>"Já uso ChatGPT" é a frase que mais me preocupa quando escuto de um dono de empresa.</p>
+<p>Porque ele acha que resolveu. E acabou de descrever o problema.</p>
+<p>Deixa eu explicar. Neste momento, na maioria das empresas que eu conheço, a IA já entrou. Só que entrou pelas mãos do time, cada um testando por conta própria, sem regra, sem critério e sem o dono saber. Alguém pode estar colando dado de cliente numa ferramenta gratuita agora, enquanto você lê este post. Quando isso estourar, não estoura no colo do estagiário. Estoura no seu.</p>
+<p>Uso sem dono, sem regra e sem direção tem nome: Adoção Órfã de IA. E ela abre um vão perigoso, o vão entre usar ferramenta e liderar transformação. Usar, qualquer funcionário seu já usa. Liderar exige diagnóstico, governança e um plano escrito que você sustenta diante de quem cobra resultado.</p>
+<p>Os números do país contam a mesma história: 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio, segundo a CNDL com o SPC Brasil.</p>
+<p>O vilão nunca foi a IA. É a adoção amadora.</p>
+<p>A pergunta que eu deixo: na sua empresa, a IA tem dono ou é órfã? Responde nos comentários. Leio todos.</p>
+<h3>Post 04 · Pilar Pressões que não pedem licença</h3>
+<p>Enquanto o empresário decide se "é hora de olhar pra tecnologia", o mundo externo já decidiu por ele.</p>
+<p>O e-commerce não pediu licença pro varejo físico: o cliente compara preço no celular dentro da loja. O debate da jornada 6x1 avança em Brasília e, SE virar lei, mexe na escala, no quadro e no custo de quem depende de hora humana. A NR-1 já está em vigor, e a gestão de riscos psicossociais é obrigação regulatória da empresa: quem descobre isso na fiscalização descobre tarde. E o concorrente que nasceu digital vai esvaziando o mercado por baixo, sem barulho, enquanto o assunto morre em reunião.</p>
+<p>Nenhuma dessas forças espera o seu planejamento estratégico do ano que vem.</p>
+<p>E repara: parecem quatro problemas diferentes. Não são. São sintomas do mesmo diagnóstico: a tecnologia entrou no seu mercado antes do seu plano. A resposta não é pânico nem é modinha. É eficiência operacional tratada como seguro, e seguro não se contrata no dia do sinistro.</p>
+<p>É essa a conversa que a gente vai ter na turma única da Imersão em Ambidestria Executiva: o dono comandando com as duas mãos, uma protegendo a operação de hoje e a outra preparando a empresa pras pressões que já estão na porta.</p>
+<p>A entrada é por aplicação: unilions.com.br/aplicacao</p>
+<hr />
+<h2>PARTE 3 · Roteiro de live (30 min) · André Paixão + Paulo Nogueira</h2>
+<p><strong>Tema:</strong> A tecnologia entrou na sua empresa antes do plano <strong>Formato:</strong> LinkedIn Live ou Instagram Live pelo @unilions, André como anfitrião conduzindo, Paulo como voz do método. <strong>Gate de produção:</strong> esta live só é anunciada e realizada após a validação oficial da identidade pública do Paulo (nome completo + LinkedIn + mini-bio pela Lions). Na abertura, André apresenta o Paulo apenas como "Diretor Acadêmico do programa", sem credenciais não validadas.</p>
+<h3>Bloco 1 · Abertura (0:00 a 4:00) · André solo</h3>
+<p><em>(André entra sozinho, tom de conversa, sem slide)</em></p>
+<p>Boa noite. Eu sou o André Paixão, CEO da Lions Startups, e hoje a conversa é sobre uma frase que resume o que eu mais vejo nas empresas: a tecnologia entrou na sua empresa antes do plano.</p>
+<p>Antes de trazer meu convidado, um dado pra abrir na régua certa. A Fundação Dom Cabral aponta que 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA. Quase metade. Então se você, que está assistindo, sente esse desconforto: não é despreparo. É lucidez. O jogo trocou as regras.</p>
+<p>Quem está chegando: escreve no chat qual o setor da sua empresa. Eu vou puxando as perguntas de vocês ao longo da conversa.</p>
+<p>Comigo hoje está o Diretor Acadêmico da Imersão em Ambidestria Executiva, o programa que a Uni Lions criou pra formar o dono que comanda com as duas mãos, uma protegendo a operação de hoje e a outra construindo a empresa da próxima década. Paulo, bem-vindo.</p>
+<h3>Bloco 2 · O diagnóstico (4:00 a 10:00)</h3>
+<p><strong>Pergunta-guia 1 (André → Paulo):</strong> "Paulo, eu repito essa frase em todo lugar: a tecnologia entrou na empresa antes do plano. Mas eu quero que você conte como isso APARECE na prática. Quando você olha pra dentro de uma empresa média brasileira hoje, o que exatamente está acontecendo com a IA lá dentro sem o dono saber?"</p>
+<p><em>(Direção pro Paulo: descrever a Adoção Órfã com cenas concretas: o funcionário testando por conta, o dado de cliente colado no prompt, ferramenta duplicada em três áreas. André reage como dono, não como especialista: "isso eu já vi acontecer".)</em></p>
+<p><strong>Ponte do André (por volta de 9:00):</strong> "Ou seja, a pergunta não é SE a IA já entrou. É se ela tem dono. Isso tem nome, né?" <em>(deixa o Paulo nomear: Adoção Órfã de IA.)</em></p>
+<h3>Bloco 3 · O vão entre usar e liderar (10:00 a 16:00)</h3>
+<p><strong>Pergunta-guia 2 (André → Paulo):</strong> "Todo mundo que está nos assistindo usa alguma ferramenta de IA. Aí vem a frase que eu mais escuto: 'ah, mas eu já uso ChatGPT'. Por que usar ferramenta e liderar transformação são coisas tão diferentes? Onde mora esse vão?"</p>
+<p><em>(Direção: Paulo diferencia uso individual de governança: diagnóstico, regra, direção, plano escrito. André traduz pra cadeira do dono: "no fim é isso: quem responde pelo risco sou eu".)</em></p>
+<p><strong>Pergunta-guia 3 (André → Paulo, por volta de 13:30):</strong> "E tem o outro lado: numa pesquisa com 4.300 executivos, publicada pela Exame, 62% admitem dificuldade em distinguir IA genuína de iniciativa que só usa o termo como marketing. Como é que um dono de empresa, que não é técnico e não quer virar programador, desenvolve critério pra separar o que é real do que é embalagem?"</p>
+<p><em>(Direção: Paulo fala de curadoria com critério: pra que serve, quanto custa, qual o risco. Sem citar ferramenta milagrosa.)</em></p>
+<h3>Bloco 4 · A saída: método, não palestra (16:00 a 23:00)</h3>
+<p><strong>Pergunta-guia 4 (André → Paulo):</strong> "Agora a pergunta que o pessoal do chat já deve estar fazendo: tá, entendi o problema. E a saída? Quando a gente desenhou o programa, você insistiu numa palavra: entrega. Explica por que o empresário sai daqui com documentos da empresa dele na mão, e não com um caderno de anotações."</p>
+<p><em>(Direção: Paulo apresenta a lógica sem virar aula: diagnóstico antes da primeira aula, um plano por etapa, e no fim um Plano Diretor único, defensável diante de sócio, conselho ou banco. André reforça o anti-hype: "o que a gente NÃO promete: número mágico, ferramenta milagrosa, transformar ninguém em programador".)</em></p>
+<p><strong>Pergunta-guia 5 (André → Paulo, por volta de 20:00):</strong> "Última pergunta antes de eu encerrar. Pelas conversas e pelos primeiros diagnósticos, a maioria das empresas entra no Nível 2 de maturidade, o da IA dispersa. Sendo muito honesto com quem está assistindo: até onde dá pra chegar em 2 meses de programa, e até onde NÃO dá?"</p>
+<p><em>(Direção: resposta honesta obrigatória: o programa foi desenhado pra subir dois níveis; ninguém vira Nível 5 num programa e a gente não promete isso. É o momento de credibilidade da live.)</em></p>
+<h3>Bloco 5 · Perguntas do chat (23:00 a 27:00)</h3>
+<p><em>(André seleciona 2 ou 3 perguntas do chat. Regras de resposta ao vivo: 6x1 sempre como debate condicional, "se virar lei"; NR-1 sempre como obrigação da empresa; nenhuma promessa de resultado financeiro; nenhum docente não validado citado por nome. Se a pergunta for técnica demais, Paulo responde o princípio e André fecha com "o detalhe disso a gente trabalha dentro da sala".)</em></p>
+<h3>Bloco 6 · Encerramento e CTA (27:00 a 30:00) · André</h3>
+<p><em>(André retoma o comando, tom de convite, sem pressa)</em></p>
+<p>Deixa eu fechar do jeito que eu abri: falando de dono pra dono.</p>
+<p>Se nada do que a gente falou aqui diz respeito ao seu negócio, obrigado pela companhia, e essa live termina aqui pra você. Agora, se você se enxergou em alguma parte dessa conversa, o próximo passo é simples.</p>
+<p>A Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos, é turma única, presencial em São Paulo, uma sala pensada pra poucos decisores. A entrada é por aplicação porque a sala é curada: tem um número real de cadeiras. Quando a sala fecha, fecha.</p>
+<p>A aplicação leva 5 minutos e não tem compromisso: você aplica, a gente marca uma conversa de alinhamento de 30 minutos, e decide junto se faz sentido, dos dois lados. Você sai com clareza de qualquer forma.</p>
+<p>O endereço é unilions.com.br/aplicacao. Está fixado aqui no comentário.</p>
+<p>Paulo, obrigado. E pra quem está do outro lado: a tecnologia já entrou na sua empresa. A única pergunta em aberto é se ela vai operar com plano ou sem plano. Isso, só você decide. Boa noite.</p>
+<hr />
+<p><em>Checklist de conformidade aplicado a todas as peças: pt-BR natural; zero travessão em títulos, hooks e corpo; zero emoji; nenhuma promessa de ganho garantido; 6x1 sempre condicional ("se virar lei"); NR-1 sempre obrigação da empresa, sem presumir estado individual do leitor; "ambidestria" sempre acompanhada da imagem das duas mãos na mesma frase; escassez apenas real (turma única, cadeiras físicas, sala curada); estatísticas apenas na redação fixa do cânone com fonte falada (43% Fundação Dom Cabral · 87/14/52 CNDL/SPC Brasil · 62% pesquisa com 4.300 executivos, Exame); URLs públicas restritas a unilions.com.br, /aplicacao e /diagnostico; nenhuma data pública de evento e nenhum docente não validado citado em peça.</em></p>
+<hr />
+<h1>PACOTE DE AQUECIMENTO · PAULO NOGUEIRA + @UNILIONS</h1>
+<h2>Lançamento Ambidestria Executiva · Fase 1 (03 a 19/07)</h2>
+<blockquote><p><strong>Nota de publicação (gate do documento mestre):</strong> as peças do Paulo ficam prontas na fila, mas só entram no ar depois que a coordenação validar identidade pública, LinkedIn e mini-bio dele com a Lions (validação aberta em 08/07). As peças do @unilions não nomeiam nenhum docente; POST A, POST D, POST E e REEL 2 podem publicar imediatamente. POST B, POST C e REEL 1 têm gate próprio de validação de datas/formato do evento (e, no caso do POST B e do REEL 1, de confirmação do espaço das fotos), indicado em cada peça. O POST 1 do Paulo soma o gate de datas ao gate de identidade.</p></blockquote>
+<hr />
+<h2>PARTE 1 · LINKEDIN DO PAULO NOGUEIRA</h2>
+<h3>POST 1 · "Por que 8 entregáveis, e não 8 aulas"</h3>
+<p><strong>Sugestão de data: reavaliar. A semana de 06/07 antecede a abertura da validação de identidade (08/07) · Pilar 4 (Método)</strong> <strong>Gate de publicação: além do gate de identidade do Paulo, só publica depois que a coordenação validar com a Lions as datas e o formato do evento.</strong></p>
+<p>Quando desenhei a Imersão em Ambidestria Executiva, o programa que treina o dono a comandar com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década), tomei uma decisão que incomodou algumas pessoas: nenhum módulo termina em "aula assistida". Todos os 8 terminam num documento pronto, da empresa do participante, com a decisão dele dentro.</p>
+<p>O motivo é simples. Passei anos vendo empresários saírem de treinamentos com um caderno cheio de anotações e uma empresa exatamente igual à de antes. Conhecimento que não vira documento vira lembrança. E lembrança não se apresenta a sócio, a conselho, nem a banco.</p>
+<p>Por isso o programa funciona ao contrário do curso tradicional. A pergunta que orienta cada módulo não é "o que você vai aprender?", é "com o que você sai na mão?". Um Mapa de Exposição que mostra onde a IA bate primeiro no seu negócio. Um Blueprint do Escritório de IA, com papéis, regras de uso e pontos de controle de risco. Uma Stack de ferramentas escolhida com critério: o que serve, quanto custa, qual o risco. E assim por diante, até a oitava entrega.</p>
+<p>A oitava é a que amarra tudo: o Plano Diretor. As 7 anteriores se somam num plano executivo de implementação de IA, do tipo que se defende diante de quem cobra resultado. No encerramento, o participante apresenta esse plano a uma banca de empresários e conselheiros, em sessão fechada. É o ensaio antes do conselho de verdade.</p>
+<p>Não é certificado de parede. São 8 documentos da sua empresa. O certificado vem junto, mas é a parte menos importante.</p>
+<p>Turma única, entrada por aplicação: unilions.com.br/aplicacao</p>
+<hr />
+<h3>POST 2 · "A Escala de Maturidade: a maioria está no Nível 2 e não sabe"</h3>
+<p><strong>Sugestão de data: semana de 13/07 · Pilar 2 (Adoção Órfã)</strong></p>
+<p>Antes da primeira aula da Imersão, cada participante passa por um Assessment: um diagnóstico executivo que posiciona a empresa dele numa escala de 5 níveis de maturidade em IA. Do improviso total, no Nível 1, até a orquestração completa, no Nível 5.</p>
+<p>O que esse diagnóstico foi desenhado pra revelar é desconfortável: nas conversas que tenho com donos, a maioria se descobre no Nível 2. É o nível da IA Dispersa: a ferramenta já roda na operação, pelas mãos de quem foi testando por conta própria, sem dono, sem regra e sem direção. Tem uso, não tem comando.</p>
+<p>E aqui está o detalhe que quase ninguém enxerga: o Nível 2 é o mais perigoso da escala. No Nível 1 o empresário sabe que não começou. No Nível 2 ele acha que resolveu. "Aqui a gente já usa IA" é a frase que mais escuto, e ela quase sempre descreve o problema, não a solução.</p>
+<p>Agora, a parte que me importa dizer com todas as letras: o programa foi desenhado para levar você do Nível 2 ao Nível 4 nos 2 meses de programa. Dois níveis. Ninguém vira Nível 5 num programa de 2 meses, e quem prometer isso está vendendo outra coisa. Nível 5 é consequência de anos de execução sobre uma base bem montada.</p>
+<p>Mas dois níveis mudam quem decide. É a diferença entre ferramenta espalhada e uma estrutura com dono, regra e plano escrito.</p>
+<p>Se você quer saber em que nível a sua empresa está hoje, o diagnóstico leva 5 minutos: unilions.com.br/diagnostico</p>
+<hr />
+<h3>POST 3 · "Os 3 Horizontes, traduzidos pra quem paga a folha"</h3>
+<p><strong>Sugestão de data: semana de 13/07 ou 20/07 · Pilar 4 (Método)</strong></p>
+<p>"Como eu inovo sem largar o que hoje paga as contas?"</p>
+<p>Essa é, de longe, a pergunta mais honesta que um dono de PME me faz. E ela merece uma resposta melhor do que "arrisque" ou "espere".</p>
+<p>A resposta que uso no programa vem de um framework consagrado de gestão, os 3 Horizontes, que eu traduzo assim pra realidade de quem comanda uma empresa média no Brasil:</p>
+<p>Horizonte 1 é o caixa de hoje. A operação que sustenta o negócio agora. Aqui a IA entra pra proteger: cortar custo, ganhar eficiência, tirar trabalho repetitivo do time. Nada de aventura nesse horizonte, ele paga as contas.</p>
+<p>Horizonte 2 são as adjacências. O produto vizinho, o canal novo, o serviço que a sua base já pede e você ainda não entrega. Aqui a IA entra pra expandir com risco controlado.</p>
+<p>Horizonte 3 é o futuro. A aposta que pode transformar a empresa daqui a alguns anos. Pequena em recurso, grande em aprendizado.</p>
+<p>O erro clássico do empresário não é escolher o horizonte errado. É tratar os três como se fossem um só: ou joga tudo no H1 e fica cego pro futuro, ou se encanta com o H3 e come o caixa que sustenta a empresa.</p>
+<p>É por isso que chamo o programa de Ambidestria Executiva: a capacidade de comandar com as duas mãos ao mesmo tempo. Uma mão protege a operação que gera resultado agora, a outra constrói a empresa que vai competir na próxima década. Nenhuma solta o controle.</p>
+<p>Dentro do programa, cada participante monta o próprio Portfólio H1/H2/H3, com critério de onde alocar recurso. Turma única, entrada por aplicação: unilions.com.br/aplicacao</p>
+<hr />
+<h2>PARTE 2 · ARTIGO LINKEDIN LONGO DO PAULO</h2>
+<h3>"Adoção Órfã de IA: o diagnóstico que quase todo empresário me descreve sem saber o nome"</h3>
+<p><strong>Sugestão de data: semana de 20/07 · Pilar 2 · formato Artigo do LinkedIn</strong></p>
+<p>Existe uma conversa que se repete na minha frente com uma frequência que já deixou de ser coincidência. Um dono de empresa, geralmente com 15 ou 20 anos de estrada, me descreve a situação dele mais ou menos assim: "lá na empresa a gente já usa IA. O pessoal do comercial usa pra escrever proposta, a menina do marketing usa pra fazer post, acho que o financeiro também mexe em alguma coisa."</p>
+<p>Ele conta isso com um certo alívio, como quem diz "esse assunto eu já resolvi". E eu preciso respirar antes de responder, porque o que ele acabou de me descrever não é a solução. É o problema. Dos empresários que me relatam a relação da empresa com IA, é raro encontrar um cujo cenário seja diferente desse. E esse cenário tem nome.</p>
+<h4>O nome do problema</h4>
+<p>Chamo de Adoção Órfã de IA: a inteligência artificial entrou na empresa antes do plano. Ela roda na operação pelas mãos de quem foi testando por conta própria. Sem dono, porque ninguém responde por ela. Sem regra, porque ninguém definiu o que pode e o que não pode. Sem direção, porque ninguém decidiu pra onde aquilo deveria levar o negócio.</p>
+<p>Órfã, portanto, no sentido literal: uma adoção que aconteceu, mas que não tem pai nem mãe na estrutura da empresa.</p>
+<p>Os números brasileiros descrevem esse quadro com precisão. No Brasil, 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio, e 52% admitem que não sabem como usar (CNDL/SPC Brasil). E entre os que sentam na cadeira mais alta, a Fundação Dom Cabral aponta que 43% dos CEOs brasileiros não se sentem confortáveis decidindo com base em IA. Ou seja: quase todo mundo conhece, quase ninguém comanda.</p>
+<h4>Por que isso é mais grave do que parece</h4>
+<p>O primeiro risco é o que eu chamo de risco do prompt no colo do dono. Neste exato momento, alguém na sua operação pode estar colando dado de cliente numa ferramenta de IA gratuita, sem contrato, sem regra, sem você saber. Quando isso estourar (e com a LGPD em vigor, é questão de tempo até estourar), não estoura no colo de quem colou. Estoura no seu.</p>
+<p>O segundo risco é mais silencioso: a falsa sensação de progresso. A empresa que "já usa IA" para de se perguntar se está usando a IA certa, no processo certo, com o retorno medido. Ela coleciona ferramenta em vez de construir estrutura. E enquanto isso, um estudo da OpenAI com a Wharton, publicado na Science, estima que cerca de 80% dos trabalhadores americanos terão pelo menos 10% das suas tarefas afetadas pela IA. A mudança não vai pedir licença pra chegar organizada.</p>
+<p>O terceiro risco é competitivo. 62% dos executivos admitem dificuldade em distinguir IA genuína de iniciativa que só usa o termo como marketing (pesquisa com 4.300 executivos, Exame). Num mercado assim, quem tem governança de verdade se diferencia rápido de quem tem discurso.</p>
+<h4>O vão entre usar e liderar</h4>
+<p>A Adoção Órfã abre um vão perigoso: o vão entre usar ferramenta e liderar transformação. Usar, qualquer funcionário seu já usa, de graça, hoje. Liderar exige três coisas que não vêm em nenhuma assinatura de software: diagnóstico, pra saber onde a empresa está exposta; governança, pra definir quem responde pelo quê; e um plano escrito, que você sustenta diante de sócio, conselho ou banco.</p>
+<p>Note que nenhuma das três é um problema de tecnologia. São problemas de organização. É por isso que a saída da Adoção Órfã não passa por curso de ferramenta, e sim por método de gestão. A ferramenta muda a cada seis meses. A estrutura de decisão que você monta em cima dela, não.</p>
+<h4>Por onde começar</h4>
+<p>Comece pelo diagnóstico, porque nenhum plano honesto nasce antes dele. A pergunta não é "qual IA eu contrato?", é "em que nível de maturidade a minha empresa está hoje, e o que vem primeiro?".</p>
+<p>Foi pra responder exatamente essa pergunta que montamos um Diagnóstico de Maturidade gratuito: a versão de 5 minutos do mesmo raciocínio do Assessment que aplico na Imersão em Ambidestria Executiva, o programa que treina o dono a comandar com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década). Ele posiciona a sua empresa na escala de 5 níveis e devolve a leitura de cada resposta.</p>
+<p>Se a cena que descrevi no início deste artigo se parece com a sua empresa, vale os 5 minutos: unilions.com.br/diagnostico</p>
+<p>A IA já entrou na sua empresa. A única pergunta em aberto é se ela vai continuar órfã.</p>
+<hr />
+<h2>PARTE 3 · POSTS @UNILIONS</h2>
+<h3>POST A · Manifesto de abertura (a tese do programa)</h3>
+<p><strong>Sugestão de data: 03 ou 04/07 · LinkedIn + Instagram · Pilar 1</strong></p>
+<p>A tecnologia já mexeu em todos os ambientes empresariais. Menos, talvez, no modelo de decisão de quem comanda.</p>
+<p>O e-commerce disputando o cliente do varejo físico. A IA entrando nos serviços. O debate da jornada 6x1 avançando em Brasília. As exigências da NR-1 já em vigor. O concorrente que nasceu digital crescendo por baixo. Parecem cinco problemas diferentes. Não são. São sintomas do mesmo diagnóstico: a tecnologia entrou na empresa antes do plano.</p>
+<p>Em boa parte das empresas, a IA já entrou pelas mãos do time, cada um testando por conta própria. Os números nacionais contam essa história: 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio (CNDL/SPC Brasil). Entre um número e outro mora o uso sem dono, sem regra, sem direção. Isso tem nome: Adoção Órfã de IA. E abre um vão perigoso entre usar ferramenta, que qualquer funcionário já faz, e liderar transformação, que é papel de quem responde pela empresa inteira.</p>
+<p>A Uni Lions criou a Imersão em Ambidestria Executiva pra fechar esse vão. Ambidestria executiva é a capacidade de comandar com as duas mãos ao mesmo tempo: uma protege a operação que paga as contas hoje, a outra constrói a empresa que vai competir na próxima década. Nenhuma solta o controle.</p>
+<p>Turma única. Presencial em São Paulo, entre decisores. Entrada por aplicação.</p>
+<p>Conheça o programa: unilions.com.br</p>
+<hr />
+<h3>POST B · Bastidor do espaço (legenda para carrossel com fotos do lounge)</h3>
+<p><strong>Sugestão de data: semana de 06/07 · Instagram (carrossel) + LinkedIn · Pilar 5</strong> <strong>Gate de publicação: só publica depois que a coordenação validar com a Lions as datas e o formato do evento e confirmar que o espaço das fotos é o local contratado dos encontros.</strong></p>
+<p>À altura do que se decide aqui.</p>
+<p>Quando desenhamos a Imersão em Ambidestria Executiva, o programa que treina o dono a comandar com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década), uma decisão veio antes do conteúdo: o lugar. Porque decisão de dono não se toma em auditório lotado, com crachá e coffee break de fila.</p>
+<p>O espaço que você vê nestas fotos fica na zona nobre de São Paulo e foi planejado para receber empreendedores de destaque. Uma sala pensada para poucos decisores, onde a conversa acontece olho no olho, entre pares que carregam o mesmo peso: o de responder pela empresa inteira.</p>
+<p>Isso passa longe de estética: o ambiente define o nível da conversa. Uma turma pequena, sentada à mesma mesa, discutindo a exposição real de cada negócio à IA, produz um tipo de troca que nenhuma transmissão online reproduz. É por isso que os encontros presenciais do programa acontecem aqui, e é por isso que a turma é única: a sala tem um número físico de cadeiras.</p>
+<p>O espaço foi escolhido para estar à altura das decisões que serão tomadas dentro dele.</p>
+<p>A entrada é por aplicação: unilions.com.br/aplicacao</p>
+<p><em>(Slides sugeridos: 1. lounge geral · 2. bar de mármore em detalhe · 3. mesa/sala de reunião · 4. detalhe de acabamento · 5. card final com "Zona nobre de São Paulo · espaço reservado para a turma" + URL)</em></p>
+<hr />
+<h3>POST C · Apresentação do formato</h3>
+<p><strong>Sugestão de data: semana de 13/07 · LinkedIn + Instagram · Pilar 4</strong> <strong>Gate de publicação: só publica depois que a coordenação validar com a Lions as datas e o formato do evento.</strong></p>
+<p>Como funciona a Imersão em Ambidestria Executiva, o programa do dono que comanda com as duas mãos: uma protege a operação de hoje, a outra constrói a empresa da próxima década.</p>
+<p>Formato: 2 meses de convivência entre decisores, em modelo híbrido desenhado pra agenda de quem comanda uma empresa.</p>
+<p>Sábados presenciais em São Paulo. Entre eles, semanas de encontros online ao vivo, às terças e quintas. Cada sábado presencial abre um bloco de dois módulos e dá combustível pras semanas seguintes. As datas completas estão na página de aplicação.</p>
+<p>50 horas de programa. 8 módulos. E a regra que muda tudo: cada módulo termina com uma entrega pronta, da SUA empresa. Mapa de Exposição, Plano de Gestão da Mudança, Portfólio dos 3 Horizontes, Blueprint do Escritório de IA, Fluxo de Crescimento e Automação, Stack de IA, Backlog de Eficiência (a fila priorizada de ganhos rápidos). As 7 entregas se somam na oitava, o Plano Diretor: o plano executivo de implementação de IA que você defende diante de uma banca de empresários e conselheiros no encerramento, e depois diante do seu próprio conselho.</p>
+<p>Antes da primeira aula, um Assessment posiciona a sua empresa na escala de 5 níveis de maturidade. A maioria entra no Nível 2. O programa foi desenhado pra levar você ao Nível 4 nos 2 meses de programa. Ninguém vira Nível 5 num programa, e a gente não promete isso.</p>
+<p>Turma única, sala com número físico de cadeiras, entrada por aplicação.</p>
+<p>unilions.com.br/aplicacao</p>
+<hr />
+<h3>POST D · Prova social do ecossistema Lions</h3>
+<p><strong>Sugestão de data: semana de 13 ou 20/07 · LinkedIn + Instagram · Pilar 5</strong></p>
+<p>De onde vem a Uni Lions. E por que isso muda o que você recebe.</p>
+<p>A Uni Lions é o braço de formação executiva do ecossistema Lions Startups, um dos principais hubs de inovação do Brasil, com sede própria de mais de 5 mil metros quadrados construídos.</p>
+<p>Dentro desse ecossistema, startups são construídas, mentoradas e conectadas a investidores todos os dias. Estrutura física e tecnológica, programa de mentorias e formação de talentos em tecnologia operando sob o mesmo teto.</p>
+<p>Essa origem importa por um motivo simples: o conteúdo da Imersão em Ambidestria Executiva não vem de quem estuda transformação de longe. Vem de um ecossistema que vive dela. Quem conduz o programa vem de dentro desse ecossistema: gente de operação, que vive transformação na própria empresa. Não professores de teoria.</p>
+<p>É essa prática que a Uni Lions leva pra sala de decisores: o método das instituições sérias, dos frameworks de governança aos 3 Horizontes, traduzido pra decisão de quem comanda. Uma mão protegendo a operação que paga as contas hoje, a outra construindo a empresa da próxima década. É isso que chamamos de ambidestria executiva.</p>
+<p>Conheça o programa: unilions.com.br</p>
+<hr />
+<h3>POST E · Convite pro diagnóstico (isca)</h3>
+<p><strong>Sugestão de data: semana de 20/07 (pós-Copa, atenção de volta) · LinkedIn + Instagram · Pilar 2</strong></p>
+<p>Em que nível de maturidade em IA a sua empresa está hoje? A resposta leva 5 minutos. E costuma surpreender.</p>
+<p>No Brasil, 87% dos empresários dizem conhecer inteligência artificial, mas só 14% a usam de fato no negócio (CNDL/SPC Brasil). Entre esses dois números mora um fenômeno que vemos se repetir: a empresa "já usa IA", mas ninguém responde por ela, nenhuma regra foi definida, nenhum plano existe. É a Adoção Órfã de IA.</p>
+<p>O Diagnóstico de Maturidade da Uni Lions é um assessment executivo gratuito que posiciona a sua empresa numa escala de 5 níveis, do improviso à orquestração, e devolve a leitura de cada resposta: onde você está exposto, o que tem dono e o que está órfão, e qual o próximo passo lógico.</p>
+<p>Quiz de rede social entrega um rótulo. Este diagnóstico entrega uma leitura executiva: a versão de 5 minutos do mesmo raciocínio que abre a Imersão em Ambidestria Executiva, o programa que treina o dono a comandar com as duas mãos (uma protege a operação de hoje, a outra constrói a empresa da próxima década). Foi feito pra quem responde pela empresa inteira: se você não decide, o resultado não vai te servir.</p>
+<p>A maioria dos donos descobre que está no Nível 2. Saber disso antes do seu concorrente é o começo da vantagem.</p>
+<p>Faça o diagnóstico gratuito: unilions.com.br/diagnostico</p>
+<hr />
+<h2>PARTE 4 · ROTEIROS DE REELS/STORIES @UNILIONS</h2>
+<h3>REEL 1 · Tour do espaço (15 a 25s)</h3>
+<p><strong>Sugestão de data: semana de 06/07, casado com o Post B · Pilar 5</strong> <strong>Gate de publicação: só publica depois que a coordenação validar com a Lions as datas e o formato do evento e confirmar que o espaço das fotos é o local contratado dos encontros.</strong> <strong>Formato: vídeo em travelling lento pelo lounge, sem locução, trilha instrumental sóbria, texto em tela.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Tempo</th><th>Imagem</th><th>Texto em tela</th></tr></thead><tbody><tr><td>0-3s</td><td>Porta/entrada abrindo pro lounge</td><td>"Tem decisão que não se toma em auditório."</td></tr><tr><td>3-7s</td><td>Travelling pelo lounge, bar de mármore ao fundo</td><td>"Zona nobre de São Paulo."</td></tr><tr><td>7-11s</td><td>Detalhe do bar de mármore, poltronas</td><td>"Uma sala pensada para poucos decisores."</td></tr><tr><td>11-15s</td><td>Mesa de reunião, cadeiras vazias em close</td><td>"Olho no olho, entre pares que carregam o mesmo peso."</td></tr><tr><td>15-19s</td><td>Plano aberto final do espaço</td><td>"Aqui o dono aprende a comandar com as duas mãos: os encontros presenciais da Imersão em Ambidestria Executiva."</td></tr><tr><td>19-23s</td><td>Card final, fundo escuro, logo Uni Lions</td><td>"Turma única. Entrada por aplicação." + "unilions.com.br/aplicacao"</td></tr></tbody></table></div>
+<p><strong>Legenda do reel:</strong> O espaço foi escolhido para estar à altura das decisões que serão tomadas dentro dele. Imersão em Ambidestria Executiva: 2 meses de programa, encontros presenciais em São Paulo, turma única. A entrada é por aplicação: unilions.com.br/aplicacao</p>
+<hr />
+<h3>REEL 2 · "As 6 perguntas" em cards rápidos (20 a 30s)</h3>
+<p><strong>Sugestão de data: semana de 13/07 · Pilar 3 · Formato: cards de texto em sequência rítmica, corte seco a cada card, trilha com pulso.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Tempo</th><th>Card</th><th>Texto em tela</th></tr></thead><tbody><tr><td>0-3s</td><td>Card de abertura</td><td>"6 perguntas que todo dono de empresa vai responder. Voluntariamente ou não."</td></tr><tr><td>3-6s</td><td>Card 01</td><td>"A tecnologia mexeu em todo o seu mercado. E no seu modelo de decisão?"</td></tr><tr><td>6-9s</td><td>Card 02</td><td>"Quanto do seu faturamento o e-commerce já levou?"</td></tr><tr><td>9-12s</td><td>Card 03</td><td>"Sua empresa de serviços está posicionada diante da IA, ou esperando pra ver?"</td></tr><tr><td>12-15s</td><td>Card 04</td><td>"Se o fim da 6x1 virar lei, qual o impacto no seu custo?"</td></tr><tr><td>15-18s</td><td>Card 05</td><td>"Sua empresa já se ajustou às exigências da NR-1?"</td></tr><tr><td>18-21s</td><td>Card 06</td><td>"Seu modelo de gestão ainda serve pro mercado em que você está?"</td></tr><tr><td>21-25s</td><td>Card de virada</td><td>"Parecem 6 problemas. São 6 sintomas do mesmo diagnóstico."</td></tr><tr><td>25-30s</td><td>Card final + logo</td><td>"Descubra o seu em 5 minutos." + "unilions.com.br/diagnostico"</td></tr></tbody></table></div>
+<p><strong>Legenda do reel:</strong> Seis perguntas, um único diagnóstico: a tecnologia entrou na sua empresa antes do plano. O Diagnóstico de Maturidade da Uni Lions posiciona a sua empresa na escala de 5 níveis e mostra o próximo passo. Gratuito, 5 minutos, feito pra quem decide: unilions.com.br/diagnostico</p>
+<p><strong>Versão stories (mesma peça, fatiada):</strong> 1 pergunta por story (6 stories de card), sétimo story com a virada e o link direto pro /diagnostico via sticker de link. Publicar entre 8h e 9h30 ou entre 18h e 20h, janelas de resposta do ICP.</p>
+<hr />
+<h2>CHECKLIST DE GATES (conferido pós-auditoria)</h2>
+<ul><li>pt-BR em toda a copy: ok</li><li>Zero travessão em títulos e em todo o corpo: ok</li><li>Zero emoji: ok</li><li>Nenhuma promessa de ganho financeiro, número mágico ou antes/depois: ok ("garante que a empresa exista" removido do Post 02 do André)</li><li>"Ambidestria" acompanhada da imagem das duas mãos na primeira menção de cada peça: ok (posts 1, 3, A, B, C, D, E, artigo, card 15-19s do REEL 1 e blocos 1 e 6 da live; a legenda do REEL 1 se apoia na imagem do card do vídeo)</li><li>Escala de Maturidade: promessa honesta Nível 2 ao 4, nunca Nível 5: ok (post 2, post C, post E)</li><li>Duração padronizada em "2 meses de programa" (nenhuma menção a "8 semanas"): ok (post 2, post C, live)</li><li>Claims sobre resultados do diagnóstico sempre condicionados à conversa/primeiros diagnósticos (sem "9 em cada 10", sem "empresa após empresa"): ok (artigo, post 2 e pergunta-guia 5 da live)</li><li>Estatísticas só na redação e fonte fixas do cânone (43% FDC · 87/14/52 CNDL/SPC · 62% Exame · 80% dos trabalhadores americanos, OpenAI/Wharton/Science): ok</li><li>6x1 sempre condicional ("se virar lei"); NR-1 como obrigação da empresa: ok (reel 2, post A)</li><li>Escassez só a real (turma única, cadeiras físicas): ok</li><li>Prova social: "um dos principais hubs de inovação do Brasil" e a conexão de startups com investidores estão CONFIRMADOS no site oficial da Lions (lionsstartups.com.br, home e /investidores); 5 mil m², mentorias e formação tech na lista confirmada. Claim coletivo de docentes e banca SUAVIZADO no POST D até a due diligence dos docentes fechar; nenhum docente nomeado em peça alguma.</li><li>Datas e formato do evento: NENHUMA peça publica data, horário ou contagem de encontros. POST 1, POST B, POST C e REEL 1 estão condicionados ao gate de validação de datas/formato com a Lions; POST B e REEL 1 também ao gate de confirmação do espaço das fotos. Sugestão de data do POST 1 marcada pra reavaliação (anterior à abertura da validação em 08/07).</li><li>Padrão "Não é X. É Y." mantido só nas 3 peças mais fortes (V01, Post 02 do André, POST 1 do Paulo); variado nas demais (Post 01 do André, V05, POST B, POST E).</li><li>URLs apenas unilions.com.br, /aplicacao e /diagnostico: ok (CTAs dos vídeos 02 e 05 apontam pro /diagnostico; a promessa das seis perguntas na home depende de confirmação da página, ver nota de produção do vídeo 02)</li><li>Peças do Paulo condicionadas à validação de identidade pela Lions (gate do documento mestre, seção 8.1): sinalizado na nota de publicação</li></ul>
+</div></body></html>

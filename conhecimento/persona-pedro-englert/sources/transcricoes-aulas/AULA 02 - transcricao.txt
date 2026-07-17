@@ -1,0 +1,286 @@
+Fala pessoal, tudo bem?
+Então, Pedro Engraer aqui de volta com vocês para fazer mais uma aula e agora a gente vai falar um pouco sobre essa cultura da experimentação.
+Talvez esses dias eu eu fui numa empresa que aqui a gente é startup, mas cara, startup é uma organização que tá querendo validar o modelo de negócio.
+O sonho de uma uma startup é ser uma empresa.
+Então é muito mais legal ser empresa do que startup.
+Agora, o que que as startups t de tão bacana, que eu acho que é o que a gente, o que a gente tem que aprender com elas, é realmente esse modelo de experimentar, esse modelo de testar, de criar o novo.
+Eles sabem fazer isso de uma forma ã melhor, mais eficiente, mais barata, com mais intensidade.
+Então, eu acho que a ah não temos que ser startup, mas temos que aprender com eles como criar esses novos projetos.
+Então, eh, em cima desse primeiro mote aqui, eu vou trazer um slide que a gente falou na na na numa aula anterior.
+Reforçando então que a jornada das empresas ela passa por esse momento de, né, encontrar o primeiro produto, encontrar o primeiro serviço, resolver os seus processos e uma vez que ela tem sucesso nisso, ela começa a entrar numa linha de melhorias incrementais e contínuas, buscando cada vez mais eficiência, escala, eh, enfim, melhoras de produtos, acessar mais clientes, rentabilidade, etc.
+Mas chega uma hora que aqueles processos que a gente desenhou, eles começam a ficar na capacidade máxima deles e ali eu tenho que desenvolver um novo processo, buscar um novo modelo, criar um novo produto, né?
+E é nisso até que as startups, falando um pouco das startups, ela elas elas apostam quando elas resolvem empreender contra uma empresa estabelecida, contra uma empresa incumbente, uma empresa que já tá dizendo o seguinte: "Es caras são muito bons, tem muito mercado, tem uma marca muito forte, são rentáveis, mas eles não têm capacidade para se reinventarem".
+Não tem capacidade para inventar novos novos eh eh novas formas de endereçar as necessidades dos seus clientes, né?
+Ou o que os clientes desejam.
+Ah, ã ã, e aí uma empresa mais nova, sem legado, sem responsabilidade, ah, eventualmente bem investida, né, Well funded, ela tem a capacidade para poder ah entrar nesses novos mercados e apostar contra eles.
+E obviamente, por que que isso hoje é mais possível?
+Porque a gente tem a, né, a tecnologia, ah, que barateou loucamente, né, os seus custos, a distribuição digital, clientes muito mais abertos a experimentar o novo do que no do que do que eram no passado, clientes cada vez mais bem informados, em muitos casos reguladores promados, barreiras geográficas, em alguns casos nem existindo mais.
+Então, né, essas essa esse contexto todo permitiu com que mais e mais empresas fossem criadas eh para apostar contra empresas estabelecidas que têm a eh processos e e formas de resolver as coisas muito estabelecidos, incentivos muito mais alinhados na preservação do que eventualmente na transformação e na conquista de novas formas de fazer, né?
+Se a gente pegar uma frase que eu que eu acho eh uma frase que exemplifica bem, uma frase do do Macios son lá do do SoftBank, ele fala nós, que o SoftBank é um dos principais fundos de de venture capital do mundo, talvez o principal fundo.
+Ah, nós existimos para tirar a preocupação de curto prazo dos empreendedores.
+Então, reparem, pessoal, essa linha vermelha, essa primeira embarrigada vermelha aqui que o que o que o que o que o que o gráfico mostra, ele fala assim: "Eu existo para eh ajudar os emprendedores a passarem por esse período, né?
+E e eu vou apostar em projetos que se derem certo, eles vão acabar com a forma como a indústria até então fazia as coisas.
+Então eles vão disruptar a indústria anterior e eu vou receber, obviamente um prêmio, né, pela para eh por ter quebrado uma indústria e por ser o novo dominante dessa indústria.
+Então o investimento que eu faço aqui, ele tende a ser recompensado pelo resultado que eu vou obter se as empresas que eu tô apoiando conseguirem passar por isso.
+Quando a gente olha para uma organização, especialmente uma organização que tá estabelecida, que tem resultado, talvez seja melhor eu entender que essas curvas elas são finitas e apostar enquanto eu ainda tô forte em novas formas de fazer as coisas, do que eu esperar a minha curva começar a cair e ali tentar apostar na transformação, né?
+Em geral, a gente a gente vê que quando a empresa vai fazer a reação quando ela já foi desuptada, em geral isso é tarde demais.
+Então, muito melhor fazer isso antes do que depois, ainda que eu não saiba exatamente qual é o momento que aquilo tem que começar, né?
+Ah, tá.
+Para mim tem um exemplo interessante.
+A gente teve no no no a gente tem um escritório no Vale do Silício, a Stars tem tem um escritório lá.
+Ah, e nós recebemos o enfim no no numa das imersões lá um time de agro muito forte e no time de agro tava um dos principais produtores de carne do Brasil.
+E aí numa a gente fez um happy a hura lá num dia degustando carnes plant based carnes normais, né, de gado normal.
+E e e aquela aquela pessoa comeu a a experimentou as duas carnes e viu pela primeira vez ele tinha tido aquela experiência que a carne plant based tava quase good enough, tava quase boa o suficiente em relação a à carne de gado.
+Óbvio que ele sabia qual era qual, mas olhando para esse gráfico ele, né, e olhando pro gráfico, mostrando na sequência aqui, ele viu, pô, isso aqui tá quase good enough, mas tem uma jornada de crescimento aqui, então tem ficar melhor e mais barata com o tempo, né?
+E aí naquele momento ele disse: "Moço, isso aqui que eu jamais imaginei que o meu produto pudesse ter um substituto, talvez agora ele possa ter um substituto.
+E se puder ter um substituto, talvez e talvez tenha, não sei se vai, né?
+Acho pouco provável imaginar que vai acabar, tá?
+Ainda mais como um bom gaúcho aqui que vai acabar, mas isso aqui pode eventualmente pegar um pedaço do meu mercado, um tamanho, um share da minha operação.
+O que que ele fez ali?
+Ele falou: "Pô, eu não tenho capacidade para fazer isso aqui.
+Eu não tenho, eu acho pouco provável que a gente consiga trazer esse essa esse essa expertise da minha empresa e consiga ser competitível nisso.
+Então eu vou investir aqui em duas empresas." Ele fez esse, investiu em duas empresas eh que faziam aquela a carne plant based ele disse o seguinte: "Se isso aqui porventura eh não der certo, o meu negócio continua resiliente, forte.
+Se porventura isso der certo e pegar um pedaço do meu mercado, eu tenho, né, eu tô protegido aqui em cima desse investimento, dessas duas novas empresas que podem ser empresas relevantes e dominantes nesse novo mercado.
+Então, é quase que uma eh eu não invisto para tomar risco, visto para reduzir o meu risco.
+Então, como se faz, como a gente faz seguro de carro, né?
+Eu não faço grupo para bater, eu faço se porventura eu bater, eu tô protegido.
+Então, será que a gente não deveria como conselho entender que a nossa organização ela tem processos estabelecidos que são super vitoriosos?
+Tem algumas coisas que a gente consegue evoluir, transformar, mas que eu deveria pegar talvez uma parte do meu do meu resultado e investir na minha perpetuidade, investir em ferramentas, em dinâmicas, em formas, investimentos, seix internos ou externos, para que eu consiga experimentar e entender essas próximas curvas?
+Ou será que eu deveria ficar sentado protegendo o meu negócio, né, tentando proteger com que ele tenha o menor nível de risco possível, mais máximo de eficiência possível para Tem uma frase do do do de um do do líder da General Atlântica aqui no Brasil, um dos líderes do mundo até hoje, pelo sucesso que ele teve aqui nos investimentos, que é o Martim Escobar.
+Ele fala: "O excesso de eficiência está contra a inovação".
+Interessante isso, pessoal.
+O excesso de eficiência está contra inovação.
+Eventualmente eu tô tão focado na eficiência processo processo que eu deixo de ter a capacidade para poder experimentar essas novas formas de fazer.
+Então, empresas altamente eficientes de eficientes no eficientes no processo não necessariamente são empresas que estão protegidas de disrupções, elas estão eficientes naquela forma de fazer, mas se porventura elas perderem o olho do mercado, do cliente, do que que o cliente precisa, do que que o mercado, elas podem dominar um processo que é um processo que não tem mais utilidade, que não tem mais tração, que não tem mais nenhum desejo sobre ele.
+Então, não necessariamente uma empresa altamente eficiente é uma empresa que vai perpetuar no tempo.
+Eu acho que essa é a atenção.
+E aí, o que que garante a gente ou o que que aumenta a chance da gente conseguir ter uma empresa ah que se perpetua um foco muito grande no processo, mas também um olhar importante para essas novas formas de de de transformar e sabendo que esses novos processos eles exigem um tempo de de de calibragem de experimento.
+E aí para reforçar esse gráfico aqui, ã esse frame aqui é um frame de um cara chamado Peter Mendes, que foi um dos fundadores da Singularity.
+Eu aprendi inclusive isso aí lá na Singularity com com o próprio Peter, onde ele fala que o a jornada de transformação de de digitalização das coisas, ela passa por seis etapas.
+E a primeira etapa naturalmente é a digitalização, onde eu consigo colocar aquela aquele processo numa numa curva de crescimento exponencial.
+O problema é que a primeira experiência depois da digitalização ela é pior, é decepção, é o eh é é quando aquilo nimente não funciona como imaginei que ia funcionar.
+E quem não consegue passar por essa fase da da decepção, não consegue evoluir o produto até que ele se torna good enough em relação à alternativa, né, que a é onde a disrupção acontece, ele é tão bom quanto que existe.
+E a partir daquele momento a disrupção acontece, eles tendem a se desmadrializar.
+Então o digital ele tende a tirar os materiais, né?
+Por consequência ele tira o custo, por consequência ele democratiza, né?
+Então vocês vão lembrar das músicas digitais que quando começaram não era necessariamente bom baixar uma música digital.
+funcionava, existia, mas não era um processo agradável, né?
+Então eu tinha que baixar aquelas músicas nos emules, etc.
+Então o pessoal tradicional dizia: "Jamais isso vai desruptar uma indústria CD porque a experiência é muito ruim".
+De verdade, naquele ponto, ela era muito ruim, mas na medida que aquilo foi evoluindo, que veio o seu Steve Jobs com os iPods da vida, com as músicas digitais, com Apple Music, dólar, uma música, aquilo começou a ficar good enough, né?
+Até que veio, talvez, o Spotify falou assim: "Agora não tem mais por ninguém comprar no CD, porque tem outro colóquio por R$ 20 todas as músicas do mundo".
+Naquele momento ele criou uma disrupção muito forte.
+Ele tirou todo o material, a indústria da da música, a loja de CD, o estoquista, o CD, o transportador, a o shopping, tudo aquilo, né?
+se desmaterializou, por consequência tirou o custo.
+Por consequência, as pessoas hoje têm acesso a uma quantidade de músicas absurdo por um custo irrisório frente ao que era isto era impensado mesmo um cara de de capital abundante ter todas as músicas à sua disposição, como ele tem hoje com uma solução que ele paga R$ 19 ou eventualmente nem paga no modelo Freeman.
+Então é uma uma quebra de lógica de escassez e abundância, né?
+Pode ser muito bom para muitos.
+No passado, se era muito bom, era para poucos, né?
+Se era para muitos era ruim.
+Hoje em dia pode ser muito bom para muitos se o cara consegue colocar um pouco dessa dessa dessa dinâmica.
+E aí eu acho que o que que são coisas importantes pra gente analisar aqui quando a gente vai fazer essa essas experimentações e até trazendo para vocês quais são as, né, os talvez os unicórnios do Brasil aqui, que são as empresas que atingiram um valor de mercado de mais de 1 bilhão de dólares enquanto estão estão fechadas ainda.
+O que que eles têm em comum?
+Eles têm uma tara pela experiência do cliente.
+Eles colocam de verdade o cliente em primeiro lugar.
+Eles, como é que eu encanto esse cara?
+Talvez um dos maiores cas do Brasil, talvez os maiores cases do mundo hoje de uma empresa que conseguiu fazer isso e disruptou uma indústria anterior só por colocar o cliente em primeiro lugar é o Nubank, né?
+Quem é cliente do Nubank aqui sabe que o Nubank não tem uma tecnologia de foguete, não tem nada.
+O que que o Nubank faz?
+Pergunta pro por que que você investe no por que que você é correntista do Nobank?
+Porque lá eles me tratam bem.
+lá, a usabilidade é fácil.
+lá, simplesmente uma empresa que colocou o cliente em primeiro lugar, sem fazer mídia, né, com uma com publicidade muito baixa, conseguiu disruptar ou entrar no mercado altamente protegido, com altas barreiras de entrada que até então Citybank tando entrar, HSBC não tinha conseguido.
+E uma empresa que colocou o cliente em primeiro lugar, hoje vale 22 bilhões de dólares, tem 80 bilhões de clientes e esse número tá segue subindo simplesmente porque olhou disse: "Eu vou encantar esses clientes, eu vou tratar esses clientes bem".
+Então, só que aí parece fácil isso, né?
+Parece fácil, pô.
+Vou aqui, a gente coloca o cliente em primeiro lugar.
+Colocar o cliente em primeiro lugar é inverter as matrizes de decisão.
+Eu começo resolver as coisas que os meus clientes querem e por consequência eu resolvo as minhas.
+Tem tem um professor nosso, eu resolvo as minhas tem um professor nosso do Vale do Sinício que chama Espinosa que ele fala: "A gente tá muito mais acostumado a resolver os nossos problemas do que os nossos clientes." E é verdade.
+E vocês podem, né, a gente aqui na start volta m se pega nisso, a gente vai criando dificuldades pro cliente porque aquilo facilita a nossa vida.
+E por que que isso funcionou e eventualmente ainda funciona ou no passado não era um problema?
+Porque no passado as pessoas não tinham alternativa.
+Nós clientes não tínhamos alternativas.
+quem eram, quem mandava no mercado, quem conseguiu se estabelecer no mercado, porque era muito difícil criar um banco, era muito difícil criar uma empresa de mídia, era muito difícil criar uma empresa de educação, era muito difícil criar empresas relevantes.
+Então, quem conseguia criar as empresas dizia: "Agora, mercado, vocês que precisam de mim vão vão vão vão viver as minhas regras, né?
+Empurro o o produto no cliente, empurra o serviço no cliente, vai lá e isso tudo, né?
+Então, qual eram os grandes desafios das empresas?
+Eu preciso ser melhor que meus meus ocorrentes.
+Basta eu ser melhor que eles porque eu vou lá no jogo.
+Porque dado que o cliente precisa de mim, eu não tenho que encantar ele ou ser maravilhoso para ele ou eu tenho que só ser melhor do que os meus caras aqui.
+Se eu for melhor, eu sou a melhor decisão.
+Ainda que ela não seja muito boa, ela é a melhor.
+Então, a a Caixa Econômica disse: "Não, não vou acabar com a fila porque todo banco tem fila, mas eu vou colocar cadeira na fila.
+Agora aqui na fila, na Caixa Econômica, você espera sentado, não precisa esperar de pé.
+Isso já era uma uma super evolução, super diferencial.
+Então, analisar os concorrentes me deixava no jogo.
+Preciso ser melhor do que eles.
+Agora, qual é a grande transformação?
+Tem tanta alternativa e a gente é tão bem informado, a gente tem tanto acesso que a gente quer escolher o melhor pra gente.
+E quando eu sou bem tratado em algum lugar, eu também quero ser bem tratado no outro lugar.
+E aí a nosso nível de exigência começa começa a ficar cada vez maior e a gente começa a se abrir pro novo.
+E a gente entende, tem uma pesquisa que saiu que eu eu eu entendo que a pequena marca entende mais as minhas as minhas necessidades do que uma grande marca e, portanto, eu estou disposto a experimentá-la.
+Isso é uma mudança importante no mercado.
+Isso me força a sair do que é bom só para mim e dizer o que que é bom pro mercado e como é que eu crio uma empresa vencedora entregando o que o mercado quer.
+Mas eu preciso ter o mercado querer, porque se se eu olhar só para mim é pouco provável que eu tenha sucesso e isso vai ser cada vez mais marcante.
+Eu acho que o mercado financeiro ele, como ele tem um ciclo mais curto, ele tende estar à frente algumas coisas.
+O que a gente viu acontecer no case, no bank, seguramente a gente vai ver acontecer em outros mercados que são dominados por play por players players relevantes, mas não seramente tem esse olhar tão cuidadoso pra experiência do cliente.
+Então, como é que eu crio a partir do cliente, não a partirmente do daquilo que eu quero.
+Óbvio que tem que tá ligado com o meu propósito, tem que ligado com as coisas que eu que eu sou bom, mas acima de tudo tem que ser bom pro cliente.
+Eu tenho que procurar encantá-lo.
+é a minha maior barreira ã competitiva, né, para para no tempo.
+Ah, eu não vou entrar aqui nos processos de execução ágil, eficiência, inovação, né, Agile, etc.
+Porque eu acho que isso são matérias que já estão bem dadas e bem difundidas, mas a gente trabalha aqui dentro dessa lógica de decisão, de agilidade de decisão, com um frame bem simples, né, que que estimula ou que a gente procura estimular a partir desse frame com que as nossas as pessoas que trabalham conosco quando se deparam com um problema, com uma oportunidade, com novo, né, com uma nova ferramenta, eh, ou um novo serviço que pode ser criado, eles eles têm eles tendem a usar, que é um pouco do da forma como a gente pensa, mas talvez mais claro aqui que é quando eu tenho uma oportunidade de fazer uma coisa diferente, eu tenho que pensar o seguinte, pô, essa essa iniciativa aqui que eu tô tentando colocar, ela em primeiro lugar tá alinhada com o meu propósito, seja o propósito da minha organização, seja o propósito da minha área, do meu setor ou daquilo que eu tenho que fazer, sim ou não?
+Sim.
+Opa, não.
+Beleza.
+Sim.
+Então beleza, essa minha tentativa aqui de fazer alguma coisa diferente usando essa nova forma aqui, essa nova ferramenta.
+Qual é o potencial disso?
+Até onde isso pode me levar, cara?
+Isso aqui pode me gerar isso, aquilo.
+Pô, legal.
+Parece um potencial interessante.
+Beleza.
+Qual é a probabilidade de eu conseguir colocar isso em prática e dá certo?
+E a última pergunta e mais importante.
+E se essa minha tentativa aqui ela der errado, o que que eu perco?
+Eu vou perder um dia de trabalho, eu vou perder R$ 100.000?
+Eu vou perder a minha credibilidade, eu vou perder um, enfim, o que que é?
+Primeira pergunta, eu suporto essa perda?
+Segunda pergunta, se eu suporto essa perda, ela tem uma boa relação com o potencial, o que eu perco faz sentido frente ao potencial que isso pode me gerar e a probabilidade de dar certo?
+Então, quando a gente começa a colocar esse frame aqui nas nas decisões, a gente começa a liberar os nossos nossos times a que eles para que eles ao se depararem com uma situação dessas decidam sobre o que fazer em relação à aquela coisa.
+Toca o telefone aqui na start.
+Se tem um cliente reclamando produto de R$ 3.000 tá revoltado, não sei quê.
+Pô, cliente revoltado tá contra o nosso propósito.
+Cliente revoltado não volta na empresa e não indica a empresa.
+Então, um potencial ruim, eu preciso reverter, preciso ter clientes felizes aqui.
+Esse cliente tá reclamando um produto X de R$ 3.000.
+Se eu devolver esse dinheiro pro cliente, eu der um crédito para ele comprar alguma outra coisa, será que ah, será que ele vai ficar feliz conosco e vai voltar a ser um cara que vai falar bem da gente ou que vai nos indicar e vai comprar nossos nossos produtos?
+Pô, me parece ele tá reclamando disso eu neutralizar esse problema, pode ser que sim.
+É certo que sim, não, porque ele vai ter gasto o tempo dele.
+Tempo dele é um ativo intangível que nunca mais volta.
+Não pode ser que ele não.
+Mas vale a pena correr o risco de encantar um cliente por esse custo aqui na Starts.
+Nesse caso vale.
+Beleza.
+Então vai lá e arrisca.
+Pois se eu perder, eu vou perder uma coisa, mas eu eu tenho capacidade para para absorver esta perda específica.
+Outro exemplo, então, potencial, probabilidade de perda.
+Outro exemplo, fomos paraa China em 2018, descobrimos que a China era tão relevante quanto vale em termos de centro de inovação.
+F pô, Stars tem que tá aqui na China.
+Star quer tá entre os principais centros de inovação no mundo, tá na tá aqui na China nos nos gera um potencial na época de fazer 2 milhões de loses de receita com produto que a gente tinha no Vale do Silício.
+Então é replicar a estrutura do vale aqui na China.
+Legal.
+Qual é a probabilidade que a gente tem de fazer isso da de de fazer isso funcionar?
+Temos clientes que estão dispostos a ir pra China, que já foram pro Vale.
+Temos pessoas da Estados dispostas a morar na China e temos uma abertura na China aqui para band receber.
+Pô, parece tem uma boa probabilidade.
+Qual é o tamanho da perda?
+Custava 120.000 por mês, vezes 6 meses 720.000.
+720.000 para ganhar 2 milhões.
+Vai ou não vai?
+Acho que muitos vão dizer: "Pô, tem que ir, tem que ir".
+A gente não tinha 720.000 para gastar.
+Se se perdesse ia gerar um rombo gigantesco na empresa.
+Talvez a empresa estivesse viva para para aqui hoje se a gente tivesse feito esse experimento.
+Então, qual o erro eu não posso cometer?
+O erro que me mata.
+O erro que eu suporto faz parte.
+O erro que tá dentro de um experimento desses que tenha um bom potencial, uma boaidade e uma perda aceitável.
+Esse erro eu posso cometer, que é um erro de experimento.
+Esse faz parte de se gera aprendizado.
+O erro que eu não posso cometer é o erro que me mata.
+tem um erro disse, pô, vai lá, mas se der errado, se der errado, eu quebro, pô, mas quebrar não posso.
+Então, este erro eu não aceito.
+E aí, por que que é bom ter uma empresa que tem caixa, uma empresa que tem grana?
+Porque eu tenho mais capacidade de absorver, de absorver a perda.
+Eu consigo experimentar mais.
+A Starts recebeu o investimento do Pátria a em final, no final de 2000 2021, né?
+O Pátria investiu R5 milhões deais na starts.
+O que que muda depois do do Pátria?
+A gente pode experimentar mais coisas, a gente pode fazer mais experimentos para gentear, a gente aguenta mais.
+Dos experimentos que a gente fez, a gente acertou todos, não.
+Erramos vários, mas a gente tinha capacidade para absorver.
+Agora, o que que se espera de um gestor?
+Obviamente que ele tenha mais acerto do que erro, né?
+Que ele tenha fazendo coisas ligadas com o propósito da empresa, que ele tenha faça coisas que tenham um bom potencial, aborbilidade e que as perdas sejam proporcionais aos aos retornos.
+E aí tu não tá muito preocupado com a onde tu terror, onde tu acertou, tá preocupado com todo, com o saldo, com um gestor de renda variável.
+Ele não tá preocupado, acertou, né, o stop, o stock picking da ação, ele tá preocupado com portfólio.
+Então, quanto mais experimentos a gente faz, quanto mais braços de experimentos, quanto melhor a gente é nisso, menos preocupado a gente tá com erro ou com acerto isolado e mais preocupado a gente tá com todo.
+Porque no mundo que tem baixa previsibilidade, eu tenho que experimentar.
+Quanto mais experimentar, mais eu vou aprender.
+Quanto mais eu vou aprender, mais chances eu tenho de fazer dar certo.
+E aí que entra talvez o grande frame, é o famoso, né, do Steve Blank, de como é que se cria uma startup, né, onde a gente pega a a jornada de criação de um produto, um serviço a uma empresa e a gente fatia aquilo em etapas, onde a primeira etapa eu tô só preocupado em validar a minha hipótese, a segunda em criar o produto, a terceira em como é que aquele produto vira um bom negócio e a quarta em escalar, né?
+Quando a gente monta numa empresa um business plan, o que que a gente tá preocupado em desenhar tudo do início ao fim?
+Como é que vai ser?
+Como é que não vai ser?
+Define as hipótese e aí a gente levanta capital, levanta recurso para poder e colocar aquele processo.
+E quando a gente lança, a gente quer lançar perfeito, né?
+Uma empresa quando lança quer lançar perfeito.
+E lançar perfeito custa muito caro.
+Lançar perfeito eu tenho que, né, fazer 1000 coisas.
+E aí obviamente eu cois consigo fazer quantos?
+1 2 3 4 cinco experimentos.
+Porque eles são muito custos.
+O que que uma startup quer lançar o mais rápido possível, validar a hipótese dela o mais rápido possível?
+Porque quanto mais rápido eu valido, mais rápido eu experimento, mais rápido eu testo, mais rápido eu aprendo.
+E eu quero desenvolver com o mercado, não para o mercado.
+Até porque desenvolver um produto hoje definindo premissas que vão e e hipóteses que vão ter que vão ter que ser variadas daqui a 2 3 anos é um risco muito grande.
+Eu tava com MF, vou ter que tomar mais risco.
+Não, tomar risco é o que tu faz.
+tomar risco é lançar alguma coisa hoje, eh, colocar, né, aprovar um projeto hoje para lançar daqui a 2 anos, daqui a tr anos, num cenário que vai ser completamente diferente.
+Então, quanto mais rápido eu testar, mais rápido eu valido aquela minha hipótese.
+E depois, se ela tiver validada de uma forma positiva, eu tento transformar, transformar aquilo num produto.
+E se aquele produto funcionar, eu tento ver como é que eu fico um negócio.
+E se o negócio funcionar, como é que eu escalo, né?
+E ao fatear isso, de novo, eu reduzo o custo, eu reduzo o experimento, eu aumento a velocidade e por consequência numa dinâmica de transformação, evolução muito mais rápida.
+Isso, pessoal, a gente pode fazer no core da empresa, numa área da empresa, no setor da empresa, num processo da empresa, né?
+Como é que eu faço esses processos de validação cada vez mais rápido?
+Então, antes de validar, eu avalio, isso aqui é bom propósito, tem um bom potencial, tem uma cama da perda.
+Beleza?
+Então, eu rodo o experimento e rodo o experimento e rodo o experimento e eu vou rodar o experimento dentro dessa lógica.
+Então esse é o grande é o grande frame.
+E lembrando que da da das das formas de inovação que eu falei na aula anterior, eu posso fazer isso para um processo, posso fazer para um novo negócio, posso fazer para uma inovação disruptiva ou posso ainda fazer para um one shot.
+Fundamental também pra gente conseguir eh ter uma empresa empreendedora, uma empresa inovadora, é a gente conseguir ter dentro de casa esses três ingredientes.
+Isso aqui a gente aprendeu no Vale do Silício, a gente validou depois em outros lugares, que é um ecossistema empreendedor precisa de conhecimento, capital e rebeldia.
+Empresas normalmente têm muito conhecimento e muito capital.
+O que que elas fazem?
+Ganhos incrementais.
+Em alguns casos, tu tem startups que tem algum conhecimento com rebeldia, elas criam coisas legais, mas sem o capital que é acesso a mercado, placa, distribuição, não consegue ter tração.
+E tem alguns casos ainda de pessoas que têm rebeldia e capital sem conhecimento, que normalmente fazem bobagem, né?
+Então é é na combinação desses três ingredientes que a gente consegue criar um ecossistema empreendedor.
+E aí tem muito aqui do cargo, da hierarquia, da burocracia.
+empresas muito engessadas, empresas que o diretor, né, bota o crachá na mesa, diz aqui, quem manda sou eu.
+Elas não têm muito essa capacidade de fazer essa troca, porque a a a novidade, a inovação, ela ela ela ela se cria dentro disso.
+A tal da diversidade tão falada e importante é quando a gente consegue ter pessoas com conhecimentos diversos, habilidades diversas, mas a gente consegue colocar essas pessoas para trabalhar de forma conjunta, né, buscando ah criar, endereçar novas formas de fazer as coisas.
+Então aqui vale a, eu tenho certeza que essas empresas que vocês hoje tão tão tão tão noss conselhos, estão acompanhando, elas têm os ingredientes de rebeldia, de conhecimento de capital.
+Não necessariamente eles se combinam.
+E aí tá um grande desafio.
+Como é que a gente consegue criar esses esses ambientes diversos com liberdade de conversa, com liberdade de troca, de debate, de discussão para que esses ambientes juntos possam criar coisas diferentes com outras perspectivas.
+E aí tem um outro desafio aí ainda especialmente pra turma do do conselho, que é quanto mais experiências eu tenho em outros mercados, maior é a minha capacidade de enxergar oportunidades para criar novas sínteses eh de de de, né, de forma.
+Então, deixa eu entender o mundo.
+Eu tô no mundo de distribuição, deixa eu entender o mundo médico, deixa eu entender o mundo, o que que eu consigo aprender aqui de formas que funcionam nesses mercados para trazer pro meu.
+E isso ajuda, né, a gente ter diferentes perspectivas, a nos ajuda a enxergar outras oportunidades que podem funcionar dentro da nossa organização, né?
+Fundamental ainda pro para esperar, para espança de transformação e experimentação funcionar, é ter um time que tenha propósito, cumplicidade e confiança.
+Porque se eu não tiver dentro de casa um clima de confiança, um clima de complicidade, o meu time não experimenta.
+Ninguém aqui experimenta num lugar que não que não ã que não fica confortável, né?
+Se eu for lá experimentar alguma coisa e der errado, eh, eu, póra, me demitirem, reclamarem de mim, me crucificarem em praça pública, eu não vou tentar nada novo.
+E nas organizações, na grande maioria delas, os incentivos estão ligados a quem não toma risco, para quem não experimenta.
+E aqui tem uma pesquisa de Harv interessante que ela que ela fala o seguinte: uma pessoa numa organização que vai tentar algo novo, ele tem a seguinte perspectiva.
+Se eu testo algo novo e dá errado, eu fico, vou chamar de muito triste.
+E se der errado, eu posso ser demitido.
+Se eu faço alguma coisa novo e dá certo, eu vou eu vou ficar um pouco feliz, né?
+Então ele fica menos feliz do que triste e ele acho que ele pode ganhar um ou dois a três salários.
+Ele tem uma recompensa baixa em relação ao salário.
+Então se eu testo e dá certo, o meu meu a minha alegria é baixa, é OK.
+Com uma recompensa OK.
+Se eu testo e dá errado, a minha tristeza é alta e a minha meu risco é perder o emprego.
+Então uma relação de risco torno desfavorável.
+O cara não tem por fazer inovação.
+Ele não vai experimentar nada novo se ele não, se ele tiver esse nível de insegurança ou de recompensa.
+Então, se eu não tiver um time capaz de entender que eu tenho que ter um uma uma base da minha empresa focada na eficiência no processo, mas eu preciso ter uma base, um time, um pedaço da minha empresa na experimentação, no teste, na, e esses testes vão, alguns vão dar errado e se o time não apoiar aquilo, ele para de criar, ele para de inovar, por consequência ele reduz a capacidade dele se perpetuar no tempo.
+Então eu preciso ter esse equilíbrio, mas acima de tudo eu tenho que ter um time que suporte isso, porque se as pessoas não sentirem seguras para experimentar o novo, elas não vão experimentar.
+Por consequência, a empresa vai ficar presa no seu, nas suas dinâmicas anteriores.
+Então, com isso, eu encerro essa aula.
+Espero que você tenham gostado e na sequência nos vemos em mais um módulo.

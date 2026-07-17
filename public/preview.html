@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta name="facebook-domain-verification" content="qypo1yvsimsazzv5kdaqjo6u7r7il9" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Ambidestria Executiva — o programa por dentro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E1014; --char:#14161D; --char-2:#1A1D26; --navy:#1B2A4A; --navy-2:#22335B;
+    --amber:#E0A33E; --amber-soft:#caa55f; --amber-deep:#B5832B;
+    --paper:#F4F1EA; --mist:#C9CEDA; --mist-2:#8A91A3; --line:rgba(255,255,255,.10); --line-2:rgba(255,255,255,.06);
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,-apple-system,sans-serif;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--ink);color:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--amber);color:var(--ink)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  section{position:relative}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;letter-spacing:-.01em}
+  p{color:var(--mist)}
+  a{color:inherit}
+  .amber{color:var(--amber)}
+  .serif-em{font-family:var(--serif);font-style:italic;font-weight:400}
+  svg.ic{width:20px;height:20px;stroke:currentColor;stroke-width:1.6;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+  /* ---------- top bar ---------- */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+    padding:16px 28px;background:rgba(14,16,20,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-2)}
+  .brand{font-family:var(--serif);font-size:16px;letter-spacing:.02em;color:var(--paper)}
+  .brand b{font-weight:600}
+  .brand .lion{color:var(--amber);font-weight:600}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:15px;
+    padding:13px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:.2s;white-space:nowrap}
+  .btn-amber{background:var(--amber);color:#1a1406;box-shadow:0 8px 30px -10px rgba(224,163,62,.6)}
+  .btn-amber:hover{background:#ecb556;transform:translateY(-1px)}
+  .btn-ghost{background:rgba(255,255,255,.05);color:var(--paper);border-color:var(--line)}
+  .btn-ghost:hover{background:rgba(255,255,255,.1)}
+  .topbar .btn{padding:10px 18px;font-size:14px}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100svh;display:flex;align-items:center;position:relative;padding:120px 0 80px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg,rgba(10,11,15,.96) 0%,rgba(10,11,15,.82) 38%,rgba(12,16,28,.5) 70%,rgba(12,16,28,.35) 100%)}
+  .hero .wrap{position:relative;z-index:2;max-width:920px}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:12.5px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--amber);margin-bottom:26px}
+  .eyebrow::before{content:"";width:30px;height:1px;background:var(--amber);opacity:.7}
+  .hero h1{font-size:clamp(2.3rem,5.6vw,4.1rem);margin-bottom:26px;max-width:16ch}
+  .hero .sub{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--paper);opacity:.9;max-width:46ch;margin-bottom:22px;line-height:1.5}
+  .hero .support{font-size:1.02rem;color:var(--mist);max-width:50ch;margin-bottom:38px}
+  .hero .support b{color:var(--paper);font-weight:600}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+
+  /* ---------- section scaffolding ---------- */
+  .band{padding:96px 0}
+  .band-char{background:var(--char)}
+  .band-ink{background:var(--ink)}
+  .band-navy{background:linear-gradient(180deg,#0E1422,#0c1320)}
+  .label{display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:12px;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--amber-soft);margin-bottom:22px}
+  .label .dot{width:6px;height:6px;border-radius:50%;background:var(--amber)}
+  h2.sec{font-size:clamp(1.7rem,3.6vw,2.7rem);max-width:20ch;margin-bottom:20px}
+  .lead{font-size:1.12rem;color:var(--mist);max-width:62ch;line-height:1.62}
+  .lead b{color:var(--paper);font-weight:600}
+  .center{text-align:center;margin-left:auto;margin-right:auto}
+  .center h2.sec,.center .lead{margin-left:auto;margin-right:auto}
+
+  /* ---------- conflito ---------- */
+  .conflict-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:54px;align-items:center}
+  .conflict-copy p{font-size:1.08rem;margin-bottom:20px;color:var(--mist)}
+  .conflict-copy p b{color:var(--paper);font-weight:600}
+  .orphan{display:inline;color:var(--amber);font-weight:600;font-family:var(--serif);font-style:italic}
+  .conflict-img{border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 70px -30px rgba(0,0,0,.8)}
+  .conflict-img img{width:100%;display:block}
+  .tension-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:54px}
+  .tcard{background:var(--char-2);border:1px solid var(--line);border-radius:14px;padding:26px 24px}
+  .tcard .ich{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;
+    background:rgba(224,163,62,.12);color:var(--amber);margin-bottom:16px}
+  .tcard h4{font-family:var(--sans);font-weight:700;font-size:1rem;color:var(--paper);margin-bottom:7px}
+  .tcard p{font-size:.98rem;color:var(--mist-2)}
+
+  /* ---------- transformação ---------- */
+  .journey{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:18px}
+  .jcol{padding:34px 28px;border-right:1px solid var(--line)}
+  .jcol:last-child{border-right:none}
+  .jcol.depois{background:linear-gradient(180deg,rgba(224,163,62,.09),rgba(224,163,62,.02))}
+  .jhd{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:5px}
+  .jcol.antes .jhd{color:var(--mist-2)} .jcol.durante .jhd{color:var(--amber-soft)} .jcol.depois .jhd{color:var(--amber)}
+  .jsub{font-size:12.5px;color:var(--mist-2);margin-bottom:22px;min-height:30px}
+  .jrow{padding:16px 0;border-top:1px solid var(--line-2)}
+  .jrow:first-of-type{border-top:none}
+  .jrow .jk{display:block;font-family:var(--serif);font-style:italic;font-size:.92rem;color:var(--amber-soft);margin-bottom:6px}
+  .jrow p{font-size:.96rem;color:var(--mist);line-height:1.5}
+  .jcol.depois .jrow p{color:#EAE2D2}
+  .trans-note{margin-top:30px;font-size:1.12rem;color:var(--paper);max-width:60ch;font-family:var(--serif);line-height:1.5}
+  .trans-note b{color:var(--amber);font-weight:600;font-style:normal}
+
+  /* ---------- entregáveis ---------- */
+  .deliv-head{display:grid;grid-template-columns:1.3fr .9fr;gap:48px;align-items:end;margin-bottom:46px}
+  .deliv-img{border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+  .deliv-img img{width:100%;display:block}
+  .deliv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .dcard{position:relative;background:var(--char-2);border:1px solid var(--line);border-radius:14px;padding:24px 24px 24px 24px;transition:.2s}
+  .dcard:hover{border-color:rgba(224,163,62,.4);transform:translateY(-2px)}
+  .dcard.star{background:linear-gradient(160deg,rgba(224,163,62,.12),rgba(26,29,38,.5));border-color:rgba(224,163,62,.45)}
+  .dnum{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;
+    background:rgba(255,255,255,.06);color:var(--amber);font-family:var(--serif);font-weight:600;font-size:1.05rem;margin-bottom:15px}
+  .dcard.star .dnum{background:var(--amber);color:#1a1406}
+  .dtag{position:absolute;top:20px;right:18px;font-family:var(--sans);font-weight:700;font-size:9.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--amber);border:1px solid rgba(224,163,62,.4);padding:4px 9px;border-radius:999px}
+  .dcard h4{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--paper);margin-bottom:9px;max-width:22ch}
+  .dcard p{font-size:.95rem;color:var(--mist-2);line-height:1.5}
+  .deliv-foot{margin-top:30px;font-size:1.05rem;color:var(--paper);max-width:64ch}
+  .deliv-foot b{color:var(--amber);font-weight:600}
+
+  /* ---------- 5 eixos ---------- */
+  .eixos-wrap{position:relative;margin-top:34px}
+  .acc{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-bottom:14px;background:var(--char-2);transition:.2s}
+  .acc[open]{border-color:rgba(224,163,62,.38);background:var(--char)}
+  .acc.heart{border-left:3px solid var(--amber)}
+  .acc summary{list-style:none;cursor:pointer;padding:24px 26px;display:flex;align-items:center;gap:20px}
+  .acc summary::-webkit-details-marker{display:none}
+  .eixo-rom{font-family:var(--serif);font-size:1.5rem;color:var(--amber);font-weight:600;min-width:34px}
+  .eixo-meta{flex:1}
+  .eixo-pub{font-family:var(--serif);font-size:1.18rem;color:var(--paper);line-height:1.25;margin-bottom:4px}
+  .eixo-form{font-size:.86rem;color:var(--mist-2)}
+  .eixo-h{display:flex;align-items:center;gap:14px;flex:none}
+  .eixo-load{font-family:var(--sans);font-weight:700;font-size:.92rem;color:var(--amber-soft);background:rgba(224,163,62,.1);padding:5px 12px;border-radius:999px}
+  .chev{color:var(--mist-2);transition:.25s}
+  .acc[open] .chev{transform:rotate(180deg);color:var(--amber)}
+  .eixo-body{padding:4px 26px 28px}
+  .eixo-body .desc{font-size:.96rem;color:var(--mist-2);font-style:italic;font-family:var(--serif);margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--line-2)}
+  .disc{display:grid;grid-template-columns:minmax(220px,1fr) 1.5fr;gap:10px 26px;padding:15px 0;border-top:1px solid var(--line-2)}
+  .disc:first-child{border-top:none}
+  .disc .dt{font-family:var(--sans);font-weight:700;font-size:.98rem;color:var(--paper)}
+  .disc .dd{font-size:.95rem;color:var(--mist);line-height:1.5}
+  .eixos-foot{margin-top:26px;font-size:1.05rem;color:var(--paper);max-width:62ch;font-family:var(--serif);line-height:1.5}
+  .eixos-foot b{color:var(--amber);font-weight:600}
+  .total-h{display:inline-flex;align-items:baseline;gap:10px;margin-bottom:8px}
+  .total-h .n{font-family:var(--serif);font-size:2.6rem;color:var(--amber);font-weight:600;line-height:1}
+  .total-h .u{font-size:1rem;color:var(--mist-2)}
+
+  /* ---------- 3 diferenciais ---------- */
+  .diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+  .dfcard{background:var(--char-2);border:1px solid var(--line);border-radius:16px;padding:30px 28px;display:flex;flex-direction:column}
+  .dfcard.fosso{background:linear-gradient(165deg,rgba(27,42,74,.55),rgba(26,29,38,.4));border-color:rgba(224,163,62,.4)}
+  .df-step{font-family:var(--sans);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber-soft);margin-bottom:16px}
+  .df-ic{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:12px;background:rgba(224,163,62,.12);color:var(--amber);margin-bottom:18px}
+  .dfcard h4{font-family:var(--serif);font-size:1.32rem;color:var(--paper);margin-bottom:5px}
+  .df-when{font-size:.85rem;color:var(--mist-2);margin-bottom:16px;font-style:italic}
+  .dfcard p{font-size:.97rem;color:var(--mist);line-height:1.55}
+  .df-chain{margin-top:26px;padding:24px 28px;border:1px dashed var(--line);border-radius:14px;
+    font-family:var(--serif);font-size:1.12rem;color:var(--paper);line-height:1.5;text-align:center}
+  .df-chain b{color:var(--amber);font-weight:600}
+
+  /* ---------- como funciona ---------- */
+  .format{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+  .kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .kpi{background:var(--char-2);border:1px solid var(--line);border-radius:13px;padding:22px 22px}
+  .kpi .kn{font-family:var(--serif);font-size:1.5rem;color:var(--amber);font-weight:600;line-height:1.1;margin-bottom:5px}
+  .kpi .kd{font-size:.92rem;color:var(--mist-2);line-height:1.4}
+  .format-img{border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+  .format-img img{width:100%;display:block}
+  .format-note{margin-top:26px;grid-column:1/-1;font-size:1.05rem;color:var(--mist);max-width:70ch}
+  .format-note b{color:var(--paper);font-weight:600}
+
+  /* ---------- prova ---------- */
+  .proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:14px}
+  .pcard{background:rgba(20,22,29,.6);border:1px solid var(--line);border-radius:14px;padding:28px 26px}
+  .pcard .pn{font-family:var(--serif);font-size:1.1rem;color:var(--amber);margin-bottom:12px;display:flex;align-items:center;gap:11px}
+  .pcard h4{font-family:var(--sans);font-weight:700;font-size:1.05rem;color:var(--paper);margin-bottom:10px}
+  .pcard p{font-size:.96rem;color:var(--mist);line-height:1.55}
+  .pcard p b{color:var(--paper);font-weight:600}
+  .nofalse{margin-top:20px;display:flex;gap:16px;align-items:flex-start;background:rgba(27,42,74,.3);border:1px solid var(--line);border-radius:14px;padding:24px 26px}
+  .nofalse .ic-wrap{color:var(--amber);flex:none;margin-top:2px}
+  .nofalse p{font-size:1rem;color:var(--mist)}
+  .nofalse p b{color:var(--paper);font-weight:600}
+
+  /* ---------- pra quem é ---------- */
+  .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
+  .fitcol{border:1px solid var(--line);border-radius:16px;padding:30px 30px}
+  .fitcol.yes{background:linear-gradient(170deg,rgba(224,163,62,.08),transparent)}
+  .fitcol.no{background:rgba(20,22,29,.5)}
+  .fitcol .fh{display:flex;align-items:center;gap:11px;font-family:var(--serif);font-size:1.2rem;margin-bottom:20px}
+  .fitcol.yes .fh{color:var(--amber)} .fitcol.no .fh{color:var(--mist-2)}
+  .fititem{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--line-2);font-size:.99rem;color:var(--mist);line-height:1.5}
+  .fititem:first-of-type{border-top:none}
+  .fititem .fi{flex:none;margin-top:3px}
+  .fitcol.yes .fi{color:var(--amber)} .fitcol.no .fi{color:var(--mist-2)}
+  .fit-note{margin-top:24px;text-align:center;font-family:var(--serif);font-size:1.1rem;color:var(--paper)}
+
+  /* ---------- comparação ---------- */
+  .cmp-wrap{margin-top:20px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  table.cmp{width:100%;border-collapse:collapse}
+  table.cmp th,table.cmp td{padding:18px 20px;text-align:left;font-size:.96rem;border-bottom:1px solid var(--line-2);vertical-align:top}
+  table.cmp thead th{font-family:var(--sans);font-weight:600;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;color:var(--mist-2);background:rgba(0,0,0,.2)}
+  table.cmp thead th.us{color:var(--amber)}
+  table.cmp td:first-child{font-weight:600;color:var(--paper);font-size:.9rem}
+  table.cmp td.us{background:rgba(224,163,62,.07);color:var(--paper);font-weight:500}
+  table.cmp tr:last-child td{border-bottom:none}
+  .anchor{margin-top:28px;background:linear-gradient(160deg,rgba(27,42,74,.45),rgba(20,22,29,.4));border:1px solid var(--line);border-radius:16px;padding:32px 34px}
+  .anchor p{font-size:1.12rem;color:var(--paper);line-height:1.55;margin-bottom:14px;max-width:64ch}
+  .anchor p:last-child{margin-bottom:0}
+  .anchor b{color:var(--amber);font-weight:600}
+
+  /* ---------- CTA final ---------- */
+  .final{padding:110px 0;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--char),#0c1320)}
+  .final h2{font-size:clamp(1.9rem,4vw,3rem);max-width:22ch;margin:0 auto 22px}
+  .final .lead{margin:0 auto 38px;max-width:58ch}
+  .final .micro{margin-top:22px;font-size:.9rem;color:var(--mist-2)}
+
+  /* ---------- rodapé ---------- */
+  footer{background:var(--ink);border-top:1px solid var(--line-2);padding:54px 0 60px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+  .disc{font-size:.86rem;color:var(--mist-2);line-height:1.6;max-width:60ch}
+  .foot-brand{font-family:var(--serif);font-size:1.05rem;color:var(--paper)}
+  .foot-brand .lion{color:var(--amber)}
+  .foot-priv{font-size:.84rem;color:var(--mist-2);margin-top:14px}
+  .foot-priv a{color:var(--amber-soft);text-decoration:underline}
+
+  /* ---------- reveal ---------- */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    .conflict-grid,.deliv-head,.format,.foot-grid{grid-template-columns:1fr}
+    .tension-row,.diff-grid,.proof-grid,.deliv-grid,.fit-grid,.journey,.kpi-grid{grid-template-columns:1fr}
+    .journey .jcol{border-right:none;border-bottom:1px solid var(--line)}
+    .journey .jcol:last-child{border-bottom:none}
+    .topbar .brand{font-size:14px}
+    .band{padding:72px 0}
+    .disc{grid-template-columns:1fr;gap:4px}
+    .disc .dd{color:var(--mist-2)}
+    .deliv-head{gap:24px}
+    .anchor{padding:26px 24px}
+    table.cmp{font-size:.86rem}
+    table.cmp th,table.cmp td{padding:13px 12px}
+  }
+  @media(max-width:560px){
+    .wrap{padding:0 20px}
+    .topbar{padding:13px 18px}
+    .topbar .btn-ghost{display:none}
+    .hero{padding:104px 0 64px}
+    .eixo-form{display:none}
+    .acc summary{gap:14px;padding:20px 18px}
+    .cmp-wrap{border:0;border-radius:0;overflow:visible}
+    table.cmp,table.cmp tbody,table.cmp tr,table.cmp td{display:block;width:100%}
+    table.cmp thead{display:none}
+    table.cmp tr{margin-bottom:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--char-2)}
+    table.cmp td{padding:14px 16px;border-bottom:1px solid var(--line-2);font-size:.92rem}
+    table.cmp td:first-child{background:rgba(255,255,255,.035);color:var(--amber);font-family:var(--serif);font-size:1.05rem}
+    table.cmp td:not(:first-child){display:grid;grid-template-columns:minmax(92px,.75fr) minmax(0,1.25fr);gap:12px;align-items:start}
+    table.cmp td:not(:first-child)::before{font-family:var(--sans);font-size:.68rem;font-weight:700;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;color:var(--mist-2)}
+    table.cmp td:nth-child(2)::before{content:"Evento / palestra"}
+    table.cmp td:nth-child(3)::before{content:"Pós / MBA"}
+    table.cmp td:nth-child(4)::before{content:"Ambidestria Executiva";color:var(--amber)}
+    table.cmp td:last-child{border-bottom:0}
+  }
+</style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '893900467086472');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=893900467086472&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="brand"><b>Ambidestria</b> Executiva <span style="color:var(--mist-2)">·</span> <span class="lion">Uni Lions</span></div>
+  <a href="#proximo" class="btn btn-amber">Falar com o time</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="hero-bg"><img src="assets/hero.jpg" alt="Líder executivo diante da cidade ao entardecer"></div>
+  <div class="wrap">
+    <div class="eyebrow">Ambidestria Executiva · Presencial + online · São Paulo</div>
+    <h1>Você já entendeu que precisa de IA. Falta o plano que se defende no conselho.</h1>
+    <p class="sub">O programa que forma o <span class="serif-em" style="color:var(--amber)">líder ambidestro</span> — aquele que protege o que paga as contas hoje <b style="color:var(--paper)">e</b> constrói o futuro com IA, sem soltar nenhuma das duas mãos.</p>
+    <p class="support"><b>50 horas. 5 eixos. 8 entregáveis na sua mão.</b> Uma banca de conselho pra defender o seu plano. Aplicado à sua empresa, não em slide.</p>
+    <div class="cta-row">
+      <a href="#programa" class="btn btn-amber">Ver como funciona <svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      <a href="#proximo" class="btn btn-ghost">Falar com o time</a>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 2 · O CONFLITO ===== -->
+<section class="band band-char">
+  <div class="wrap">
+    <div class="conflict-grid">
+      <div class="conflict-copy rv">
+        <div class="label"><span class="dot"></span> O Conflito</div>
+        <h2 class="sec">Todo curso de IA te empurra pra uma escolha. Os melhores líderes recusam essa escolha.</h2>
+        <p>Toda semana a mesma tensão: ou você protege o que paga as contas hoje, ou aposta no futuro. Se segura demais o que funciona, vira o próximo a ficar pra trás. Se aposta tudo no novo, arrisca a margem que sustenta a empresa. E ninguém te ensinou a fazer as duas coisas ao mesmo tempo.</p>
+        <p>O líder que vai sair na frente não escolhe um lado. Ele faz os dois ao mesmo tempo, com a IA como veículo. É isso que chamamos de <b>ambidestria executiva</b>: a mão que defende o presente e a mão que constrói o futuro, trabalhando juntas.</p>
+        <p>E tem um motivo de tanta empresa não conseguir isso. A IA entrou na operação <span class="orphan">órfã</span>: sem dono, sem regra, sem plano. Cada área comprou a sua ferramenta, ninguém aprovou nada, ninguém mede o ganho. Por isso "já uso ChatGPT" não virou resultado. Usar a ferramenta solta é só <b>metade do jogo</b>. Este programa organiza a outra metade, e te devolve um plano que se sustenta na frente de qualquer conselho.</p>
+      </div>
+      <div class="conflict-img rv"><img src="assets/ambidestria.jpg" alt="Uma estrada que se bifurca em duas, uma iluminada rumo ao horizonte"></div>
+    </div>
+    <div class="tension-row">
+      <div class="tcard rv">
+        <div class="ich"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4>A voz do caixa</h4>
+        <p>"Não mexe no que dá dinheiro."</p>
+      </div>
+      <div class="tcard rv">
+        <div class="ich"><svg class="ic" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+        <h4>A voz do futuro</h4>
+        <p>"Ou um concorrente que nasceu digital te passa."</p>
+      </div>
+      <div class="tcard rv">
+        <div class="ich"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7l-2 5h6l-2-5"/><path d="M19 7l-2 5h6l-2-5"/><path d="M3 12c0 2 1.3 3 3 3s3-1 3-3"/><path d="M15 12c0 2 1.3 3 3 3s3-1 3-3"/></svg></div>
+        <h4>A voz que falta</h4>
+        <p>"E se desse pra fazer os dois sem largar nenhum?"</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3 · TRANSFORMAÇÃO ===== -->
+<section class="band band-ink">
+  <div class="wrap">
+    <div class="rv">
+      <div class="label"><span class="dot"></span> A Transformação</div>
+      <h2 class="sec">O que muda em você ao final.</h2>
+      <p class="lead">Não é "aprender IA". É sair <b>outro líder</b> — com a empresa organizada, o plano na mão e a defesa treinada.</p>
+    </div>
+    <div class="journey rv">
+      <div class="jcol antes">
+        <div class="jhd">Antes</div><div class="jsub">onde você está hoje</div>
+        <div class="jrow"><span class="jk">A cadeira do líder</span><p>Decide sozinho, num cenário sem mapa. Sente que as regras mudaram debaixo dos pés.</p></div>
+        <div class="jrow"><span class="jk">A IA na empresa</span><p>Órfã: cada um usa do seu jeito, sem regra, sem dono, sem ninguém medindo.</p></div>
+        <div class="jrow"><span class="jk">A relação com o futuro</span><p>"Será que meu negócio existe daqui a 3 anos?" Trava entre defender e apostar.</p></div>
+        <div class="jrow"><span class="jk">Diante do conselho</span><p>"O conselho vai me perguntar a estratégia de IA e eu não tenho resposta."</p></div>
+      </div>
+      <div class="jcol durante">
+        <div class="jhd">Durante</div><div class="jsub">as 8 semanas</div>
+        <div class="jrow"><span class="jk">A cadeira do líder</span><p>Nomeia a tensão que vive, e ganha um método pra ela. Tem com quem pensar nesse nível.</p></div>
+        <div class="jrow"><span class="jk">A IA na empresa</span><p>Monta o Escritório de IA da própria empresa: quem pode usar o quê, com qual dado, sob qual controle.</p></div>
+        <div class="jrow"><span class="jk">A relação com o futuro</span><p>Divide a IA entre os 3 Horizontes: quanto protege o caixa hoje, quanto constrói o amanhã.</p></div>
+        <div class="jrow"><span class="jk">Diante do conselho</span><p>Consolida tudo num Plano Diretor e treina a defesa dele numa banca.</p></div>
+      </div>
+      <div class="jcol depois">
+        <div class="jhd">Depois</div><div class="jsub">quem você vira</div>
+        <div class="jrow"><span class="jk">A cadeira do líder</span><p>Conduz a transformação com clareza, em vez de reagir por medo. É o líder que organizou a IA.</p></div>
+        <div class="jrow"><span class="jk">A IA na empresa</span><p>A IA tem dono, regra e plano. Vira resultado e proteção, não risco.</p></div>
+        <div class="jrow"><span class="jk">A relação com o futuro</span><p>Investe nos dois ao mesmo tempo, com critério. Recusou a escolha forçada.</p></div>
+        <div class="jrow"><span class="jk">Diante do conselho</span><p>Chega com um plano escrito que defende na frente de conselho, banco ou investidor.</p></div>
+      </div>
+    </div>
+    <p class="trans-note rv">A IA é o veículo. O destino é a <b>sua cadeira no comando da transformação</b>.</p>
+  </div>
+</section>
+
+<!-- ===== 4 · ENTREGÁVEIS ===== -->
+<section class="band band-char">
+  <div class="wrap">
+    <div class="deliv-head">
+      <div class="rv">
+        <div class="label"><span class="dot"></span> O que sobra na sua mão</div>
+        <h2 class="sec">Você não sai com um certificado. Sai com a transformação da sua empresa montada.</h2>
+        <p class="lead">Oito entregáveis encadeados — um por etapa — que se somam num <b>Plano Diretor de Transformação Organizacional</b>. Antes mesmo da primeira aula, você já sai com o primeiro na mão.</p>
+      </div>
+      <div class="deliv-img rv"><img src="assets/dossie.jpg" alt="Portfólio executivo encadernado sobre mesa de reunião sob luz âmbar"></div>
+    </div>
+    <div class="deliv-grid">
+      <div class="dcard rv"><span class="dtag">Antes da 1ª aula</span><div class="dnum">1</div><h4>Mapa de Maturidade Organizacional</h4><p>Onde sua empresa está, dos 5 níveis (do "ainda no improviso" ao "IA no centro da decisão"), área por área — com o que priorizar primeiro. <span style="opacity:.7">(Segundo o modelo de maturidade do Gartner.)</span></p></div>
+      <div class="dcard rv"><div class="dnum">2</div><h4>Mapa de Exposição e Diagnóstico de Gargalos</h4><p>Onde a sua operação perde dinheiro hoje e onde a IA entra primeiro. Com critério, não achismo.</p></div>
+      <div class="dcard rv"><div class="dnum">3</div><h4>Blueprint do Escritório de IA</h4><p>A política de uso + os gates de risco + a trilha de auditoria que o seu jurídico aprova e o conselho aceita. Quem pode usar o quê, com qual dado, sob qual regra.</p></div>
+      <div class="dcard rv"><div class="dnum">4</div><h4>Plano de Eficiência Operacional</h4><p>O backlog de automação priorizado por impacto × esforço, com os indicadores pra provar o ganho. O que automatizar primeiro, e como medir.</p></div>
+      <div class="dcard rv"><div class="dnum">5</div><h4>Stack de IA Curada</h4><p>O conjunto de ferramentas escolhido com critério pro seu negócio — não por hype — e o que cortar das assinaturas que se sobrepõem.</p></div>
+      <div class="dcard rv"><div class="dnum">6</div><h4>Portfólio dos 3 Horizontes (H1/H2/H3)</h4><p>A ambidestria virada decisão de orçamento: quanto da IA vai pra defender o caixa hoje (H1), quanto pra adjacências (H2), quanto pra aposta de futuro (H3).</p></div>
+      <div class="dcard rv"><div class="dnum">7</div><h4>Roadmap de Transformação</h4><p>A sequência de implementação com governança de projeto: quem faz o quê, em que ordem, com que marco — pra não virar mais um piloto abandonado.</p></div>
+      <div class="dcard star rv"><span class="dtag">O plano que você defende</span><div class="dnum"><svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px;stroke:#1a1406"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></div><h4>Plano Diretor de Transformação Organizacional</h4><p>O artefato-mãe. Consolida os sete num documento de decisão que você apresenta — e defende — na frente do conselho, do banco ou de um investidor.</p></div>
+    </div>
+    <p class="deliv-foot rv">Cada um destes é um documento real da <b>sua</b> empresa, construído por você durante o programa, com método e acompanhamento. Não é teoria pra guardar. É o plano que você implementa na segunda-feira.</p>
+  </div>
+</section>
+
+<!-- ===== 5 · O PROGRAMA POR DENTRO (5 EIXOS) ===== -->
+<section class="band band-navy" id="programa" style="background-image:linear-gradient(180deg,rgba(12,17,28,.93),rgba(12,19,32,.97)),url('assets/pilares.jpg');background-size:cover;background-position:center top;background-attachment:fixed">
+  <div class="wrap">
+    <div class="rv">
+      <div class="label"><span class="dot"></span> O programa por dentro</div>
+      <h2 class="sec">Cinco eixos. Quinze disciplinas. Cada uma resolve um problema que você reconhece.</h2>
+      <p class="lead">O mercado executivo pensa em problemas, não em ferramentas. Por isso a grade é organizada pela sua dor, não pelo catálogo de IA. A IA aparece dentro de cada problema, como o veículo que move o ponteiro.</p>
+    </div>
+
+    <div class="eixos-wrap">
+      <!-- EIXO I -->
+      <details class="acc heart rv" open>
+        <summary>
+          <span class="eixo-rom">I</span>
+          <span class="eixo-meta"><span class="eixo-pub">"Vou ficar pra trás? E o que fazer sobre isso, a partir da sua cadeira."</span><span class="eixo-form">Cenários, Tendências e o Futuro da Gestão · o eixo da identidade do líder e da urgência</span></span>
+          <span class="eixo-h"><span class="eixo-load">8h</span><svg class="ic chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="eixo-body">
+          <p class="desc">É por onde a comunicação abre — pela tensão pessoal de quem tem estrada e teme ficar pra trás, não pela tendência macro.</p>
+          <div class="disc"><span class="dt">1. A Nova Economia e o Futuro do Trabalho</span><span class="dd">Clareza sobre o que muda na sua cadeira de líder com a IA — e a leitura das megatendências (Future of Jobs, economia exponencial, novas competências) traduzida pra decisão, não pra slide.</span></div>
+          <div class="disc"><span class="dt">2. Mentalidade de Transformação</span><span class="dd">O mapa dos "anticorpos" da sua empresa (a resistência interna) e o método pra conduzir mudança sem que o time sabote em silêncio.</span></div>
+        </div>
+      </details>
+      <!-- EIXO II -->
+      <details class="acc rv">
+        <summary>
+          <span class="eixo-rom">II</span>
+          <span class="eixo-meta"><span class="eixo-pub">"Arriscar com IA sem expor a empresa."</span><span class="eixo-form">Governança e Estratégia para Organizações Inteligentes · a rede de segurança que dá coragem pra arriscar</span></span>
+          <span class="eixo-h"><span class="eixo-load">10h</span><svg class="ic chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="eixo-body">
+          <p class="desc">A governança entra aqui como o que dá coragem pra arriscar, nunca como a manchete.</p>
+          <div class="disc"><span class="dt">3. Governança Corporativa na Era Digital</span><span class="dd">A resposta organizada pra quando o conselho perguntar "qual é nossa estratégia?" — ancorada em OCDE, IBGC, ESG e gestão de risco.</span></div>
+          <div class="disc"><span class="dt">4. Governança da Inteligência Artificial</span><span class="dd">A leitura prática de LGPD, compliance algorítmico e os frameworks internacionais (NIST AI RMF, ISO/IEC 42001, OECD) — pra você saber o que pode e o que não pode jogar numa IA.</span></div>
+          <div class="disc"><span class="dt">5. Escritório de IA e Centros de Excelência</span><span class="dd">O começo do seu Escritório de IA: estrutura, papéis, KPIs, políticas e comitês. O fim da "IA usada às escondidas" (Shadow AI).</span></div>
+        </div>
+      </details>
+      <!-- EIXO III -->
+      <details class="acc rv">
+        <summary>
+          <span class="eixo-rom">III</span>
+          <span class="eixo-meta"><span class="eixo-pub">"Onde a IA vira margem, não slide."</span><span class="eixo-form">Eficiência Operacional e Automação Inteligente · o ganho tangível de curto prazo, a mão que defende</span></span>
+          <span class="eixo-h"><span class="eixo-load">10h</span><svg class="ic chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="eixo-body">
+          <p class="desc">A prova de que o método protege o caixa, e não só fala do futuro.</p>
+          <div class="disc"><span class="dt">6. Mapeamento e Redesenho de Processos</span><span class="dd">O método pra achar o gargalo onde a IA realmente corta custo (BPM, Lean, Six Sigma, jornada do cliente) — em vez de adivinhar.</span></div>
+          <div class="disc"><span class="dt">7. Automação e Eficiência com IA</span><span class="dd">O mapa dos quick wins: onde tirar gente cara do trabalho operacional, com automação de fluxos e integração de sistemas.</span></div>
+          <div class="disc"><span class="dt">8. Métricas e Performance</span><span class="dd">Os indicadores que provam o ganho real da IA (OKRs, KPIs, dashboards) — fim do "é tudo achismo".</span></div>
+        </div>
+      </details>
+      <!-- EIXO IV -->
+      <details class="acc rv">
+        <summary>
+          <span class="eixo-rom">IV</span>
+          <span class="eixo-meta"><span class="eixo-pub">"As ferramentas que movem o ponteiro do seu negócio."</span><span class="eixo-form">Inteligência Artificial Aplicada à Gestão · o motor — entrega o que os outros eixos prometem</span></span>
+          <span class="eixo-h"><span class="eixo-load">12h</span><svg class="ic chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="eixo-body">
+          <p class="desc">O eixo mais pesado em horas porque é onde a IA vira ferramenta prática — mas em comunicação ele nunca lidera.</p>
+          <div class="disc"><span class="dt">9. Fundamentos da IA para Decisores</span><span class="dd">O suficiente pra liderar a IA sem virar técnico: generativa, preditiva, autônoma, agentes — no nível da decisão, não do código.</span></div>
+          <div class="disc"><span class="dt">10. Curadoria e Ferramentas para Executivos</span><span class="dd">O critério pra escolher e combinar ferramentas pelo que move o ponteiro — não um catálogo a decorar. Pra parar de pagar duas vezes pela mesma coisa.</span></div>
+          <div class="disc"><span class="dt">11. Produtividade Executiva com IA</span><span class="dd">A IA aplicada à sua rotina de decisão: reuniões, planejamento, estratégia, pesquisa — pra sair dos "10% que você usa hoje".</span></div>
+          <div class="disc"><span class="dt">12. Marketing e Growth com IA</span><span class="dd">Onde a IA dá retorno em marketing e vendas (CRM inteligente, funis, captação) — separando o que faz diferença do que é enfeite.</span></div>
+        </div>
+      </details>
+      <!-- EIXO V -->
+      <details class="acc heart rv">
+        <summary>
+          <span class="eixo-rom">V</span>
+          <span class="eixo-meta"><span class="eixo-pub">"Sair com o plano que você defende no conselho."</span><span class="eixo-form">Liderança e Implementação · fecha o ciclo e entrega o plano</span></span>
+          <span class="eixo-h"><span class="eixo-load">10h</span><svg class="ic chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg></span>
+        </summary>
+        <div class="eixo-body">
+          <p class="desc">Carrega a identidade do líder e a defesa. Junto com o Eixo I, lidera a comunicação.</p>
+          <div class="disc"><span class="dt">13. Liderança Ambidestra</span><span class="dd">A lente pra enxergar toda decisão como uma escolha entre defender e construir — e o par de pensamento que falta a quem decide sozinho no topo.</span></div>
+          <div class="disc"><span class="dt">14. Gestão da Transformação</span><span class="dd">O roadmap com governança de projeto (Kotter, comunicação da mudança) pra que a IA pegue de verdade, em vez de virar mais um treinamento esquecido.</span></div>
+          <div class="disc"><span class="dt">15. Projeto Aplicado e Conselho de Transformação</span><span class="dd">O seu Plano Diretor consolidado — e a defesa dele numa banca de conselho. Você sai tendo treinado a defesa sob pressão antes de fazê-la na sua empresa.</span></div>
+        </div>
+      </details>
+    </div>
+
+    <p class="eixos-foot rv">Repare onde está o peso: os eixos que <b>abrem e fecham</b> o programa são sobre você (a sua cadeira) e sobre o plano (o que você defende). O eixo das ferramentas é o mais pesado em horas — porque é o motor — mas ele serve aos outros, nunca o contrário.</p>
+  </div>
+</section>
+
+<!-- ===== 6 · OS 3 DIFERENCIAIS ===== -->
+<section class="band band-ink">
+  <div class="wrap">
+    <div class="center rv" style="max-width:760px">
+      <div class="label" style="justify-content:center"><span class="dot"></span> O que nenhum curso gravado tem</div>
+      <h2 class="sec center">Começa com um diagnóstico. Sustenta com acompanhamento. Termina com uma defesa de conselho.</h2>
+    </div>
+    <div class="diff-grid">
+      <div class="dfcard rv">
+        <div class="df-step">Diferencial 1 · antes do programa</div>
+        <div class="df-ic"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px"><path d="M3 3v18h18"/><path d="M7 14l3-3 3 3 5-6"/></svg></div>
+        <h4>Assessment Executivo</h4>
+        <div class="df-when">→ Mapa de Maturidade</div>
+        <p>Antes da primeira aula, você responde a um diagnóstico de 5 eixos (governança, risco/LGPD, eficiência, stack e pessoas) e recebe o Mapa de Maturidade da sua empresa. Você entra sabendo onde está e o que priorizar — e já sai da inscrição com algo na mão. É online, no seu tempo, sem tomar a sua agenda.</p>
+      </div>
+      <div class="dfcard rv">
+        <div class="df-step">Diferencial 2 · durante o programa</div>
+        <div class="df-ic"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+        <h4>Mentoria Estratégica</h4>
+        <div class="df-when">→ um encontro por eixo</div>
+        <p>Um encontro de mentoria por eixo, com fundadores e operadores que já implementaram IA na própria empresa. Você leva o desafio real do seu negócio e recebe direção de quem já passou por isso. Não é aula gravada: é acompanhamento o programa inteiro. A troca das horas que você já perde travado sozinho por horas de direção.</p>
+      </div>
+      <div class="dfcard fosso rv">
+        <div class="df-step" style="color:var(--amber)">Diferencial 3 · no encerramento</div>
+        <div class="df-ic"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px"><path d="M12 2l3 7h7l-5.5 4 2 7L12 17l-6.5 4 2-7L2 9h7z"/></svg></div>
+        <h4>Conselho de Transformação</h4>
+        <div class="df-when">→ banca estilo board</div>
+        <p>No final, você apresenta seu Plano Diretor para uma banca de empresários, conselheiros e especialistas — uma simulação de board meeting. Não é uma prova pública: é um ensaio fechado, sob total sigilo, onde você descobre os furos do seu plano <b style="color:var(--paper)">antes</b> que o seu conselho de verdade descubra. Uma banca que te fortalece, não que te expõe.</p>
+      </div>
+    </div>
+    <div class="df-chain rv">O Assessment abre <span style="color:var(--mist-2)">·</span> a Mentoria sustenta <span style="color:var(--mist-2)">·</span> o Conselho fecha. <b>Início, meio e fim de uma transformação</b> — não de um curso.</div>
+  </div>
+</section>
+
+<!-- ===== 7 · COMO FUNCIONA ===== -->
+<section class="band band-char">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:40px">
+      <div class="label"><span class="dot"></span> Como funciona</div>
+      <h2 class="sec">Feito pra caber na agenda de quem decide — e pesado o suficiente pra valer a cadeira.</h2>
+    </div>
+    <div class="format">
+      <div class="kpi-grid rv">
+        <div class="kpi"><div class="kn">50 horas</div><div class="kd">de programa, ao longo de 8 semanas</div></div>
+        <div class="kpi"><div class="kn">4 sábados</div><div class="kd">presenciais em São Paulo — sem te tirar da operação na semana</div></div>
+        <div class="kpi"><div class="kn">Online</div><div class="kd">entre os sábados: as disciplinas que não exigem presença, no seu ritmo</div></div>
+        <div class="kpi"><div class="kn">5 eixos · 15</div><div class="kd">disciplinas organizadas por problema, não por ferramenta</div></div>
+        <div class="kpi"><div class="kn">8 entregáveis</div><div class="kd">um por etapa, somando no Plano Diretor</div></div>
+        <div class="kpi"><div class="kn">Turma presencial</div><div class="kd">a sala de decisores — o networking que resolve a solidão do topo</div></div>
+      </div>
+      <div class="format-img rv"><img src="assets/sala-sp.jpg" alt="Sala de workshop executivo com vista de São Paulo ao entardecer"></div>
+      <p class="format-note rv">Os sábados em São Paulo são o campo de treino: é onde você monta o seu Escritório de IA e defende o seu plano, ao lado de outros decisores. O online entre eles segura o ritmo sem te tirar da operação. <b>No fim, o programa toma menos do seu tempo do que continuar tentando resolver isso na raça, sozinho.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 8 · POR QUE É SÉRIO ===== -->
+<section class="band band-ink" style="background-image:linear-gradient(180deg,rgba(14,16,20,.92),rgba(14,16,20,.97)),url('assets/frameworks.jpg');background-size:cover;background-position:center">
+  <div class="wrap">
+    <div class="rv">
+      <div class="label"><span class="dot"></span> Por que isto é sério</div>
+      <h2 class="sec">Não é opinião. É o que as instituições sérias usam — aplicado à sua empresa.</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="pcard rv">
+        <div class="pn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> 01</div>
+        <h4>O método tem lastro.</h4>
+        <p>Construído sobre os frameworks que as instituições sérias usam: <b>NIST AI RMF, ISO/IEC 42001, OECD AI Principles, IBGC, Gartner</b> e os <b>3 Horizontes</b> da McKinsey. Não é achismo de palco. É o que está nas normas — traduzido pra decisão de quem comanda.</p>
+      </div>
+      <div class="pcard rv">
+        <div class="pn"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> 02</div>
+        <h4>Quem orienta já fez.</h4>
+        <p>A mentoria é conduzida por <b>fundadores e operadores que já implementaram IA na própria empresa</b> — não por quem só leu sobre. Você aprende com quem já errou e acertou na prática, não com quem está testando a teoria em você.</p>
+      </div>
+      <div class="pcard rv">
+        <div class="pn"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> 03</div>
+        <h4>A ideia tem 30 anos de estudo.</h4>
+        <p>A ambidestria — defender o que funciona enquanto se constrói o novo — é estudada pelos maiores nomes da gestão há mais de três décadas (March, Tushman). Não é modinha de IA. É um princípio sério de liderança, agora aplicado ao momento mais urgente da sua carreira.</p>
+      </div>
+    </div>
+    <div class="nofalse rv">
+      <div class="ic-wrap"><svg class="ic" viewBox="0 0 24 24" style="width:24px;height:24px"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></div>
+      <p><b>O que este programa NÃO faz:</b> não promete que a IA resolve tudo sozinha. Não vende ferramenta mágica. Não te transforma em programador. Ele te entrega um plano, um método e uma estrutura — e a implementação depende de você e do contexto da sua empresa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 9 · PRA QUEM É ===== -->
+<section class="band band-char">
+  <div class="wrap">
+    <div class="center rv" style="max-width:680px">
+      <div class="label" style="justify-content:center"><span class="dot"></span> É pra você?</div>
+      <h2 class="sec center">Este programa não é pra todo mundo. E tudo bem.</h2>
+    </div>
+    <div class="fit-grid">
+      <div class="fitcol yes rv">
+        <div class="fh"><svg class="ic" viewBox="0 0 24 24" style="width:22px;height:22px"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg> É pra você se...</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Você decide o rumo de uma empresa que já cresceu e quer organizar a IA com método.</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Você sente a tensão entre proteger a margem e apostar no futuro, e quer um plano pra ela.</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Você vai aplicar na sua própria empresa e sair com um plano que defende no conselho.</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Você quer estar numa sala de decisores no mesmo nível, não numa plateia.</div>
+      </div>
+      <div class="fitcol no rv">
+        <div class="fh"><svg class="ic" viewBox="0 0 24 24" style="width:22px;height:22px"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6"/></svg> NÃO é pra você se...</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg> Você quer só aprender a usar o ChatGPT — pra isso tem YouTube de graça, e funciona.</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg> Você quer um certificado pra pendurar na parede.</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg> Você não pretende montar nada — aí provavelmente vai achar caro, e está certo.</div>
+        <div class="fititem"><svg class="ic fi" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg> Você procura o curso mais barato do mercado.</div>
+      </div>
+    </div>
+    <p class="fit-note rv">Se você se viu na coluna da esquerda, a conversa faz sentido. Se na da direita, fomos honestos a tempo.</p>
+  </div>
+</section>
+
+<!-- ===== 10 · COMPARAÇÃO ===== -->
+<section class="band band-ink" id="comparacao">
+  <div class="wrap">
+    <div class="rv">
+      <div class="label"><span class="dot"></span> Compare com o que faz sentido</div>
+      <h2 class="sec">Não compare com um curso. Compare com um MBA, uma consultoria, um programa de conselho.</h2>
+    </div>
+    <div class="cmp-wrap rv">
+      <table class="cmp">
+        <thead><tr><th></th><th>Evento de 1 dia / palestra</th><th>Pós / MBA executivo</th><th class="us">Ambidestria Executiva</th></tr></thead>
+        <tbody>
+          <tr><td>Carga</td><td>6 a 8 horas</td><td>12+ meses</td><td class="us">50 horas, 8 semanas</td></tr>
+          <tr><td>O que você leva</td><td>Anotações e inspiração</td><td>Diploma e teoria</td><td class="us">8 entregáveis + o Plano Diretor da sua empresa</td></tr>
+          <tr><td>Acompanhamento</td><td>Nenhum</td><td>Turma grande</td><td class="us">Mentoria por eixo + banca de conselho</td></tr>
+          <tr><td>Aplicado à sua empresa</td><td>Não</td><td>Raramente</td><td class="us">Sim, do diagnóstico ao plano</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="anchor rv">
+      <p>Pelo mesmo investimento de <b>um dia de palestra no Insper (R$ 5.990)</b>, você tem 8 semanas, 5 eixos, mentoria por etapa, um diagnóstico de maturidade e a defesa do seu plano numa banca de conselho. 50 horas contra 8 horas, pelo mesmo dinheiro.</p>
+      <p>E você não precisa de uma pós de 12 meses e R$ 36 mil pra sair com o plano de transformação da sua empresa montado e defendido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 11 · PRÓXIMO PASSO ===== -->
+<section class="final" id="proximo">
+  <div class="wrap rv">
+    <div class="label" style="justify-content:center"><span class="dot"></span> O próximo passo</div>
+    <h2>Você já entendeu que precisa fazer as duas coisas ao mesmo tempo. O próximo passo é montar o plano.</h2>
+    <p class="lead">As vagas da próxima turma em São Paulo são limitadas — é uma sala de decisores, não uma plateia. Se o que você viu aqui faz sentido pra sua empresa, o passo é simples: a gente fecha os detalhes, confirma sua vaga e você já começa pelo Assessment, antes mesmo da primeira aula.</p>
+    <div class="cta-row" style="justify-content:center">
+      <a href="#" class="btn btn-amber" style="font-size:16px;padding:16px 30px">Confirmar minha vaga <svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#" class="btn btn-ghost" style="font-size:16px;padding:16px 26px">Tirar uma última dúvida</a>
+    </div>
+    <p class="micro">O Assessment é o primeiro passo — e já entrega valor antes da aula começar.</p>
+  </div>
+</section>
+
+<!-- ===== RODAPÉ ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="disc"><b style="color:var(--mist)">Resultados dependem da implementação e do contexto de cada empresa.</b> Este programa entrega método, estrutura e acompanhamento; nenhuma peça promete ganho financeiro, corte de custo percentual ou retorno garantido.</p>
+      </div>
+      <div>
+        <p class="foot-brand">Ambidestria Executiva <span style="color:var(--mist-2)">· um programa</span> <span class="lion">Uni Lions</span></p>
+        <p class="foot-priv">Os dados do Assessment são tratados conforme a <a href="#">Política de Privacidade</a> — finalidade: diagnóstico e qualificação. Base legal documentada, sem dado sensível.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  // accordion: open one, close siblings (optional single-open behavior kept loose — allow multiple)
+</script>
+</body>
+</html>

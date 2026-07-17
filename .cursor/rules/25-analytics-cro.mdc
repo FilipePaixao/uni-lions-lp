@@ -1,0 +1,20 @@
+---
+description: Conversion analytics and experimentation governance
+alwaysApply: false
+globs:
+  - "src/**/*.{ts,tsx,js,jsx}"
+  - "src/**/*analytics*"
+  - "src/**/*tracking*"
+---
+
+Read `knowledge/engineering/analytics-events.md`.
+
+analytics-cro:
+- Optimize for qualified application starts and completed applications, not raw clicks.
+- Every CTA event must include a stable location identifier.
+- Do not include sensitive form content, free text, company confidential data, CPF, phone, or email in analytics payloads.
+- Avoid duplicated events caused by rerenders or multiple listeners.
+- Track diagnostic and application funnels separately.
+- Preserve consent and privacy requirements.
+- Experiments must define hypothesis, primary metric, guardrail metric, and stop condition.
+- Never use dark patterns or deceptive urgency.

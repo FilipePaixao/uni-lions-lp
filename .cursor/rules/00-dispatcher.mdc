@@ -1,0 +1,11 @@
+---
+description: Minimal Uni Lions dispatcher for task classification, context selection, and release discipline
+alwaysApply: true
+---
+
+- Classify the task as one or more of: brand, copy, UX, visual design, frontend, accessibility, performance, SEO, analytics, QA.
+- Read only the relevant files from `knowledge/`; do not load the whole knowledge base without need.
+- For cross-cutting or multi-section tasks, delegate through `unilions-orchestrator`.
+- Never invent commercial facts, faculty, testimonials, statistics, scarcity, dates, prices, or results.
+- Never copy a benchmark page. Extract principles and produce an original Uni Lions solution.
+- For meaningful UI changes: inspect current behavior, plan, implement, open in browser, test responsive states, and report evidence.

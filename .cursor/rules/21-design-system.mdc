@@ -1,0 +1,21 @@
+---
+description: Design-token and component-system rules for Uni Lions
+alwaysApply: false
+globs:
+  - "src/**/*.{css,scss,ts,tsx}"
+---
+
+Read `knowledge/brand/visual-language.md`.
+
+design-system:
+- Define semantic tokens for color, typography, spacing, radius, shadow, container, and motion.
+- Do not scatter raw brand hex values across components.
+- Use a restrained radius system; avoid making every surface a floating card.
+- Alternate light and dark sections intentionally.
+- Keep body line length near 60–75 characters where practical.
+- Maintain consistent section rhythm and container alignment.
+- Primary CTA must have one canonical visual treatment.
+- Secondary CTA must remain clearly secondary.
+- Use border, tone, whitespace, and typography before adding shadows.
+- Animation must clarify hierarchy or state, never decorate without purpose.
+- Respect `prefers-reduced-motion`.

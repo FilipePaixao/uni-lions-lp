@@ -1,0 +1,21 @@
+---
+description: WCAG-oriented accessibility requirements for public landing page changes
+alwaysApply: false
+globs:
+  - "src/**/*.{ts,tsx,js,jsx,css,scss,html}"
+---
+
+accessibility:
+- Target WCAG 2.2 AA for public journeys.
+- Use one meaningful `h1`; preserve logical heading order.
+- Use native controls and landmarks before ARIA.
+- Every interactive element must work with keyboard only.
+- Focus must be visible and must not be hidden by sticky UI.
+- Links and buttons require descriptive accessible names.
+- Images require meaningful alt text or empty alt when decorative.
+- Form fields require persistent labels, instructions, error association, and recovery guidance.
+- Do not encode meaning by color alone.
+- Validate text contrast and non-text contrast.
+- Touch targets must be comfortable on mobile.
+- Avoid autoplay, flashing, and motion that cannot be reduced.
+- Test at 200% zoom and with narrow viewports.
