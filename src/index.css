@@ -1,35 +1,5 @@
 @import "tailwindcss";
 
-@theme {
-  --font-serif: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-sans: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
-  --color-bg: #0A1628;
-  --color-s1: #0E1C32;
-  --color-s2: #12243C;
-  --color-s3: #173052;
-  --color-t-hi: #FFFFFF;
-  --color-t: #D4DAE6;
-  --color-t-mid: #9AA6BA;
-  --color-t-low: #6B7790;
-  --color-t-faint: #3D4658;
-  --color-ac: #3D8BFF;
-  --color-ac2: #3D8BFF;
-  --color-cta: #0066FF;
-  --color-cta2: #0052CC;
-  --color-cta-ink: #FFFFFF;
-  --color-pos: #59D69B;
-  --color-neg: #E06A56;
-  --color-ink: #0A1628;
-  --color-paper: #E8ECF4;
-  --color-mist: #D4DAE6;
-  --color-mist-2: #8A93A3;
-  --color-ok: #3FBF8F;
-  --color-ac-soft: #5B9FFF;
-  --ease-ul: cubic-bezier(0.22, 0.7, 0.28, 1);
-  --max-w-content: 1060px;
-}
-
 /* ═══════════ AMBIDESTRIA EXECUTIVA · Uni Lions ═══════════
    Navy + azul elétrico (peça Ambidestria). Montserrat display/corpo + JetBrains Mono.
    Único acento: azul #0066FF. Logo: /assets/unilions-logo-white.png */
@@ -185,7 +155,6 @@ main{display:block}
 .deck{font-size:clamp(18px,2vw,21px);color:var(--t-hi);font-weight:500;max-width:50ch;line-height:1.45;margin-bottom:6px}
 .body p{margin-bottom:18px;max-width:62ch}
 .body p.wide{max-width:70ch}
-.trans{color:var(--t-mid);font-style:italic;font-family:var(--serif);font-size:clamp(17px,2vw,20px);max-width:56ch}
 .big-serif{font-family:var(--serif);font-size:clamp(21px,3vw,30px);font-weight:700;color:var(--t-hi);max-width:none;line-height:1.2}
 
 /* HERO */
@@ -379,11 +348,6 @@ main{display:block}
 .callout .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cta);margin-bottom:11px;display:block}
 .callout.big p{font-family:var(--serif);font-size:clamp(19px,2.4vw,25px);color:var(--t-hi);line-height:1.35}
 
-/* bandas de imagem (dão respiro e enriquecem sem texto) */
-.band{position:relative;border-radius:var(--rd-lg);overflow:hidden;border:1px solid var(--l1);height:clamp(190px,28vh,320px);margin:6px 0 30px}
-.band img{width:100%;height:100%;object-fit:cover}
-.band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,22,40,.72),rgba(10,22,40,.2) 60%,rgba(10,22,40,.4))}
-.band .cap{position:absolute;left:26px;bottom:20px;z-index:1;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--cta)}
 /* bloco de prestígio (foto real da sala/ecossistema — asset retrato 819×1024) */
 #sala.sec{padding-top:clamp(16px,2.5vw,28px)}
 .prestige{position:relative;width:100%;border-radius:var(--rd-lg);overflow:hidden;border:1px solid var(--l2);height:auto;aspect-ratio:16/10;margin:0 0 28px}
@@ -402,8 +366,7 @@ main{display:block}
 
 .grid{display:grid;gap:20px}
 .g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-@media(max-width:760px){.g2,.g3{grid-template-columns:1fr}}
+@media(max-width:760px){.g2{grid-template-columns:1fr}}
 
 .card{border:1px solid var(--l1);border-radius:var(--rd);background:var(--s1);padding:26px 28px;transition:.3s var(--ease)}
 .card:hover{border-color:var(--l2);background:var(--s2);transform:translateY(-3px)}
@@ -472,42 +435,6 @@ main{display:block}
 .q-card .qn b{font-family:var(--serif);font-size:26px;color:var(--t-faint);font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
 .q-card h3{font-size:19px;margin-bottom:10px;line-height:1.2}
 .q-card p{font-size:14.5px;color:var(--t-mid);margin:0}
-.filter{border:1px solid rgba(224,106,86,.32);border-radius:var(--rd-lg);background:linear-gradient(180deg,rgba(224,106,86,.08),rgba(224,106,86,.02));padding:30px 34px;margin:26px 0;max-width:74ch}
-.filter .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--neg);margin-bottom:12px;display:flex;align-items:center;gap:9px}
-.filter .lbl svg{width:16px;height:16px;stroke:var(--neg);fill:none;stroke-width:1.8}
-.filter .big{font-family:var(--serif);font-size:clamp(19px,2.5vw,25px);color:var(--t-hi);line-height:1.3;margin-bottom:14px;font-weight:500}
-.filter p{font-size:15px;color:var(--t-mid);margin:0;max-width:none}
-
-/* transformação */
-.tf{border:1px solid var(--l1);border-radius:var(--rd);background:var(--s1);padding:28px 30px;margin-bottom:16px;transition:.3s var(--ease)}
-.tf:hover{border-color:var(--l2);background:var(--s2)}
-.tf-head{display:flex;align-items:center;gap:15px;margin-bottom:18px}
-.tf-head .icon-b{margin:0;flex:none}
-.tf-head h3{font-size:21px;margin:0;line-height:1.15}
-.tf-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media(max-width:640px){.tf-cols{grid-template-columns:1fr;gap:14px}}
-.tf-cols .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
-.tf-cols .entra .k{color:var(--t-faint)}
-.tf-cols .sai .k{color:var(--cta)}
-.tf-cols p{font-size:14.5px;color:var(--t-mid);margin:0;line-height:1.5}
-.tf-cols .sai p{color:var(--t)}
-
-/* método */
-.layers{display:grid;gap:12px;margin:30px 0}
-.layer{border:1px solid var(--l1);border-radius:var(--rd);background:var(--s1);padding:26px 30px}
-.layer.top{border-color:rgba(0,102,255,.24);background:linear-gradient(180deg,rgba(0,102,255,.05),var(--s1))}
-.layer.bottom{border-color:rgba(61,139,255,.24)}
-.layer .lh{display:flex;align-items:baseline;gap:13px;margin-bottom:10px;flex-wrap:wrap}
-.layer .ln{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--t-low)}
-.layer h3{font-size:20px;margin:0;line-height:1.2}
-.layer>p{font-size:15px;color:var(--t-mid);margin:0;max-width:68ch}
-.quad{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
-@media(max-width:640px){.quad{grid-template-columns:1fr}}
-.quad div{border:1px solid var(--l1);border-radius:11px;padding:13px 16px;background:rgba(255,255,255,.015)}
-.quad b{color:var(--cta);font-family:var(--sans);font-weight:600;font-size:14.5px;display:block;margin-bottom:2px}
-.quad span{font-size:13.5px;color:var(--t-mid)}
-.chev{display:flex;justify-content:center;color:var(--t-faint);margin:-2px 0}
-.chev svg{width:20px;height:20px;stroke:var(--t-faint);fill:none;stroke-width:1.6}
 
 /* diferenciais */
 .diff{border:1px solid var(--l1);border-radius:var(--rd);background:var(--s1);padding:30px 32px;margin-bottom:14px;transition:.3s var(--ease)}
@@ -620,9 +547,6 @@ td .price{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--ct
 
 .cta-inline{margin:32px 0 0}
 .cta-note{font-family:var(--mono);font-size:12.5px;color:var(--t-low);margin-top:15px;letter-spacing:.01em;line-height:1.6;max-width:58ch}
-.midcta{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:600;font-size:16px;color:var(--cta);text-decoration:none;border-bottom:1px solid rgba(0,102,255,.3);padding-bottom:4px;transition:.25s var(--ease)}
-.midcta svg{width:17px;height:17px;stroke:var(--cta);fill:none;stroke-width:2;transition:transform .3s var(--ease)}
-.midcta:hover{border-color:var(--cta)}.midcta:hover svg{transform:translateX(4px)}
 
 .close-cta{text-align:center;border:1px solid var(--l2);border-radius:var(--rd-lg);background:linear-gradient(180deg,var(--s2),var(--s1));padding:clamp(40px,6vw,60px) 32px;position:relative;overflow:hidden}
 .close-cta::before{content:"";position:absolute;inset:0;background:url("/assets/av-corredor.jpg") center/cover;opacity:.16;z-index:0}
