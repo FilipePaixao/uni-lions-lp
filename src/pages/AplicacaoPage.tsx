@@ -130,7 +130,7 @@ export default function AplicacaoPage() {
       </div>
       <div className="topnav">
         <div className="brand">
-          <img src="/assets/unilions-logo.jpg" alt="Uni Lions" />
+          <img src="/assets/unilions-logo-white.png" alt="Uni Lions" width={968} height={201} />
         </div>
         <div className="qcount">{qcount}</div>
       </div>

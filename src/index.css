@@ -32,7 +32,7 @@
 
 /* ═══════════ AMBIDESTRIA EXECUTIVA · Uni Lions ═══════════
    Navy + azul elétrico (peça Ambidestria). Montserrat display/corpo + JetBrains Mono.
-   Único acento: azul #0066FF. Logo: /assets/unilions-logo-capa.jpg */
+   Único acento: azul #0066FF. Logo: /assets/unilions-logo-white.png */
 :root{
   --bg:#0A1628; --s1:#0E1C32; --s2:#12243C; --s3:#173052;
   --glass:rgba(14,28,50,.72); --glass-line:rgba(255,255,255,.08);
@@ -98,8 +98,8 @@ em{font-style:italic}
 .topbar{position:fixed;left:0;right:0;top:0;z-index:50;background:rgba(10,22,40,.92);backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);border-bottom:1px solid var(--l1)}
 .topbar.is-open{z-index:80}
 .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;height:66px}
-.topbar-logo{display:inline-flex;align-items:center;flex:none;text-decoration:none;border-radius:6px}
-.topbar-logo img{width:clamp(148px,20vw,220px);height:auto;max-width:min(220px,48vw);object-fit:contain;opacity:.98;border-radius:6px}
+.topbar-logo{display:inline-flex;align-items:center;flex:none;text-decoration:none}
+.topbar-logo img{width:clamp(148px,20vw,220px);height:auto;max-width:min(220px,48vw);object-fit:contain;opacity:.98}
 .topbar-nav{display:none;flex:1;min-width:0;justify-content:center}
 .topbar-nav-list{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 2px;list-style:none;margin:0;padding:0}
 .topbar-nav-list a{display:inline-flex;align-items:center;min-height:40px;padding:8px 12px;font-size:13.5px;font-weight:500;letter-spacing:.01em;color:var(--t-mid);text-decoration:none;border-radius:6px;transition:color .2s var(--ease),background-color .2s var(--ease)}
@@ -139,6 +139,24 @@ section{position:relative}
 main{display:block}
 .sec{padding:clamp(60px,8vw,100px) 0}
 .sec-line{border-top:1px solid var(--l1)}
+.sec-cenario{padding-bottom:0}
+.cenario-media{position:relative;overflow:hidden;isolation:isolate;border-top:1px solid var(--l1)}
+.cenario-media__bg{position:absolute;inset:0;z-index:0;pointer-events:none;background:var(--bg)}
+.cenario-media__video{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+.cenario-media__bg::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(180deg,rgba(10,22,40,.72) 0%,rgba(10,22,40,.58) 45%,rgba(10,22,40,.78) 100%),
+    linear-gradient(90deg,rgba(10,22,40,.38) 0%,rgba(10,22,40,.12) 55%,rgba(10,22,40,.28) 100%);
+}
+.cenario-media__content{position:relative;z-index:1;padding-top:clamp(48px,6vw,72px);padding-bottom:clamp(60px,8vw,100px)}
+.cenario-media .stat{background:linear-gradient(180deg,rgba(16,28,48,.92),rgba(12,24,42,.88));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.cenario-media .card{background:rgba(16,28,48,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.cenario-media .callout.accent{background:linear-gradient(180deg,rgba(0,102,255,.14),rgba(12,24,42,.88));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+@media(prefers-reduced-motion:reduce){
+  .cenario-media__video{display:none}
+  .cenario-media__bg{background:var(--bg) url("/assets/espaco-lounge.jpg") center/cover no-repeat}
+}
 .sec-num{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.14em;color:var(--cta);display:inline-flex;align-items:center;gap:9px;margin-bottom:20px}
 .sec-num b{color:var(--t-hi);font-weight:500}
 .sec-num i{font-style:normal;color:var(--t-low);letter-spacing:.16em;text-transform:uppercase;font-size:11px}
@@ -408,8 +426,10 @@ main{display:block}
 
 /* professores · autoridade com foto */
 .prof{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:center;border:1px solid var(--l1);border-radius:var(--rd-lg);background:linear-gradient(180deg,var(--s2),var(--s1));padding:28px 30px;margin:30px 0;max-width:none;scroll-margin-top:96px}
-.prof .ph{width:200px;aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:1px solid var(--l2)}
+.prof .ph{width:200px;max-width:100%;aspect-ratio:3/4;border-radius:14px;overflow:hidden;border:1px solid var(--l2)}
 .prof .ph img{width:100%;height:100%;object-fit:cover}
+#prof-marcio-pauliki .ph img{object-position:58% 35%}
+.faculty-carousel__photo img[src*="prof-marcio-pauliki"]{object-position:58% 35%}
 .prof.lg{grid-template-columns:280px 1fr;gap:32px}
 .prof.lg .ph{width:280px}
 .prof blockquote{margin:0;border:none;padding:0}
@@ -417,7 +437,13 @@ main{display:block}
 .prof .who b{display:block;font-family:var(--sans);font-weight:600;font-size:15px;color:var(--cta);letter-spacing:0;font-style:normal}
 .prof .who span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--t-low);margin-top:4px;line-height:1.55;font-style:normal}
 .prof .who .accent{color:var(--cta);font-weight:700}
-@media(max-width:620px){.prof{grid-template-columns:1fr;gap:18px;padding:24px 22px}.prof .ph{width:160px}.prof.lg .ph{width:220px}}
+@media(max-width:760px){
+  .prof,
+  .prof.lg{grid-template-columns:1fr;gap:18px;padding:22px 20px;align-items:start}
+  .prof .ph,
+  .prof.lg .ph{width:min(240px,100%);margin:0 auto}
+  .prof blockquote p{font-size:clamp(16px,4.6vw,20px)}
+}
 
 /* épocas de disrupção */
 .epochs{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:24px 0;max-width:66ch}
@@ -434,9 +460,9 @@ main{display:block}
 @media(max-width:860px){.two-col{grid-template-columns:1fr;gap:26px}}
 .sec-img{border-radius:var(--rd-lg);overflow:hidden;border:1px solid var(--l1)}
 .sec-img.tall{aspect-ratio:4/5}
-.sec-img.full{aspect-ratio:3/4}
-.sec-img img{width:100%;height:100%;object-fit:cover;object-position:center}
-.sec-img.full img{object-fit:contain;background:var(--s1)}
+.sec-img.full{aspect-ratio:3/4;background:transparent}
+.sec-img img{width:100%;height:100%;object-fit:cover;object-position:center;filter:none}
+.sec-img.full img{object-fit:cover;object-position:center 42%;background:transparent}
 
 /* 4 perguntas */
 .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0}
@@ -603,7 +629,7 @@ td .price{font-family:var(--serif);font-weight:600;font-size:19px;color:var(--ct
 .close-cta>*{position:relative;z-index:1}
 
 footer{border-top:1px solid var(--l1);padding:64px 0 40px;background:var(--s1);position:relative;z-index:1}
-footer img{height:36px;width:auto;max-width:240px;object-fit:contain;opacity:.95;margin-bottom:22px;border-radius:4px}
+footer img{height:36px;width:auto;max-width:240px;object-fit:contain;opacity:.95;margin-bottom:22px}
 footer .f-mission{font-family:var(--serif);font-size:clamp(22px,3vw,30px);color:var(--t-hi);font-weight:500;max-width:22ch;line-height:1.12;margin-bottom:14px}
 footer .f-lead{color:var(--t-mid);max-width:56ch;margin-bottom:8px}
 footer .f-tag{font-family:var(--mono);font-size:12.5px;color:var(--t-low);letter-spacing:.02em;margin-bottom:40px}

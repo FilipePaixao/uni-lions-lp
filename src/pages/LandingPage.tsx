@@ -26,10 +26,23 @@ export default function LandingPage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const menuBtnRef = useRef<HTMLButtonElement>(null)
   const panelRef = useRef<HTMLDivElement>(null)
+  const ambientVideoRef = useRef<HTMLVideoElement>(null)
   const panelId = useId()
 
   useEffect(() => {
     track('landing_view', { page_variant: 'landing_v4' })
+  }, [])
+
+  useEffect(() => {
+    const video = ambientVideoRef.current
+    if (!video) return
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion) {
+      video.pause()
+      return
+    }
+    video.muted = true
+    void video.play().catch(() => {})
   }, [])
 
   useEffect(() => {
@@ -73,10 +86,10 @@ export default function LandingPage() {
         <div className="wrap topbar-inner">
           <Link to="/" className="topbar-logo">
             <img
-              src="/assets/unilions-logo-capa.jpg"
+              src="/assets/unilions-logo-white.png"
               alt="Uni Lions"
-              width={3168}
-              height={792}
+              width={968}
+              height={201}
             />
           </Link>
 
@@ -210,56 +223,74 @@ export default function LandingPage() {
         </div>
 
         {/* 1 · O CENÁRIO */}
-        <section className="sec" data-aura-section="cenario">
+        <section className="sec sec-cenario" data-aura-section="cenario">
           <div className="wrap body">
             <FacultyCarousel />
-            <div className="stat rv">
-              <div className="big">43%</div>
-              <div className="txt">
-                <b>dos CEOs brasileiros não se sentem confortáveis para decidir apoiados em IA.</b>
-                <span className="src">Fundação Dom Cabral</span>
-              </div>
+          </div>
+          <div className="cenario-media">
+            <div className="cenario-media__bg" aria-hidden="true">
+              <video
+                ref={ambientVideoRef}
+                className="cenario-media__video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/assets/espaco-lounge.jpg"
+              >
+                <source src="/assets/ambiente-unilions.mp4" type="video/mp4" />
+              </video>
             </div>
-            <div className="sec-num rv">
-              <b>01</b> <i>O cenário</i>
-            </div>
-            <h2 className="h2 display-italic rv">Você não ficou mais lento. O mundo ficou mais rápido.</h2>
-            <p className="rv">
-              Por décadas era possível gerir olhando pelo retrovisor. O mercado era previsível, e o manual funcionava: as metas eram determinadas de cima, a ordem é cumprida, no fim do mês se cobra o resultado. Comando e controle. Funcionava porque o amanhã era parecido com ontem.
-            </p>
-            <p className="rv big-serif">Esse mercado acabou.</p>
-            <p className="rv">
-              Hoje a mudança vem rápido demais pro manual antigo. A tecnologia de ontem já é padrão. O concorrente que você nem via no radar nasceu semana passada e já disputa o seu cliente. É como se a neblina baixasse no meio do voo, e o horizonte que te guiava sumisse. Ela baixou pra todo mundo ao mesmo tempo.
-            </p>
-            <div className="grid g2 rv" style={{ margin: '30px 0' }}>
-              <div className="card">
-                <div className="icon-b">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" />
-                    <path d="M9 9v.01M9 13v.01M9 17v.01" />
-                  </svg>
+            <div className="wrap body cenario-media__content">
+              <div className="stat rv">
+                <div className="big">43%</div>
+                <div className="txt">
+                  <b>dos CEOs brasileiros não se sentem confortáveis para decidir apoiados em IA.</b>
+                  <span className="src">Fundação Dom Cabral</span>
                 </div>
-                <h3>Se você é empresário empreendedor</h3>
-                <p>sente o chão mudar debaixo dos pés. O que deu certo por vinte anos começa a render menos, e ninguém explica direito por quê.</p>
               </div>
-              <div className="card">
-                <div className="icon-b">
-                  <svg viewBox="0 0 24 24">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                    <circle cx="9" cy="7" r="4" />
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg>
-                </div>
-                <h3>Se você é executivo</h3>
-                <p>sente medo de ficar pra trás enquanto os pares aprenderam a decidir com IA e método. Quem puxa a transformação ganha as mesas onde as decisões acontecem.</p>
+              <div className="sec-num rv">
+                <b>01</b> <i>O cenário</i>
               </div>
-            </div>
-            <p className="rv wide">Ninguém aqui vai te vender bola de cristal. Prever o mercado sempre foi ilusão, com ou sem IA.</p>
-            <div className="callout accent rv big">
-              <span className="lbl">A proposta central da imersão em Ambidestria Executiva</span>
-              <p>
-                Ensinar o empresário empreendedor ou ao líder executivo um <span className="mech">novo método de gestão</span>, onde as ferramentas tecnológicas te auxiliam a enxergar a organização de forma sistêmica, te auxiliando a garantir os resultados operacionais que te sustentam hoje, porém te ensinando estratégias para você conquistar um futuro muito mais próspero e sustentável.
+              <h2 className="h2 display-italic rv">Você não ficou mais lento. O mundo ficou mais rápido.</h2>
+              <p className="rv">
+                Por décadas era possível gerir olhando pelo retrovisor. O mercado era previsível, e o manual funcionava: as metas eram determinadas de cima, a ordem é cumprida, no fim do mês se cobra o resultado. Comando e controle. Funcionava porque o amanhã era parecido com ontem.
               </p>
+              <p className="rv big-serif">Esse mercado acabou.</p>
+              <p className="rv">
+                Hoje a mudança vem rápido demais pro manual antigo. A tecnologia de ontem já é padrão. O concorrente que você nem via no radar nasceu semana passada e já disputa o seu cliente. É como se a neblina baixasse no meio do voo, e o horizonte que te guiava sumisse. Ela baixou pra todo mundo ao mesmo tempo.
+              </p>
+              <div className="grid g2 rv" style={{ margin: '30px 0' }}>
+                <div className="card">
+                  <div className="icon-b">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-4" />
+                      <path d="M9 9v.01M9 13v.01M9 17v.01" />
+                    </svg>
+                  </div>
+                  <h3>Se você é empresário empreendedor</h3>
+                  <p>sente o chão mudar debaixo dos pés. O que deu certo por vinte anos começa a render menos, e ninguém explica direito por quê.</p>
+                </div>
+                <div className="card">
+                  <div className="icon-b">
+                    <svg viewBox="0 0 24 24">
+                      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                      <circle cx="9" cy="7" r="4" />
+                      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                  </div>
+                  <h3>Se você é executivo</h3>
+                  <p>sente medo de ficar pra trás enquanto os pares aprenderam a decidir com IA e método. Quem puxa a transformação ganha as mesas onde as decisões acontecem.</p>
+                </div>
+              </div>
+              <p className="rv wide">Ninguém aqui vai te vender bola de cristal. Prever o mercado sempre foi ilusão, com ou sem IA.</p>
+              <div className="callout accent rv big">
+                <span className="lbl">A proposta central da imersão em Ambidestria Executiva</span>
+                <p>
+                  Ensinar o empresário empreendedor ou ao líder executivo um <span className="mech">novo método de gestão</span>, onde as ferramentas tecnológicas te auxiliam a enxergar a organização de forma sistêmica, te auxiliando a garantir os resultados operacionais que te sustentam hoje, porém te ensinando estratégias para você conquistar um futuro muito mais próspero e sustentável.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -720,11 +751,11 @@ export default function LandingPage() {
               </div>
               <div className="sec-img full rv">
                 <img
-                  src="/assets/lions-startups-turma.png"
+                  src="/assets/lions-startups-turma.jpg"
                   alt="Grupo de participantes da Lions Startups reunidos em ambiente corporativo"
                   loading="lazy"
-                  width={768}
-                  height={1024}
+                  width={1350}
+                  height={1800}
                 />
               </div>
             </div>
@@ -1118,7 +1149,7 @@ export default function LandingPage() {
 
       <footer data-aura-section="rodape">
         <div className="wrap">
-          <img src="/assets/unilions-logo.jpg" alt="Uni Lions" />
+          <img src="/assets/unilions-logo-white.png" alt="Uni Lions" width={968} height={201} />
           <div className="f-mission">Ambidestria Executiva</div>
           <p className="f-lead">
             Formar líderes que conduzem com as duas mãos: uma defende o caixa que paga as contas hoje, a outra constrói o negócio que vem depois. Estratégia primeiro. A ferramenta, por último.
