@@ -2,6 +2,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import FacultyCarousel from '../components/FacultyCarousel'
 import { useReveal } from '../hooks/useReveal'
+import { useHandsParallax } from '../hooks/useHandsParallax'
 import { useFab } from '../hooks/useFab'
 import { track, trackCtaClick } from '../lib/analytics'
 
@@ -21,6 +22,7 @@ const Arrow = () => (
 
 export default function LandingPage() {
   useReveal()
+  useHandsParallax()
   useFab()
 
   const [menuOpen, setMenuOpen] = useState(false)
@@ -167,17 +169,17 @@ export default function LandingPage() {
           </div>
           <div className="wrap">
             <div className="hero-inner">
-              <p className="hero-brand rv">Ambidestria Executiva</p>
-              <p className="hero-micro rv" style={{ marginBottom: '10px' }}>
+              <p className="hero-brand rv rv-d1">Ambidestria Executiva</p>
+              <p className="hero-micro rv rv-soft rv-d2" style={{ marginBottom: '10px' }}>
                 Programa executivo presencial · São Paulo · 50h · turma única
               </p>
-              <h1 id="hero-title" className="rv">
+              <h1 id="hero-title" className="rv rv-d3">
                 Enxergue o negócio inteiro e <span className="accent">decida com clareza</span> no cenário que ninguém mais consegue prever.
               </h1>
-              <p className="sub rv">
+              <p className="sub rv rv-soft rv-d4">
                 Essa é a virada: parar de gerir no controle e passar a decidir por contexto, com visão sistêmica e a IA como instrumento de leitura. Em 50h presenciais em São Paulo você sai com um plano de transformação pronto para se defender no presente e avançar para um futuro promissor.
               </p>
-              <div className="hero-cta rv">
+              <div className="hero-cta rv rv-d4">
                 <Link
                   to="/aplicacao"
                   className="btn btn-primary btn-lg"
@@ -189,7 +191,7 @@ export default function LandingPage() {
                   Ver como funciona
                 </a>
               </div>
-              <p className="hero-micro rv">Submissão para se candidatar à vaga, leva 2 minutos. Sem compromisso de compra.</p>
+              <p className="hero-micro rv rv-soft rv-d5">Submissão para se candidatar à vaga, leva 2 minutos. Sem compromisso de compra.</p>
             </div>
           </div>
         </section>
@@ -261,7 +263,7 @@ export default function LandingPage() {
               <p className="rv">
                 Hoje a mudança vem rápido demais pro manual antigo. A tecnologia de ontem já é padrão. O concorrente que você nem via no radar nasceu semana passada e já disputa o seu cliente. É como se a neblina baixasse no meio do voo, e o horizonte que te guiava sumisse. Ela baixou pra todo mundo ao mesmo tempo.
               </p>
-              <div className="grid g2 rv" style={{ margin: '30px 0' }}>
+              <div className="grid g2 rv rv-stagger" style={{ margin: '30px 0' }}>
                 <div className="card">
                   <div className="icon-b">
                     <svg viewBox="0 0 24 24">
@@ -360,7 +362,7 @@ export default function LandingPage() {
               </figure>
               <h2 className="h2 wide rv">Método que não vira rotina do time morre na primeira semana.</h2>
               <p className="rv wide">Aqui nós vamos te estimular a desmistificar conceitos sobre:</p>
-              <div className="q-grid rv">
+              <div className="q-grid rv rv-stagger">
                 <div className="q-card">
                   <div className="qn">
                     <b>1</b> Cultura
@@ -584,7 +586,7 @@ export default function LandingPage() {
             <p className="rv wide">
               As estratégias devem ser voltadas para inserir e integrar inteligência artificial nas ofertas atuais da empresa, transformando modelos de negócios e entregando novas propostas de valor aos clientes.
             </p>
-            <div className="grid g2 rv" style={{ margin: '30px 0' }}>
+            <div className="grid g2 rv rv-stagger" style={{ margin: '30px 0' }}>
               <div className="card">
                 <div className="icon-b">
                   <svg viewBox="0 0 24 24">
@@ -714,7 +716,7 @@ export default function LandingPage() {
             </div>
             <h2 className="h2 rv">Como a imersão acontece.</h2>
             <p className="deck rv">Ciclo de aproximadamente 8 semanas, 50 horas presenciais em São Paulo, com banca ao vivo.</p>
-            <div className="journey rv">
+            <div className="journey rv rv-stagger">
               <div className="j-step">
                 <span className="k">Antes</span>
                 <h3>Aplicação e assessment</h3>
@@ -1015,7 +1017,7 @@ export default function LandingPage() {
             <p className="rv wide">
               Eu poderia botar um relógio piscando e inventar um número de vagas. Não vou. A escassez aqui é real, e vem de três coisas que eu não consigo esticar:
             </p>
-            <div className="fomo-cards rv">
+            <div className="fomo-cards rv rv-stagger">
               <div className="fc">
                 <svg viewBox="0 0 24 24" stroke="currentColor">
                   <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
