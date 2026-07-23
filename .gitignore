@@ -2,5 +2,6 @@
 node_modules/
 .wrangler/
 dist/
+dist-ssr/
 *.local
 _tmp_static/
